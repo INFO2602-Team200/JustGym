@@ -1,5 +1,5 @@
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/INFO2602-Team200/JustGym)
-<a href="https://render.com/deploy?repo=https://github.com/uwidcit/flaskmvc">
+<a href="https://render.com/deploy?repo=https://github.com/INFO2602-Team200/JustGym">
   <img src="https://render.com/images/deploy-to-render-button.svg" alt="Deploy to Render">
 </a>
 
