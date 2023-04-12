@@ -4,3 +4,6 @@ from .userPreferences import *
 from .workout import *
 from .exercise import *
 from .exerciseData import *
+from .milestone import *
+from .milestoneData import *
+from .UserMilestoneData import *
