@@ -38,19 +38,21 @@
       <table>
         <thead>
           <tr>
-            <th>Id</th><th>Username</th><th>Email</th><th>Age</th><th>Height</th><th>Weight</th><th>Sex</th>
+            <th>Id</th><th>Username</th><th>Email</th><th>Date of Birth</th><th>Age</th><th>Height(cm)</th><th>Weight(kg)</th><th>BMI</th><th>Sex</th>
           </tr>
         </thead>
         <tbody>
           {% for user in users %}
             <tr>
-              <td>${user.id}</td>
-              <td>${user.username}</td>
-              <td>${user.email}</td>
-              <td>${user.age}</td>
-              <td>${user.height}</td>
-              <td>${user.weight}</td>
-              <td>${user.sex}</td>
+              <td>{{user.id}}</td>
+              <td>{{user.username}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.dateOfBirth}}</td>
+              <td>{{user.age}}</td>
+              <td>{{user.height}}</td>
+              <td>{{user.weight}}</td>
+              <td>{{user.bmi}}</td>
+              <td>{{user.sex}}</td>
             </tr>
           {% endfor %}
         <tbody>

@@ -57,4 +57,5 @@ class User(db.Model):
 
     # height - cm ,weight - kg
     def get_bmi(height, weight):
-        return float(weight/((height/100)*(height/100)*1.0))
+        bmi = float(weight/((height/100)*(height/100)*1.0))
+        return round(bmi, 2)
