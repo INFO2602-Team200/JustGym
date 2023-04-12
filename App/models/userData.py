@@ -8,5 +8,5 @@ class UserData(db.Model):
 
 def __init__(self):
     user_id = self.id
-# self.myWorkouts = []
-# # self.myMilestones = []
+    # self.myWorkouts = []
+    # self.myMilestones = []
