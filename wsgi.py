@@ -1,4 +1,4 @@
-import click, pytest, sys, psycopg2
+import click, pytest, sys
 from flask import Flask
 from flask.cli import with_appcontext, AppGroup
 
@@ -41,8 +41,8 @@ user_cli = AppGroup('user', help='User object commands')
 @click.argument("data", default=None)
 @click.argument("preferences", default=None)
 
-def create_user_command(username, password,email,age,height,weight,sex,data,preferences):
-    create_user(username, password, email,age,height,weight,sex,data ,preferences)
+def create_user_command(username, password,email,age,height,weight,sex):
+    create_user(username, password, email,age,height,weight,sex)
     print(f'{username} created!')
 
 # this command will be : flask user create bob bobpass

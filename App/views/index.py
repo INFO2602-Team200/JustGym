@@ -12,7 +12,8 @@ def index_page():
 def init():
     db.drop_all()
     db.create_all()
-    create_user('bob', 'bobpass')
+    create_user('bob', 'bobpass',"bob@mail.com","18","170","121","Male")
+    create_user('rob', 'robpass',"rob@mail.com","52","140","90","Male")
     return jsonify(message='db initialized!')
 
 @index_views.route('/health', methods=['GET'])

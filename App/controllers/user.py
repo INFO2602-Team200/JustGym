@@ -2,7 +2,6 @@ from App.models import User, UserData, UserPreferences
 from App.database import db
 
 def create_user(username, password, email,age,height,weight,sex):
-    new_user_data = UserData()
     newuser = User(username=username, password=password,email = email,age = age,height = height,weight = weight,sex = sex)
     db.session.add(newuser)
     db.session.commit()

@@ -59,13 +59,13 @@ def empty_db():
 
 
 def test_authenticate():
-    user = create_user("bob", "bobpass")
+    user = create_user('bob', 'bobpass',"bob@mail.com","18","170","110","Male")
     assert authenticate("bob", "bobpass") != None
 
 class UsersIntegrationTests(unittest.TestCase):
 
     def test_create_user(self):
-        user = create_user("rick", "bobpass")
+        user = create_user('rick', 'rickpass',"bob@mail.com","19","169","110","Male")
         assert user.username == "rick"
 
     def test_get_all_users_json(self):
