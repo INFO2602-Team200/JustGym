@@ -1,24 +1,29 @@
 from werkzeug.security import check_password_hash, generate_password_hash
 from App.database import db
+from datetime import date
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username =  db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String(120), nullable=False)
     email = db.Column(db.String(120),nullable = False, unique = True)
+    dateOfBirth = db.Column(db.Date, nullable = False)
     age = db.Column(db.String(120), nullable = False)
     height = db.Column(db.Float, nullable = False)
-    weight = db.Column(db.Float, nullable = False)
+    weight = db.Column(db.Float , nullable = False)
+    bmi = db.Column(db.Float ,nullable = False)
     sex = db.Column(db.String(120), nullable = False)
     data = db.relationship('UserData', backref= db.backref('user'), lazy = 'joined')
     preferences = db.relationship('UserPreferences', backref= db.backref('user'), lazy = 'joined')
 
-    def __init__(self, username, password,email,age,height,weight,sex):
+    def __init__(self, username, password,email,dateOfBirth,height,weight,sex):
         self.username = username
         self.email = email
-        self.age = age
-        self.height = height
-        self.weight = weight
+        self.dateOfBirth = dateOfBirth
+        self.age = User.calculate_age(dateOfBirth)
+        self.height = float(height)
+        self.weight = float(weight)
+        self.bmi = User.get_bmi(float(height),float(weight))
         self.sex = sex
         self.set_password(password)
 
@@ -27,9 +32,11 @@ class User(db.Model):
             'id': self.id,
             'username': self.username,
             'email' : self.email,
+            'dateOfBirth': self.dateOfBirth,
             'age' : self.age,
             'height': self.height,
             'weight': self.weight,
+            'bmi' : self.bmi,
             'sex' : self.sex,
             'data' : self.data,
             'preferences' : self.preferences,
@@ -43,3 +50,11 @@ class User(db.Model):
         """Check hashed password."""
         return check_password_hash(self.password, password)
 
+    def calculate_age(dateOfBirth):
+        today = date.today()
+        age = today.year - dateOfBirth.year - ((today.month, today.day) < (dateOfBirth.month, dateOfBirth.day))
+        return age
+
+    # height - cm ,weight - kg
+    def get_bmi(height, weight):
+        return float(weight/((height/100)*(height/100)*1.0))

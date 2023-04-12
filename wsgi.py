@@ -5,6 +5,7 @@ from flask.cli import with_appcontext, AppGroup
 from App.database import db, get_migrate
 from App.main import create_app
 from App.controllers import ( create_user, get_all_users_json, get_all_users )
+from datetime import date
 
 # This commands file allow you to create convenient CLI commands for testing controllers
 
@@ -16,7 +17,7 @@ migrate = get_migrate(app)
 def initialize():
     db.drop_all()
     db.create_all()
-    create_user('bob', 'bobpass',"bob@mail.com","18","170","110","Male")
+    create_user('bob', 'bobpass',"bob@mail.com",date(1990, 5, 12), 170, 110 ,"Male")
     print('database intialized')
 
 '''
@@ -34,15 +35,15 @@ user_cli = AppGroup('user', help='User object commands')
 @click.argument("username", default="rob")
 @click.argument("password", default="robpass")
 @click.argument("email", default="rob@mail.com")
-@click.argument("age", default="18")
-@click.argument("height", default="160")
-@click.argument("weight", default="120")
+@click.argument("dateOfBirth", default= date(1990, 5, 12))
+@click.argument("height", default=160)
+@click.argument("weight", default=120)
 @click.argument("sex", default="Male")
 @click.argument("data", default=None)
 @click.argument("preferences", default=None)
 
-def create_user_command(username, password,email,age,height,weight,sex):
-    create_user(username, password, email,age,height,weight,sex)
+def create_user_command(username, password,email,dateOfBirth,height,weight,sex):
+    create_user(username, password, email,dateOfBirth,height,weight,sex)
     print(f'{username} created!')
 
 # this command will be : flask user create bob bobpass

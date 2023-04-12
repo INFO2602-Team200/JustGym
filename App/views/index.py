@@ -1,6 +1,7 @@
 from flask import Blueprint, redirect, render_template, request, send_from_directory, jsonify
 from App.models import db
 from App.controllers import create_user
+from datetime import date
 
 index_views = Blueprint('index_views', __name__, template_folder='../templates')
 
@@ -12,8 +13,8 @@ def index_page():
 def init():
     db.drop_all()
     db.create_all()
-    create_user('bob', 'bobpass',"bob@mail.com","18","170","121","Male")
-    create_user('rob', 'robpass',"rob@mail.com","52","140","90","Male")
+    create_user('bob', 'bobpass',"bob@mail.com",date(1990, 5, 12) ,169,121,"Male")
+    create_user('rob', 'robpass',"rob@mail.com",date(1999, 5, 12),140, 90 ,"Male")
     return jsonify(message='db initialized!')
 
 @index_views.route('/health', methods=['GET'])

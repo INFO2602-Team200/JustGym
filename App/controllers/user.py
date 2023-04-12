@@ -1,8 +1,8 @@
 from App.models import User, UserData, UserPreferences
 from App.database import db
 
-def create_user(username, password, email,age,height,weight,sex):
-    newuser = User(username=username, password=password,email = email,age = age,height = height,weight = weight,sex = sex)
+def create_user(username, password, email,dateOfBirth,height,weight,sex):
+    newuser = User(username=username, password=password,email = email,dateOfBirth = dateOfBirth,height = height,weight = weight,sex = sex)
     db.session.add(newuser)
     db.session.commit()
     return newuser
@@ -26,12 +26,12 @@ def get_all_users_json():
     users = [user.get_json() for user in users]
     return users
 
-def update_user(id, username, email,age,height,weight,sex):
+def update_user(id, username, email,dateOfBirth,height,weight,sex):
     user = get_user(id)
     if user:
         user.username = username
         user.email = email
-        user.age = age
+        user.dateOfBirth = dateOfBirth
         user.height = height
         user.weight = weight
         user.sex = sex
