@@ -13,15 +13,13 @@ class User(db.Model):
     data = db.relationship('UserData', backref= db.backref('user'), lazy = 'joined')
     preferences = db.relationship('UserPreferences', backref= db.backref('user'), lazy = 'joined')
 
-    def __init__(self, username, password,email,age,height,weight,sex,data = None ,preferences = None):
+    def __init__(self, username, password,email,age,height,weight,sex):
         self.username = username
         self.email = email
         self.age = age
         self.height = height
         self.weight = weight
         self.sex = sex
-        self.data = data
-        self.preferences = preferences
         self.set_password(password)
 
     def get_json(self):
