@@ -18,3 +18,13 @@ def __init__(self, bodyPart, equipment, gifUrl, name, target):
 
 def __repr__(self):
      return f'<ExerciseData id={self.id} name={self.name}>'
+
+def get_json (self):
+    return{
+        'id': self.id,
+        'bodyPart': self.bodyPart,
+        'equipment': self.equipment,
+        'gifUrl'  : self.gifUrl,
+        'name': self.name,
+        'target' : self.target
+    }

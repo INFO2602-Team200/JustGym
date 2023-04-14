@@ -30,3 +30,4 @@ def setup_jwt(app):
         return User.query.get(identity)
 
     return jwt
+
