@@ -10,7 +10,7 @@ def get_all_exercises():
     return ExerciseData.query.all()
 
 def get_all_exercises_json():
-    exercises = ExerciseData.query.all()
+    exercises = get_all_exercises()
     if not exercises:
         return []
     exerciseList = [ exercise.get_json() for exercise in exercises]

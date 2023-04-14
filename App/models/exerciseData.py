@@ -9,22 +9,22 @@ class ExerciseData (db.Model):
     name = db.Column(db.String)
     target = db.Column(db.String)
 
-def __init__(self, bodyPart, equipment, gifUrl, name, target):
-    self.bodyPart = bodyPart
-    self.equipment = equipment
-    self.gifUrl = gifUrl
-    self.name = name
-    self.target = target
+    def __init__(self, bodyPart, equipment, gifUrl, name, target):
+        self.bodyPart = bodyPart
+        self.equipment = equipment
+        self.gifUrl = gifUrl
+        self.name = name
+        self.target = target
 
-def __repr__(self):
-     return f'<ExerciseData id={self.id} name={self.name}>'
+    def __repr__(self):
+        return f'<ExerciseData id={self.id} name={self.name}>'
 
-def get_json (self):
-    return{
-        'id': self.id,
-        'bodyPart': self.bodyPart,
-        'equipment': self.equipment,
-        'gifUrl'  : self.gifUrl,
-        'name': self.name,
-        'target' : self.target
-    }
+    def get_json (self):
+        return{
+            'id': self.id,
+            'bodyPart': self.bodyPart,
+            'equipment': self.equipment,
+            'gifUrl'  : self.gifUrl,
+            'name': self.name,
+            'target' : self.target
+        }
