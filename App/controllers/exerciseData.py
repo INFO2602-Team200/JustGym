@@ -11,8 +11,7 @@ def get_exerciseData(id):
     exercise = E.ExerciseData.query.filter_by(id = id).first()
     if exercise:
         return exercise
-    
-    return f'Exercise data {id} not found'
+    return None
 
 def get_exerciseData_json(id):
     exercise = get_exerciseData(id)

@@ -14,11 +14,11 @@ class Workout(db.Model):
         self.estimatedDuration = estimatedDuration
 
     def get_json(self):
+
+        from App.controllers import get_exercises_by_workoutID_json
         return{
             'workout_id': self.workout_id,
             'workoutName': self.workoutName,
-            'workoutExercises': self.workoutExercises,
+            'workoutExercises': get_exercises_by_workoutID_json(self.workout_id),
             'estimatedDuration': self.estimatedDuration
-
-
         }

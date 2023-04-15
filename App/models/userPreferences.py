@@ -16,7 +16,7 @@ class UserPreferences(db.Model):
 
     def get_json(self):
         return {
-            'user_id': self.user_id,
+            # 'user_id': self.user_id,
             'darkMode': self.darkMode,
             'height_units': self.height_units,
             'weight_units': self.weight_units

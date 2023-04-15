@@ -1,5 +1,5 @@
 from App.database import db
-from App.controllers import (get_exerciseData,get_exerciseData_json)
+
 
 class Exercise(db.Model):
 
@@ -23,11 +23,13 @@ class Exercise(db.Model):
         self.exercise = exercise
 
     def get_json(self):
+        from App.controllers import (get_exerciseData_json)
         return {
+
             'exerciseID': self.exerciseID,
-            'workoutId': self.workoutId,
-            'exerciseDataId': self.exerciseDataId,
-            'exerciseData': self.get_exerciseData_json(self.exerciseDataId),
+            # 'workoutId': self.workoutId,
+            # 'exerciseDataId': self.exerciseDataId,
+            'exercise': get_exerciseData_json(self.exerciseDataId),
             'sets': self.sets,
             'reps': self.reps,
             'duration': self.duration

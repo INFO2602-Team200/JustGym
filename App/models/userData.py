@@ -16,7 +16,7 @@ class UserData(db.Model):
 
 
         return{
-            'user_id': self.user_id,
+            # 'user_id': self.user_id,
             'myWorkouts': get_user_workouts_json(self.user_id),
             # 'myMilestones': self.myMilestones
         }

@@ -1,7 +1,7 @@
 from flask import Blueprint, redirect, render_template, request, send_from_directory, jsonify, json
 from App.models import db
 from App.controllers import create_user,add_user_information
-from App.controllers import add_exerciseData, add_exercise,add_workout
+from App.controllers import add_exerciseData, add_exercise, add_workout,add_workout_exercise
 from datetime import date
 
 index_views = Blueprint('index_views', __name__, template_folder='../templates')
@@ -18,8 +18,7 @@ def init():
     rob = create_user('rob', 'robpass',"rob@mail.com",date(1999, 5, 12),140, 90 ,"Male")
     add_user_information(bob.id,True,"Metres","Kilograms")
     add_user_information(rob.id,False,"Feet","Pounds")
-    # workout_test = add_workout(1,"Full Body Workout")
-    # exercise_test = add_exercise(1, 1,4,5,45)
+
 
     
     with open('App\exercises.json', 'r') as f:
@@ -28,6 +27,22 @@ def init():
     # Insert the data into the database
     for exercise in data:
         db_exercise = add_exerciseData(exercise)
+
+    
+    workout_test = add_workout(1,"Full Body Workout")
+  
+    workout_test = add_workout_exercise(1,add_exercise(1,1,4,5,60))
+    workout_test = add_workout_exercise(1,add_exercise(1,14,4,5,30))
+    workout_test = add_workout_exercise(1,add_exercise(1,23,4,5,15))
+    workout_test = add_workout(1,"Legs Workout")
+    exercise_test = add_exercise(2,1,4,5,45)
+
+    workout_test = add_workout(2,"Back Workout")
+    exercise_test = add_exercise(3,9,4,5,85)
+
+    workout_test = add_workout(2,"Abs Workout")
+    exercise_test = add_exercise(4,8,4,5,45)
+
 
     # Close the session
     db.session.commit()

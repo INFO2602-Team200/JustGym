@@ -1,6 +1,6 @@
 from App.database import db
 from App.models import Workout
-from .exercise import(get_exercises_by_workoutID)
+from .exercise import(workoutEstimation)
 
 
 def get_workout (workout_id):
@@ -55,4 +55,12 @@ def get_user_workouts_json(user_id):
         return [workout.get_json() for workout in workouts]
     return None
 
-
+def add_workout_exercise(workout_id, exercise):
+    workout = get_workout(workout_id)
+    if workout:
+        workout.workoutExercises.append(exercise)
+        workout.estimatedDuration = workoutEstimation(workout_id)
+        db.session.add(workout)
+        db.session.commit()
+        return workout
+    return None
