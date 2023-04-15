@@ -1,7 +1,7 @@
 from flask import Blueprint, redirect, render_template, request, send_from_directory, jsonify, json
 from App.models import db
-from App.controllers import create_user
-from App.controllers import add_exerciseData
+from App.controllers import create_user,add_user_information
+from App.controllers import add_exerciseData, add_exercise,add_workout
 from datetime import date
 
 index_views = Blueprint('index_views', __name__, template_folder='../templates')
@@ -14,9 +14,14 @@ def index_page():
 def init():
     db.drop_all()
     db.create_all()
-    create_user('bob', 'bobpass',"bob@mail.com",date(1990, 5, 12) ,169,121,"Male")
-    create_user('rob', 'robpass',"rob@mail.com",date(1999, 5, 12),140, 90 ,"Male")
+    bob = create_user('bob', 'bobpass',"bob@mail.com",date(1990, 5, 12) ,169,121,"Male")
+    rob = create_user('rob', 'robpass',"rob@mail.com",date(1999, 5, 12),140, 90 ,"Male")
+    add_user_information(bob.id,True,"Metres","Kilograms")
+    add_user_information(rob.id,False,"Feet","Pounds")
+    # workout_test = add_workout(1,"Full Body Workout")
+    # exercise_test = add_exercise(1, 1,4,5,45)
 
+    
     with open('App\exercises.json', 'r') as f:
         data = json.load(f)
 

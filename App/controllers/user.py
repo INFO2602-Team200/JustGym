@@ -1,8 +1,10 @@
 from App.models import User
 from App.database import db
+import App.controllers.userData as user_data
+import App.controllers.userPreferences as user_preferences
 
-def create_user(username, password, email,dateOfBirth,height,weight,sex):
-    newuser = User(username=username, password=password,email = email,dateOfBirth = dateOfBirth,height = height,weight = weight,sex = sex)
+def create_user(username, password, email,dateOfBirth,height,weight,sex, data = [], preferences = []):
+    newuser = User(username=username, password=password,email = email,dateOfBirth = dateOfBirth,height = height,weight = weight,sex = sex, data = data,preferences = preferences)
     db.session.add(newuser)
     db.session.commit()
     return newuser
@@ -41,3 +43,18 @@ def update_user(id, username, email,dateOfBirth,height,weight,sex):
 
 def rollback():
     db.session.rollback()
+
+# Function creates User Data and User Preferences for a User
+def add_user_information(user_id, darkMode, height_units, weight_units):
+    user = get_user(user_id)
+    new_user_data = user_data.addUserData(user_id)
+    new_user_preferences = user_preferences.addUserPreferences(user_id,darkMode,height_units,weight_units)
+    
+    if new_user_data:
+        user.data = new_user_data
+        if new_user_preferences:
+            user.preferences = new_user_preferences
+            db.session.add(user)
+            db.session.commit()
+            return True
+    return None

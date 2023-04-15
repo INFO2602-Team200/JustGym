@@ -14,13 +14,13 @@ class Exercise(db.Model):
     duration = db.Column(db.Integer)
 
 
-    def __init__(self,workoutId,exerciseDataId,sets, reps, duration):
+    def __init__(self,workoutId,exerciseDataId,sets, reps, duration, exercise):
         self.workoutId = workoutId
         self.exerciseDataId = exerciseDataId
-        self.exercise = get_exerciseData(exerciseDataId)
         self.sets = sets
         self.reps = reps
         self.duration = duration
+        self.exercise = exercise
 
     def get_json(self):
         return {

@@ -7,8 +7,18 @@ class Workout(db.Model):
     workoutExercises = db.relationship('Exercise', backref='workout', lazy=True)
     estimatedDuration = db.Column(db.Integer ,default = 0)
 
-    def __init__(self, user_id, workoutName, estimatedDuration):
+    def __init__(self, user_id, workoutName,workoutExercises, estimatedDuration):
         self.user_id = user_id
         self.workoutName = workoutName
-        self.workoutExercises = []
+        self.workoutExercises = workoutExercises
         self.estimatedDuration = estimatedDuration
+
+    def get_json(self):
+        return{
+            'workout_id': self.workout_id,
+            'workoutName': self.workoutName,
+            'workoutExercises': self.workoutExercises,
+            'estimatedDuration': self.estimatedDuration
+
+
+        }

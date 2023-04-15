@@ -91,3 +91,8 @@ def logout_action():
   logout_user_action()
   flash('Logged Out')
   return redirect(url_for('login_page'))
+
+@user_views.route('/userjson', methods=['GET'])
+def get_exerciseData_page():
+    users = get_all_users_json()
+    return jsonify(users)

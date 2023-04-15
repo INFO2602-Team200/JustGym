@@ -2,6 +2,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from App.database import db
 from datetime import date
 
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username =  db.Column(db.String, nullable=False, unique=True)
@@ -16,7 +17,7 @@ class User(db.Model):
     data = db.relationship('UserData', backref= db.backref('user'), lazy = 'joined')
     preferences = db.relationship('UserPreferences', backref= db.backref('user'), lazy = 'joined')
 
-    def __init__(self, username, password,email,dateOfBirth,height,weight,sex):
+    def __init__(self, username, password,email,dateOfBirth,height,weight,sex, data, preferences):
         self.username = username
         self.email = email
         self.dateOfBirth = dateOfBirth
@@ -26,8 +27,12 @@ class User(db.Model):
         self.bmi = User.get_bmi(float(height),float(weight))
         self.sex = sex
         self.set_password(password)
+        self.data = data
+        self.preferences = preferences
 
     def get_json(self):
+        from App.controllers import get_user_preference_json, get_userData_json
+
         return{
             'id': self.id,
             'username': self.username,
@@ -38,8 +43,8 @@ class User(db.Model):
             'weight': self.weight,
             'bmi' : self.bmi,
             'sex' : self.sex,
-            'data' : self.data,
-            'preferences' : self.preferences,
+            'data' : get_userData_json(self.id),
+            'preferences' : get_user_preference_json(self.id),
         }
 
     def set_password(self, password):

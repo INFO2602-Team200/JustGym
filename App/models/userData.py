@@ -6,15 +6,18 @@ class UserData(db.Model):
     myWorkouts = db.relationship('Workout', backref='userdata', lazy='dynamic')
     myMilestones = db.relationship('Milestone', backref='userdata', lazy='dynamic')
 
-def __init__(self):
-    self.myWorkouts = []
-    self.myMilestones = []
+    def __init__(self,user_id,myWorkouts,myMilestones):
+        self.user_id = user_id
+        self.myWorkouts = myWorkouts
+        self.myMilestones = myMilestones
 
-def get_json(self):
-    
-    return{
-        'user_id': self.user_id,
-        'myWorkouts': self.myWorkouts,
-        'myMilestone': self.myMilestones
-    }
+    def get_json(self):
+        from App.controllers import get_user_workouts_json
+
+
+        return{
+            'user_id': self.user_id,
+            'myWorkouts': get_user_workouts_json(self.user_id),
+            # 'myMilestones': self.myMilestones
+        }
     

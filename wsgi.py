@@ -4,7 +4,7 @@ from flask.cli import with_appcontext, AppGroup
 
 from App.database import db, get_migrate
 from App.main import create_app
-from App.controllers import ( create_user, get_all_users_json, get_all_users,add_exercise )
+from App.controllers import ( create_user, get_all_users_json, get_all_users,add_exercise, add_workout)
 from datetime import date
 
 # This commands file allow you to create convenient CLI commands for testing controllers
@@ -18,7 +18,6 @@ def initialize():
     db.drop_all()
     db.create_all()
     create_user('bob', 'bobpass',"bob@mail.com",date(1990, 5, 12), 170, 110 ,"Male")
-    # exercise = add_exercise(1, 1,4,5,45)
     print('database intialized')
 
 '''

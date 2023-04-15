@@ -2,12 +2,11 @@ from App.database import db
 import App.models.exercise as e
 from App.controllers.exerciseData import (get_exerciseData)
 
-def add_exercise(workoutId,exerciseDataId,sets,reps,duration):
-    exerciseData = get_exerciseData(exerciseDataId)
-    new_exercise = e.Exercise(workoutId = workoutId, exerciseDataId = exerciseDataId,exercise = exerciseData,sets = sets, reps = reps, duration = duration)
+def add_exercise(workoutId, exerciseDataId, sets, reps, duration, exercise=[]):
+    new_exercise = e.Exercise(workoutId=workoutId, exerciseDataId=exerciseDataId, exercise=exercise, sets=sets, reps=reps, duration=duration)
     db.session.add(new_exercise)
     db.session.commit()
-    return add_exercise
+    return new_exercise
 
 def modify_exercise(exerciseId,exerciseDataId,sets,reps,duration):
     updated_exercise = get_exercise(exerciseId)
