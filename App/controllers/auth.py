@@ -11,7 +11,7 @@ def authenticate(username, password):
 def login_user(user, remember):
     return flask_login.login_user(user, remember=remember)
 
-def logout_user():
+def logout_user_action():
     flask_login.logout_user()
 
 def setup_jwt(app):

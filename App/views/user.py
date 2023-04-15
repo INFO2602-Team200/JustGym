@@ -5,7 +5,7 @@ from.index import index_views
 
 from App.controllers import (
     create_user,
-    logout_user,
+    logout_user_action,
     login_user,
     authenticate, 
     rollback,
@@ -88,6 +88,6 @@ def signup_action():
 
 @user_views.route('/logout', methods=['GET'])
 def logout_action():
-  logout_user()
+  logout_user_action()
   flash('Logged Out')
   return redirect(url_for('login_page'))

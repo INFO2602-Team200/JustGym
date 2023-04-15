@@ -2,6 +2,9 @@ from .user import *
 from .auth import *
 from .userData import *
 from .userPreferences import *
+from .workout import *
 from .exercise import *
 from .exerciseData import *
-from .workout import *
+from .milestone import *
+from .milestoneData import *
+from .userMilestoneData import *

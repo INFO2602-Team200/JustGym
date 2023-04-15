@@ -6,4 +6,4 @@ from .exercise import *
 from .exerciseData import *
 from .milestone import *
 from .milestoneData import *
-from .UserMilestoneData import *
+from .userMilestoneData import *
