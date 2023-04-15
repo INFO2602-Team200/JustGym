@@ -2,7 +2,7 @@ from App.database import db
 import App.models.exerciseData as E
 
 def add_exerciseData(exercise):
-    db_exercise = E.ExerciseData(id=exercise['id'], name=exercise['name'], bodyPart=exercise['bodyPart'], equipment=exercise['equipment'], target=exercise['target'], gifUrl=exercise['gifUrl'])
+    db_exercise = E.ExerciseData(name=exercise['name'], bodyPart=exercise['bodyPart'], equipment=exercise['equipment'], target=exercise['target'], gifUrl=exercise['gifUrl'])
     db.session.add(db_exercise)
     return db_exercise
 
