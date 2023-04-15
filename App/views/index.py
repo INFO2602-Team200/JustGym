@@ -30,19 +30,20 @@ def init():
 
     
     workout_test = add_workout(1,"Full Body Workout")
-  
-    workout_test = add_workout_exercise(1,add_exercise(1,1,4,5,60))
-    workout_test = add_workout_exercise(1,add_exercise(1,14,4,5,30))
-    workout_test = add_workout_exercise(1,add_exercise(1,23,4,5,15))
     workout_test = add_workout(1,"Legs Workout")
-    exercise_test = add_exercise(2,1,4,5,45)
+    
+    workout_test = add_workout_exercise(2,add_exercise(2,1,4,5,60))
+    workout_test = add_workout_exercise(1,add_exercise(1,14,4,5,30))
+    workout_test = add_workout_exercise(2,add_exercise(2,23,4,5,15))
+
+    
+    workout_test = add_workout_exercise(1, add_exercise(1,1,4,5,45))
 
     workout_test = add_workout(2,"Back Workout")
-    exercise_test = add_exercise(3,9,4,5,85)
+    workout_test = add_workout_exercise(3, add_exercise(3,9,4,5,85))
 
     workout_test = add_workout(2,"Abs Workout")
-    exercise_test = add_exercise(4,8,4,5,45)
-
+    workout_test = add_workout_exercise(4, add_exercise(4,8,4,5,45))
 
     # Close the session
     db.session.commit()

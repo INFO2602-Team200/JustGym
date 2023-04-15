@@ -4,7 +4,7 @@ from App.controllers.exerciseData import (get_exerciseData)
 
 def add_exercise(workoutId, exerciseDataId, sets, reps, duration):
     exercise= get_exerciseData(exerciseDataId)
-    new_exercise = e.Exercise(workoutId=workoutId, exerciseDataId=5, sets=sets, reps=reps, duration=duration, exercise=exercise)
+    new_exercise = e.Exercise(workoutId=workoutId, exerciseDataId=exerciseDataId, sets=sets, reps=reps, duration=duration, exercise=exercise)
     db.session.add(new_exercise)
     db.session.commit()
     return new_exercise
