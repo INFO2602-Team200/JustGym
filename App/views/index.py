@@ -11,7 +11,7 @@ def index_page():
     return render_template('index.html')
 
 @index_views.route('/home', methods=['GET'])
-def index_page():
+def home_page():
     return render_template('home.html')
 
 @index_views.route('/init', methods=['GET'])

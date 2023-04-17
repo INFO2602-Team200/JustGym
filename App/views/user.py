@@ -61,12 +61,9 @@ def signup_page():
   return render_template('signup.html')
 
 @user_views.route('/login', methods=['GET'])
-def signup_page():
+def login_page():
   return render_template('login.html')
 
-@user_views.route('/signup', methods=['GET'])
-def signup_page():
-  return render_template('signup.html')
 
 # action routes
 @user_views.route('/login', methods=['POST'])
