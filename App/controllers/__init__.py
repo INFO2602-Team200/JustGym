@@ -8,3 +8,5 @@ from .exerciseData import *
 from .milestone import *
 from .milestoneData import *
 from .userMilestoneData import *
+from .communityWorkout import *
+from .community import *
