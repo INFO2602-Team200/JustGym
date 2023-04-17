@@ -60,6 +60,11 @@ def static_user_page():
 def signup_page():
   return render_template('signup.html')
 
+@user_views.route('/login', methods=['GET'])
+def login_page():
+  return render_template('login.html')
+
+
 # action routes
 @user_views.route('/login', methods=['POST'])
 def login_action():
