@@ -4,22 +4,27 @@
 
 {% block content %}
 <!-- landing -->
+
 <div class="landingBlock">
-    <div class="overlay">
-        <div class="wrapper">
+        <div class="navWrapper">
             <div class="navContain">
                 <nav>
                     <a href="/login" class="logo">Just<span>Gym</span></a>
                     <a href="#learnMore" class="learnBtn">Learn More</a>
                 </nav>
             </div>
-
+        </div>
             <!-- heading -->
+        <div class="wrapper ">
             <div class="landingSplit">
                 <div class="landingHeading">
-                    <h1> <span class="titleBg">Fitn<span>e</span>ss</span> is not just a hobby,
-                        It’s a way of <span class="titleBg">life</span></h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, ratione aliquid. Quibusdam qui quisquam totam distinctio nostrum odit non. Quaerat quo quasi repellat qui repudiandae.</p>
+                    <h1> 
+                        <span class="titleBg">Fitn<span>e</span>ss</span> is not just a hobby,
+                        It’s a way of <span class="titleBg">life</span>
+                    </h1>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, ratione aliquid. Quibusdam qui quisquam totam distinctio nostrum odit non. Quaerat quo quasi repellat qui repudiandae.
+                    </p>
                 </div>
                 <div class="formContainer">
                     <form id="loginForm" method="POST" action="/login">
@@ -32,29 +37,28 @@
                         <div class="formRow">
                             
                             <label for="password">Password</label>
-                            <input type="password" name="password" id="passwordField">
+                            <input required type="password" name="password" id="passwordField">
                         </div>
                         <div class="formRow submitRow">
-                            <input id="loginSubmitBtn" type="submit" value="Login">
+                            <input required id="loginSubmitBtn" type="submit" value="Login">
                         </div>
                         
                         <hr class="loginFormLine">
-                        <p class="loginFormP">Dont have an account? <a href="">Sign up</a></p>
+                        <p class="loginFormP">Dont have an account? <a href="/signup" id="loginFormSignUp">Sign up</a></p>
                         
                     </form>
                 </div>
             </div>
-
-
         </div>
-    </div>
 </div>
-<div class="learnMoreSection">
+
+<div id="learnMore" class="learnMoreSection">
     <div class="wrapper">
         <h1>BITCH</h1>
+
     </div>
 </div>
-
+<a href="/login">pls work</a>
 
 
 
