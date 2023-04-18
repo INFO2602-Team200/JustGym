@@ -9,11 +9,13 @@ class Workout(db.Model):
     public = db.Column(db.Boolean ,default = False)
     category = db.Column(db.String, default = False)
 
-    def __init__(self, user_id, workoutName,workoutExercises, estimatedDuration):
+    def __init__(self, user_id, workoutName,workoutExercises, estimatedDuration,public,category):
         self.user_id = user_id
         self.workoutName = workoutName
         self.workoutExercises = workoutExercises
         self.estimatedDuration = estimatedDuration
+        self.public = public
+        self.category = category
 
     def get_json(self):
 
@@ -22,5 +24,7 @@ class Workout(db.Model):
             'workout_id': self.workout_id,
             'workoutName': self.workoutName,
             'workoutExercises': get_exercises_by_workoutID_json(self.workout_id),
-            'estimatedDuration': self.estimatedDuration
+            'estimatedDuration': self.estimatedDuration,
+            'public': self.public,
+            'category': self.category
         }
