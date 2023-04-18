@@ -1,5 +1,5 @@
 import click, pytest, sys
-from flask import Flask
+from flask import Flask, render_template
 from flask.cli import with_appcontext, AppGroup
 
 from App.database import db, get_migrate
@@ -76,3 +76,21 @@ def user_tests_command(type):
     
 
 app.cli.add_command(test)
+
+@app.route('/home', methods=['GET'])
+def homepage():
+    return render_template('index.html')
+
+
+@app.route('/categories', methods=['GET'])
+def categories():
+    return render_template('categories_page.html')
+
+
+@app.route('/settings', methods=['GET'])
+def settings():
+    return render_template('settings.html')
+
+@app.route('/logout', methods=['GET'])
+def logout():
+    return render_template('settings.html')
