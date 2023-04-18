@@ -1,8 +1,6 @@
 from App.database import db
 from App.models import Workout
 from .exercise import(workoutEstimation)
-
-
 def get_workout (workout_id):
     workout = Workout.query.filter_by(workout_id =workout_id).first()
     if workout:
@@ -15,8 +13,8 @@ def get_user_workouts (user_id):
         return workouts
     return None
 
-def add_workout(user_id,workoutName, workoutExercises = [], estimatedDuration = 0):
-    new_workout = Workout(user_id = user_id, workoutName = workoutName, workoutExercises= workoutExercises, estimatedDuration = estimatedDuration)
+def add_workout(user_id,workoutName,public,category, workoutExercises = [], estimatedDuration = 0):
+    new_workout = Workout(user_id = user_id, workoutName = workoutName, workoutExercises= workoutExercises, estimatedDuration = estimatedDuration, public = public, category = category)
     if new_workout:
         db.session.add(new_workout)
         db.session.commit()
@@ -64,3 +62,45 @@ def add_workout_exercise(workout_id, exercise):
         db.session.commit()
         return workout
     return None
+
+def workout_public_status(workoutId):
+    from App.controllers import create_community_workout,remove_community_workout,add_community_workout,delete_community_workout
+
+    workout = get_workout(workoutId)
+    if workout.public == False:
+        status1 = delete_community_workout(workoutId)
+        status2 = remove_community_workout(workoutId)
+        return status1 and status2
+
+    elif workout.public == True:
+        community_workout = create_community_workout(workoutId)
+        if community_workout:
+            status = add_community_workout(1,community_workout)
+            return status
+            
+    return False
+
+def toggle_public_status(workoutId):
+    workout = get_workout(workoutId)
+
+    if workout:
+        if workout.public == False:
+                workout.public = True
+                db.session.add()
+                db.session.commit()
+                status = workout_public_status(workoutId)
+
+
+        elif workout.public == True:
+                workout.public = False        
+                db.session.add()
+                db.session.commit()
+                status = workout_public_status(workoutId)
+
+        if not status:
+            db.session.rollback()
+        
+        return workout.public
+    
+    return False
+

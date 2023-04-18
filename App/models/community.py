@@ -5,8 +5,7 @@ class Community(db.Model):
     communityWorkout= db.relationship('communityWorkout',backref = 'community', lazy = True)
 
 
-    def __init__(self,communityId, communityWorkout):
-        self.communityId = communityId
+    def __init__(self, communityWorkout):
         self.communityWorkout = communityWorkout 
         
 
