@@ -1,0 +1,188 @@
+/* global styles */
+*{
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    padding: 0;
+    margin: 0;
+  }
+  a{
+    text-decoration: none;
+  }
+/* LOGIN PAGE CSS */
+html{
+    background: #151515;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 1000px;
+    overflow-x: hidden;
+}
+.wrapper{
+    padding: 0.1rem 1.5em;
+    max-width: 1740px;
+    margin: 0 auto;
+
+}
+
+.landingBlock{
+    position: relative;
+    min-height: 100vh;
+    width: 100vw;
+    background-image: url("img/mainbg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding-bottom: 100px;
+    z-index: -99;
+}
+
+.landingBlock::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 100%;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -98;
+}
+
+/* .overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+} */
+
+.navContain nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+
+}
+
+.navContain .logo{
+    font-weight: 600;
+    font-size: 25px;
+}
+
+.logo span{
+    color: #FF4857;
+    font-style: italic;
+}
+
+.learnBtn{
+    font-size: 14px;
+    background-color: #FF4857;
+    border-radius: 5px;
+    padding: 0.8rem;
+    transition: background-color 0.25s ease-in;
+}
+
+.learnBtn:hover{
+    background-color: rgb(236, 64, 79);
+}
+
+/* heading css */
+.landingSplit{
+    padding-top: 3rem;
+}
+
+.landingHeading{
+    background-color: transparent;
+}
+
+.landingHeading h1{
+    font-size: 40px;
+}
+
+.landingHeading .titleBg{
+    position: relative;
+    z-index: 0;
+}
+
+.landingHeading .titleBg::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 5px;
+    width: 100%;
+    background-color: rgba(255, 72, 87, 0.35);
+    z-index: 1;
+    height: 30%;   
+}
+
+.landingHeading p{
+    color: #f1eeee;
+    margin-top: 20px;
+}
+
+
+/* CSS FOR LOGIN FORM */
+
+#loginForm{
+    background: #151515;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    border-radius: 20px;
+}
+
+#loginForm h1{
+    margin-bottom: 40px;
+}
+
+#loginForm h1, #loginForm p{
+    text-align: center;
+}
+
+.formRow{
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.formRow label{
+    font-size: 14px;
+    font-weight: 500;
+}
+
+#usernameField, #passwordField{
+    height: 40px;
+    outline: none;
+    border: none;
+    border-radius: 7px;
+    background: #222222;
+}
+.submitRow{
+    margin-bottom: 0;
+}
+
+#loginSubmitBtn{
+    height: 40px;
+    outline: none;
+    border: none;
+    border-radius: 7px;
+    background: #FF4857;
+    font-weight: 500;
+    transition: background 0.25s ease-in;
+}
+
+#loginSubmitBtn:hover{
+    background-color: rgb(236, 64, 79);
+}
+
+.loginFormLine{
+    background-color: #6C6B74;
+    border: none;
+    height: 2px;
+    width: 150px;
+    margin: 30px auto;
+}
+
