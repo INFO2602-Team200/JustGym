@@ -7,3 +7,5 @@ from .exerciseData import *
 from .milestone import *
 from .milestoneData import *
 from .userMilestoneData import *
+from .community import *
+from .communityWorkout import *
