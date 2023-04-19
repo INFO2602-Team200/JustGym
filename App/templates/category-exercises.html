@@ -5,6 +5,186 @@
 {{ super() }}
 
 {% block content %}
+
+<style>
+  html {
+    width: 100% !important;
+    overflow-y: scroll !important;
+}
+
+body {
+    height: 100% !important;
+}
+
+.content {
+    width: 100% !important;
+    height: 100% !important;
+    background-color: black; 
+    /* background-size: stretch; */
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    /* border: 2px solid pink; */
+}
+
+.gym {
+    color: #FF4857;
+    font-style: italic;
+    margin-left: -5px;
+    /* padding-left: 0; */
+}
+
+#exercise-content {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: space-around;
+    align-items: flex-end;
+    overflow-x: visible;
+}
+
+#exercise-content .card-body {
+    color: black;
+}
+
+.list-exercises-content h3 {
+    color: white; 
+    background-color: black; 
+    z-index: 1; 
+    margin: 0; 
+    padding: 20px;
+    /* position: sticky; 
+    top: -1px; */
+}
+
+#exercise-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 60%;
+}
+
+#selected-exercise li, #selected-exercise .card-title, .modal-title {
+    color: black;
+}
+
+.exercise-card {
+    margin: 5px 5%;
+}
+
+/* .exercise-card .active {
+    text-decoration: none;
+} */
+
+.exercise-card:hover, .exercise-card .active {
+    background: #FF4857;
+    color: white; /* */
+    cursor: pointer;
+}
+
+.exercise-card .exercise-card-body:hover, .exercise-card .active .exercise-card-body {
+    color: white !important;
+}
+
+#exampleModal2 {
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    margin-left: -200px;
+    /* border: 2px solid blue; */
+    width: 400px;
+}
+/* .exercise-card-modal-dialog {
+
+} */
+
+/* .exercise-card-body {
+    min-width: 200px;
+    max-width: 500px;
+} */
+.exercise-card {
+    /* min-width: 200px;
+    max-width: 500px; */
+    width: 40%;
+}
+
+#selected-exercise {
+    /* border: 2px solid lavender !important; */
+    position: -webkit-sticky;
+    position: sticky;
+    padding-top: 10px;
+    top: 0;
+    padding-left: 5%;
+}
+/* .selected-exercise-card1 img {
+    width: 100% !important;
+} */
+.selected-exercise-card1 {
+    padding: 20px;
+}
+
+.selected-exercise-card2 {
+    display: none !important;
+    min-width: 300px;
+    padding: 0 5%;
+    /* border: 2px solid blue !important; */
+}
+
+.selected-exercise-card2-row {
+    flex-wrap: nowrap !important;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+@media only screen and (max-width: 1210px) { /* 1080px */
+    #selected-exercise { padding-left: 0; }
+
+    .selected-exercise-card1 { display: none !important; }
+
+    .selected-exercise-card2 { display: block !important; }
+
+    .selected-exercise-card2-image {
+        /* border: 2px solid green; */
+        padding: 0 !important;
+    }
+
+    /* .selected-exercise-card2 img { border: 2px solid pink; } */
+
+    .selected-exercise-card2-body {
+        /* border: 2px solid blueviolet; */
+        padding: 0 !important;
+    }
+
+    /* .selected-exercise-card2-body .card-body{ border: 2px solid yellow; } */
+
+    #test {
+        /* width: 100vw !important; */
+        margin-top: -10px !important;
+        padding-top: 10px;
+        background: black !important;
+    }
+
+    #exercise-list {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 770px) {
+    .selected-exercise-card2-body .card-title{
+        font-size: 16px;
+    }
+
+    .selected-exercise-card2-body .card-body li{
+        font-size: 12px;
+        padding: 8px;
+        /* margin: 5px; */
+    }
+}
+</style>
+
+
 <!-- Nav should be in layout.html once its common to all webpages using the layout.html file, no? -->
 <nav class="navbar" style="background-color: #42414A;">
   <div class="container-fluid">
