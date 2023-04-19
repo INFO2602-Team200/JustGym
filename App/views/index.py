@@ -65,3 +65,34 @@ def init():
 @index_views.route('/health', methods=['GET'])
 def health_check():
     return jsonify({'status':'healthy'})
+  
+ 
+#Routes for categories page, home page files to test functionality
+@app.route('/categories', methods=['GET'])
+def categories():
+    return render_template('categories_page.html')
+
+
+@app.route('/settings', methods=['GET'])
+def settings():
+    return render_template('settings.html')
+
+@app.route('/logout', methods=['GET'])
+def logout():
+    return render_template('settings.html')
+
+
+@app.route('/test', methods = ['GET'])
+def test():
+    file = open('App/exercises.json')
+    data = json.load(file)
+
+    return render_template('test_home.html', data = data)
+
+
+@app.route('/test1', methods = ['GET'])
+def test1():
+    file = open('App/exercises.json')
+    data = json.load(file)
+
+    return render_template('test_exercises.html', data = data)
