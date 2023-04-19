@@ -7,7 +7,7 @@ from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
 from datetime import timedelta
 from App.controllers import setup_jwt
-
+from App.models import User
 from App.database import init_db
 
 from App.controllers import (
@@ -40,6 +40,13 @@ def loadConfig(app, config):
         
     for key, value in config.items():
         app.config[key] = config[key]
+
+
+login_manager = LoginManager()
+
+@login_manager.user_loader
+def load_user(user_id):
+  return User.query.get(user_id)
 
 def create_app(config={}):
     app = Flask(__name__, static_url_path='/static')

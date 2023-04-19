@@ -3,7 +3,7 @@ from flask import Flask
 from flask.cli import with_appcontext, AppGroup
 
 from App.database import db, get_migrate
-from App.main import create_app
+from App.main import create_app,login_manager
 from App.controllers import ( create_user, get_all_users_json, get_all_users,add_exercise, add_workout)
 from datetime import date
 
@@ -11,6 +11,7 @@ from datetime import date
 
 app = create_app()
 migrate = get_migrate(app)
+login_manager.init_app(app)
 
 # This command creates and initializes the database
 @app.cli.command("init", help="Creates and initializes the database")
