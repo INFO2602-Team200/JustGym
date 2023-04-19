@@ -3,7 +3,9 @@ from App.models import db
 from App.controllers import create_user,add_user_information
 from App.controllers import (add_exerciseData, add_exercise, 
                              add_workout,add_workout_exercise,
-                             add_community,workout_public_status)
+                             add_community,workout_public_status,
+                             get_all_exercises)
+                             
 from datetime import date
 from flask_login import LoginManager, current_user, login_user, login_required, logout_user
 
@@ -17,6 +19,42 @@ def index_page():
 def home_page():
     return render_template('home.html')
 
+@index_views.route('/categories/<string:category>', methods=['GET'])
+@index_views.route('/categories/<string:category>/<int:id>', methods=['GET'])
+def category_exercises_page(category, id=1):
+    exercises = get_all_exercises()
+    # print("bonjour")
+    # print(category)
+    # print(id)
+    print(exercises)
+
+    print(exercises[0].get_json())
+
+    # output: 
+    # {'id': 1, 'bodyPart': 'waist', 'equipment': 'body weight', 
+    # 'gifUrl': 'http://d205bpvrqc9yn1.cloudfront.net/0001.gif', 
+    # 'name': '3/4 sit-up', 'target': 'abs'}
+
+    category_exercises = []
+
+    index = 0
+
+    for exercise in exercises:
+        bodyPart = exercise.get_json()['bodyPart']
+        
+        if (bodyPart.replace(" ", "") == category):
+            # print(category + " - " + bodyPart.replace(" ", ""))
+            category_exercises.append(exercise)
+
+            if (exercise.get_json()['id'] == id):
+                index = category_exercises.index(exercise)
+
+    # print("list:")
+    # print(category_exercises)
+
+    return render_template('category-exercises.html', category_exercises=category_exercises, category=category, id=id, index=index)
+
+
 @index_views.route('/init', methods=['GET'])
 def init():
     db.drop_all()
@@ -28,7 +66,7 @@ def init():
 
 
     
-    with open('App\exercises.json', 'r') as f:
+    with open('App/exercises.json', 'r') as f:
         data = json.load(f)
 
     # Insert the data into the database
@@ -60,6 +98,11 @@ def init():
 
     # Close the session
     db.session.commit()
+
+    
+    # test = get_all_exercises()
+    # print("test")
+    # print(test)
 
     return jsonify(message='db initialized!')
 
@@ -101,3 +144,4 @@ def test1():
     data = json.load(file)
 
     return render_template('test_exercises.html', data = data)
+

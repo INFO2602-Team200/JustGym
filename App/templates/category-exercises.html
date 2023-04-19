@@ -1,0 +1,121 @@
+{% extends "layout.html" %}
+{% block title %}JustGym - signup{% endblock %}
+{% block page %}{% endblock %}
+
+{{ super() }}
+
+{% block content %}
+<!-- Nav should be in layout.html once its common to all webpages using the layout.html file, no? -->
+<nav class="navbar" style="background-color: #42414A;">
+  <div class="container-fluid">
+    <!-- <a class="navbar-brand" href="#"><img src="/static/img/logo.png"></a> -->
+    <a class="navbar-brand" href="#">
+      <span class="logo just">Just</span>
+      <span class="logo gym">Gym</span>
+    </a>
+  </div>
+</nav>
+
+    <div class="content list-exercises-content">
+      <h3>Cardio > Exercises</h3>
+
+      <div id="exercise-content">
+        <div id="exercise-list" class="exercises-info">
+          {% for ex in category_exercises %}
+              <div class="card exercise-card">
+                <a href="/categories/{{category}}/{{ex.get_json()['id']}}" id="ex-{{ex.get_json()['id']}}" class="{% if ex.get_json()['id'] == id%}active{%endif%} "> 
+                  <div class="card-body exercise-card-body">
+                    {{ex.get_json()['name']}}
+                  </div>
+                </a>
+              </div>
+          {% endfor %}
+        </div>
+        
+
+        <div id="selected-exercise" class="exercises-info">
+          <div class="card selected-exercise-card1"> <!-- style="width: 18rem;" -->
+            <img src="{{category_exercises[index].get_json()['gifUrl']}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{category_exercises[index].get_json()['name']}}</h5>
+              <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Category: {{category_exercises[index].get_json()['bodyPart']}}</li>
+              <li class="list-group-item">Target: {{category_exercises[index].get_json()['target']}}</li>
+              <li class="list-group-item">Equipment: {{category_exercises[index].get_json()['equipment']}}</li>
+            </ul>
+            <div class="card-body">
+              <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#exampleModal2">Add to Routine</a>
+              <!-- <a href="#" class="card-link">Another link</a> -->
+            </div>
+          </div>
+
+
+          <div id="test" class="col d-flex justify-content-center">
+            <div class="card mb-3 selected-exercise-card2" style="max-width: 540px;">
+              <div class="row g-0 selected-exercise-card2-row">
+                <div class="col-md-4 selected-exercise-card2-image">
+                  <img src="{{category_exercises[index].get_json()['gifUrl']}}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8 selected-exercise-card2-body">
+                  <div class="card-body">
+                    <h5 class="card-title">{{category_exercises[index].get_json()['name']}}</h5>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">Category: {{category_exercises[index].get_json()['bodyPart']}}</li>
+                      <li class="list-group-item">Target: {{category_exercises[index].get_json()['target']}}</li>
+                      <li class="list-group-item">Equipment: {{category_exercises[index].get_json()['equipment']}}</li>
+                      <li class="list-group-item"><a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#exampleModal2">Add to Routine</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- Scrollable modal -->
+      <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div id="exampleModal2" class="modal-dialog exercise-card-modal-dialog">
+          <div class="modal-content">
+            <form id="routine-selection-form">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add exercise to workout routine</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <label style="color: black" class="form-check-label" for="routine-selection-form">Select workout routines</label>
+              
+                <div id="routine-selection" style="padding: 10px; overflow-y: scroll; max-height: 100px;">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="routines" id="r1">
+                    <label style="color: black" class="form-check-label" for="r1">Routine 1</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="routines" id="r2">
+                    <label style="color: black" class="form-check-label" for="r2">Routine 2</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="routines" id="r3">
+                    <label style="color: black" class="form-check-label" for="r3">Routine 3</label>
+                  </div>
+                </div>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button class="btn btn-primary" type="submit">Save changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+{% endblock %}
