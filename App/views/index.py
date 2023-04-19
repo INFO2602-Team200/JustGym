@@ -5,6 +5,7 @@ from App.controllers import (add_exerciseData, add_exercise,
                              add_workout,add_workout_exercise,
                              add_community,workout_public_status)
 from datetime import date
+from flask_login import LoginManager, current_user, login_user, login_required, logout_user
 
 index_views = Blueprint('index_views', __name__, template_folder='../templates')
 
@@ -68,21 +69,24 @@ def health_check():
   
  
 #Routes for categories page, home page files to test functionality
-@app.route('/categories', methods=['GET'])
+@index_views.route('/categories', methods=['GET'])
+@login_required
 def categories():
     return render_template('categories_page.html')
 
 
-@app.route('/settings', methods=['GET'])
+@index_views.route('/settings', methods=['GET'])
+@login_required
 def settings():
     return render_template('settings.html')
 
-@app.route('/logout', methods=['GET'])
-def logout():
-    return render_template('settings.html')
+# @index_views.route('/logout', methods=['GET'])
+# def logout():
+#     return render_template('settings.html')
 
 
-@app.route('/test', methods = ['GET'])
+@index_views.route('/test', methods = ['GET'])
+@login_required
 def test():
     file = open('App/exercises.json')
     data = json.load(file)
@@ -90,7 +94,8 @@ def test():
     return render_template('test_home.html', data = data)
 
 
-@app.route('/test1', methods = ['GET'])
+@index_views.route('/test1', methods = ['GET'])
+@login_required
 def test1():
     file = open('App/exercises.json')
     data = json.load(file)
