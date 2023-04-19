@@ -32,6 +32,7 @@
         </div> 
 
       </form>
+      <li><a href="/logout">Logout</a></li>
     </div>
 
     <div class="row">
@@ -59,6 +60,20 @@
           {% endfor %}
         <tbody>
       </table>
+      <div>
+        <h2>CURRENT USER</h2>
+        <p>{{current_user.id}}</p>
+        <p>{{current_user.username}}</p>
+        <p>{{current_user.email}}</p>
+        <p>{{current_user.dateOfBirth}}</p>
+        <p>{{current_user.age}}</p>
+        <p>{{current_user.height}}</p>
+        <p>{{current_user.weight}}</p>
+        <p>{{current_user.bmi}}</p>
+        <p>{{current_user.sex}}</p>
+        <p>{{current_user.data}}</p>
+        <p>{{current_user.preferences}}</p>
+      </div>
     </div>
 
 {% endblock %}

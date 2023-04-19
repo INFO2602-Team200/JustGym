@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, jsonify, request, send_from_directory, flash, redirect, url_for
 from flask_jwt_extended import jwt_required, current_user
-
+from flask_login import LoginManager, current_user, login_user, login_required, logout_user
 from.index import index_views
 
 from App.controllers import (
@@ -13,6 +13,7 @@ from App.controllers import (
 auth_views = Blueprint('auth_views', __name__, template_folder='../templates')
 
 @auth_views.route('/users', methods=['GET'])
+@login_required
 def get_user_page():
     users = get_all_users()
     return render_template('users.html', users=users)

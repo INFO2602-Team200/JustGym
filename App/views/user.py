@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, jsonify, request, send_from_direct
 from flask_jwt_extended import jwt_required, current_user
 from App.models import User
 from.index import index_views
-
+from flask_login import LoginManager, current_user, login_user, login_required, logout_user
 from App.controllers import (
     create_user,
     logout_user_action,
@@ -16,9 +16,10 @@ from App.controllers import (
 user_views = Blueprint('user_views', __name__, template_folder='../templates')
 
 @user_views.route('/users', methods=['GET'])
+@login_required
 def get_user_page():
     users = get_all_users()
-    return render_template('users.html', users=users)
+    return render_template('users.html', users=users, current_user = current_user)
 
 @user_views.route('/api/users', methods=['GET'])
 def get_users_action():
@@ -96,10 +97,11 @@ def signup_action():
     return redirect(url_for('login_page'))
 
 @user_views.route('/logout', methods=['GET'])
+@login_required
 def logout_action():
   logout_user_action()
   flash('Logged Out')
-  return redirect(url_for('login_page'))
+  return redirect('/')
 
 @user_views.route('/userjson', methods=['GET'])
 def get_exerciseData_page():
