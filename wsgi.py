@@ -7,6 +7,8 @@ from App.main import create_app
 from App.controllers import ( create_user, get_all_users_json, get_all_users,add_exercise, add_workout)
 from datetime import date
 
+import json
+
 # This commands file allow you to create convenient CLI commands for testing controllers
 
 app = create_app()
@@ -77,7 +79,7 @@ def user_tests_command(type):
 
 app.cli.add_command(test)
 
-@app.route('/home', methods=['GET'])
+@app.route('/', methods=['GET'])
 def homepage():
     return render_template('index.html')
 
@@ -94,3 +96,25 @@ def settings():
 @app.route('/logout', methods=['GET'])
 def logout():
     return render_template('settings.html')
+
+
+@app.route('/test', methods = ['GET'])
+def test():
+    file = open('App/exercises.json')
+    data = json.load(file)
+
+    for i in data:
+        print(i)
+        print('NO')
+
+    return render_template('test_home.html', data = data)
+
+
+@app.route('/test1', methods = ['GET'])
+def test1():
+    file = open('App/exercises.json')
+    data = json.load(file)
+
+
+    return render_template('test_exercises.html', data = data)
+    
