@@ -75,6 +75,21 @@
           </div>
       <div class="card-group" id = "workout_group">
 
+
+          {% if not data %}
+
+          <div class="col">
+            <div class="card text-bg-dark" style="width: 15rem;">
+              <img class = "cat_images" src="../static/catImages/cardio.jpg" class="card-img" alt="...">
+              <div class="card-text">
+                <h5 class="card-title" style = "text-align:center"> <a href = "/categories/cardio">Browse Workouts </a></h5>
+                
+              </div>
+            </div>
+          </div>
+
+          {% else %}
+
           {% for i in data%}
 
           {% if i.bodyPart == "waist" %}
@@ -100,6 +115,8 @@
           {% endif %}
           
           {% endfor %}
+
+          {% endif %}
       </div>
 
   </div>
