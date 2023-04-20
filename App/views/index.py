@@ -38,8 +38,8 @@ def init():
     db.create_all()
     bob = create_user('bob', 'bobpass',"bob@mail.com",date(1990, 5, 12) ,169,121,"Male")
     rob = create_user('rob', 'robpass',"rob@mail.com",date(1999, 5, 12),140, 90 ,"Male")
-    add_user_information(bob.id,True,"Metres","Kilograms")
-    add_user_information(rob.id,False,"Feet","Pounds")
+    add_user_information(bob.id,True,"Centimetres","Kilograms")
+    add_user_information(rob.id,False,"Inches","Pounds")
 
 
     
