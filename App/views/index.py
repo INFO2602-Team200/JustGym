@@ -19,7 +19,7 @@ def index_page():
 
 @index_views.route('/home', methods=['GET'])
 def home_page():
-    return render_template('home.html')
+    return render_template('test_home.html')
 
 
 # Categories-exercises modal action route 
