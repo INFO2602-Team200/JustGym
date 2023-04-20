@@ -19,45 +19,17 @@ def index_page():
 def home_page():
     return render_template('home.html')
 
-@index_views.route('/categories/<string:category>', methods=['GET'])
-@index_views.route('/categories/<string:category>/<int:id>', methods=['GET'])
-@login_required
-def category_exercises_page(category, id=1):
-    exercises = get_all_exercises()
-    category_exercises = []
-    index = 0
 
-    for exercise in exercises:
-        bodyPart = exercise.get_json()['bodyPart']
-        
-        if (bodyPart.replace(" ", "") == category):
-            category_exercises.append(exercise)
-
-            if (exercise.get_json()['id'] == id):
-                index = category_exercises.index(exercise)
-
-    
-    workouts = get_user_workouts_json(current_user.id)
-
-    return render_template('category-exercises.html', category_exercises=category_exercises, category=category, id=id, index=index, workouts=workouts)
-
-
+# Categories-exercises modal action route 
 @index_views.route('/categories/<string:category>', methods=['POST'])
 @index_views.route('/categories/<string:category>/<int:id>', methods=['POST'])
 @login_required
 def add_exercise_to_workout(category, id=1):
     formData = request.form
-    # print(formData) 
-    
-    # print("before:")
-    # print(get_workout_json(formData['workout_id']))
 
     exercise = add_exercise(formData['workout_id'], formData['selected_exercise_id'], formData['sets'], formData['reps'], formData['duration']) 
     add_workout_exercise(formData['workout_id'], exercise)
     
-    # print("after:")
-    # print(get_workout_json(formData['workout_id']))
-
     return redirect(request.referrer)
 
 @index_views.route('/init', methods=['GET'])

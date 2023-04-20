@@ -214,11 +214,11 @@ a {
 
       <div id="exercise-content">
         <div id="exercise-list" class="exercises-info">
-          {% for ex in category_exercises %}
+          {% for ex in exercises %}
               <div class="card exercise-card">
-                <a href="/categories/{{category}}/{{ex.get_json()['id']}}" id="ex-{{ex.get_json()['id']}}" class="{% if ex.get_json()['id'] == id%}active{%endif%} "> 
+                <a href="/categories/{{category}}/{{ex.id}}" id="ex-{{ex.id}}" class="{% if ex.id == id%}active{%endif%} "> 
                   <div class="card-body exercise-card-body">
-                    {{ex.get_json()['name']}}
+                    {{ex.name}}
                   </div>
                 </a>
               </div>
@@ -228,15 +228,15 @@ a {
 
         <div id="selected-exercise" class="exercises-info">
           <div class="card selected-exercise-card1"> <!-- style="width: 18rem;" -->
-            <img src="{{category_exercises[index].get_json()['gifUrl']}}" class="card-img-top" alt="...">
+            <img src="{{selected_exercise.gifUrl}}" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">{{category_exercises[index].get_json()['name']}}</h5>
+              <h5 class="card-title">{{selected_exercise.name}}</h5>
               <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">Category: {{category_exercises[index].get_json()['bodyPart']}}</li>
-              <li class="list-group-item">Target: {{category_exercises[index].get_json()['target']}}</li>
-              <li class="list-group-item">Equipment: {{category_exercises[index].get_json()['equipment']}}</li>
+              <li class="list-group-item">Category: {{selected_exercise.bodyPart}}</li>
+              <li class="list-group-item">Target: {{selected_exercise.target}}</li>
+              <li class="list-group-item">Equipment: {{selected_exercise.equipment}}</li>
             </ul>
             <div class="card-body">
               <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#exampleModal2">Add to Routine</a>
@@ -245,19 +245,20 @@ a {
           </div>
 
 
+
           <div id="test" class="col d-flex justify-content-center">
             <div class="card mb-3 selected-exercise-card2" style="max-width: 540px;">
               <div class="row g-0 selected-exercise-card2-row">
                 <div class="col-md-4 selected-exercise-card2-image">
-                  <img src="{{category_exercises[index].get_json()['gifUrl']}}" class="img-fluid rounded-start" alt="...">
+                  <img src="{{selected_exercise.gifUrl}}" class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-8 selected-exercise-card2-body">
                   <div class="card-body">
-                    <h5 class="card-title">{{category_exercises[index].get_json()['name']}}</h5>
+                    <h5 class="card-title">{{selected_exercise.name}}</h5>
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item">Category: {{category_exercises[index].get_json()['bodyPart']}}</li>
-                      <li class="list-group-item">Target: {{category_exercises[index].get_json()['target']}}</li>
-                      <li class="list-group-item">Equipment: {{category_exercises[index].get_json()['equipment']}}</li>
+                      <li class="list-group-item">Category: {{selected_exercise.bodyPart}}</li>
+                      <li class="list-group-item">Target: {{selected_exercise.target}}</li>
+                      <li class="list-group-item">Equipment: {{selected_exercise.equipment}}</li>
                       <li class="list-group-item"><a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#exampleModal2">Add to Routine</a></li>
                     </ul>
                   </div>
@@ -274,7 +275,7 @@ a {
       <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div id="exampleModal2" class="modal-dialog exercise-card-modal-dialog">
           <div class="modal-content">
-            <form id="routine-selection-form" method="POST" action="/categories/{{category}}/{{category_exercises[index].get_json()['id']}}">
+            <form id="routine-selection-form" method="POST" action="/categories/{{category}}/{{selected_exercise.id}}">
               <div class="modal-header" style="display: flex; flex-wrap: wrap;">
                 <div style="width: 100%; overflow: hidden; display: flex; flex-wrap: nowrap;">
                   <h1 class="modal-title fs-5" id="exampleModalLabel">Add exercise to workout routine</h1>
@@ -284,13 +285,13 @@ a {
                   <div style="padding-top: 10px;">
                     <div class="input-group">
                       <span class="input-group-text" id="basic-addon3">Exercise</span>
-                      <input class="form-control" type="text" name="selected_exercise" value="{{category_exercises[index].get_json()['name']}}" aria-describedby="basic-addon3" aria-label="{{category_exercises[index].get_json()['name']}}" disabled readonly>
+                      <input class="form-control" type="text" name="input_selected_exercise" value="{{selected_exercise.name}}" aria-describedby="basic-addon3" aria-label="{{selected_exercise.name}}" disabled readonly>
                     </div>
                   </div>
                   <div style="padding-top: 10px; display: none"> <!-- i need to pass the exercise id some way -->
                     <div class="input-group">
                       <span class="input-group-text" id="basic-addon3">Exercise ID</span>
-                      <input class="form-control" type="text" name="selected_exercise_id" value="{{category_exercises[index].get_json()['id']}}" aria-describedby="basic-addon3" aria-label="{{category_exercises[index].get_json()['id']}}">
+                      <input class="form-control" type="text" name="selected_exercise_id" value="{{selected_exercise.id}}" aria-describedby="basic-addon3" aria-label="{{selected_exercise.id}}">
                     </div>
                   </div>
                 </div>
@@ -302,8 +303,8 @@ a {
                 <div id="routine-selection" style="padding: 10px; max-height: 100px;">
                   {% for workout in workouts %}
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="workout_id" value="{{workout['workout_id']}}" id="workout-{{workout['workout_id']}}" required>
-                      <label style="color: black" class="form-check-label" for="workout-{{workout['workout_id']}}">{{workout['workoutName']}}</label>
+                      <input class="form-check-input" type="radio" name="workout_id" value="{{workout.workout_id}}" id="workout-{{workout.workout_id}}" required>
+                      <label style="color: black" class="form-check-label" for="workout-{{workout.workout_id}}">{{workout.workoutName}}</label>
                     </div>
                   {% endfor %}
                 </div>
