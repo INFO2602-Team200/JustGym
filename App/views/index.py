@@ -4,7 +4,9 @@ from App.controllers import create_user,add_user_information
 from App.controllers import (add_exerciseData, add_exercise, 
                              add_workout,add_workout_exercise,
                              add_community,workout_public_status,
-                             get_all_exercises, get_user_workouts, get_user_workouts_json, get_workout_json)
+                             get_all_exercises, get_user_workouts, 
+                             get_user_workouts_json, get_workout_json,
+                             get_user, get_userEquipment, getUserPreference)
                              
 from datetime import date
 from flask_login import LoginManager, current_user, login_user, login_required, logout_user
@@ -38,8 +40,8 @@ def init():
     db.create_all()
     bob = create_user('bob', 'bobpass',"bob@mail.com",date(1990, 5, 12) ,169,121,"Male")
     rob = create_user('rob', 'robpass',"rob@mail.com",date(1999, 5, 12),140, 90 ,"Male")
-    add_user_information(bob.id,True,"Metres","Kilograms")
-    add_user_information(rob.id,False,"Feet","Pounds")
+    add_user_information(bob.id,True,"Centimetres","Kilograms")
+    add_user_information(rob.id,False,"Inches","Pounds")
 
 
     
@@ -117,3 +119,15 @@ def test1():
 
     return render_template('test_exercises.html', data = data)
 
+@index_views.route('/profile', methods=['GET'])
+@login_required
+def profile():
+    # myDataTabContents = ["username", "email", "sex", "dateOfBirth", "height", "weight", "BMI"]
+    user = get_user(current_user.id)
+    equipment = get_userEquipment(current_user.id)
+    preferences = getUserPreference(current_user.id)
+
+    height_units = preferences.height_units
+    weight_units = preferences.weight_units
+
+    return render_template('profile.html', user=user, equipment=equipment, height_units=height_units, weight_units=weight_units)

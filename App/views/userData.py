@@ -3,6 +3,7 @@ from App.models import db
 from App.controllers import add_user_equipment,get_userData,get_all_exercise_equipment
 from flask_login import LoginManager, current_user, login_user, login_required, logout_user
 from App.models import UserData
+
 userData_views = Blueprint('userData_views', __name__, template_folder='../templates')
 
 @userData_views.route('/equipment', methods=['POST'])

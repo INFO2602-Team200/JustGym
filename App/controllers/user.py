@@ -2,6 +2,7 @@ from App.models import User
 from App.database import db
 import App.controllers.userData as user_data
 import App.controllers.userPreferences as user_preferences
+from datetime import datetime
 
 def create_user(username, password, email,dateOfBirth,height,weight,sex, data = [], preferences = []):
     newuser = User(username=username, password=password,email = email,dateOfBirth = dateOfBirth,height = height,weight = weight,sex = sex, data = data,preferences = preferences)
@@ -58,3 +59,13 @@ def add_user_information(user_id, darkMode, height_units, weight_units):
             db.session.commit()
             return True
     return None
+
+
+def extract_date_components(date_string):
+    year, month, day = map(int, date_string.split('-'))
+    return year, month, day
+
+# def convert_date(date_str, output_format):
+#     date_obj = datetime.strptime(date_str, '%Y-%m-%d')
+#     new_date = date_obj.replace(**output_format)
+#     return new_date.date()

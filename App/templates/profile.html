@@ -1,0 +1,237 @@
+{% extends "layout.html" %}
+{% block title %}JustGym - profile{% endblock %}
+{% block page %}{% endblock %}
+
+{{ super() }}
+
+{% block content %}
+
+<style>
+* {
+  font-family: 'Poppins', sans-serif;
+  /* color: white; */
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+html {
+  width: 100% !important;
+  height: 100%;
+    background-color: black; 
+  /* overflow-y: scroll !important; */
+}
+
+/* body {
+    height: 100% !important;
+} */
+
+a {
+    text-decoration: none;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    /* min-height: 100vh; */
+    background-color: black; 
+    /* background-size: stretch; */
+}
+
+.content h3 {
+    color: white; 
+    background-color: black; 
+    z-index: 1; 
+    margin: 0; 
+    padding: 20px;
+    /* position: sticky; 
+    top: -1px; */
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    /* border: 2px solid pink; */
+}
+
+.gym {
+    color: #FF4857;
+    font-style: italic;
+    margin-left: -5px;
+    /* padding-left: 0; */
+}
+
+#profile-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    overflow-x: visible;
+}
+
+#profile-content .card-body {
+    color: black;
+}
+
+#user-data {
+    max-width: 1000px;
+    width: 60%;
+}
+
+.col {
+    /* width: 100%; */
+    text-align: start;
+    /* border: 2px solid pink; */
+}
+
+.list-group-item {
+    margin: 0 10px;
+    padding: 0;
+    border: none;
+}
+
+</style>
+
+
+<!-- Nav should be in layout.html once its common to all webpages using the layout.html file, no? -->
+<nav class="navbar" style="background-color: #42414A;">
+  <div class="container-fluid">
+    <!-- <a class="navbar-brand" href="#"><img src="/static/img/logo.png"></a> -->
+    <a class="navbar-brand" href="#">
+      <span class="logo just">Just</span>
+      <span class="logo gym">Gym</span>
+    </a>
+  </div>
+</nav>
+
+    <div class="content">
+      <h3>My Profile</h3>
+
+      <div id="profile-content">
+        <div id="user-pic-username" class="profile-info">
+            <div class="card" style="width: 18rem;">
+                <!-- change img depending on user sex -->
+                {% if user.sex == "female" %}
+                    <img src="../static/img/profile/female.png" class="card-img-top" alt="..." style="border-radius: 165px; padding: 20px;">
+                {% else %}
+                    <img src="../static/img/profile/male.png" class="card-img-top" alt="..." style="border-radius: 165px; padding: 20px;">                
+                {% endif %}
+                
+                <div class="card-body">
+                  <h5 class="card-title">{{user.username}}</h5>
+                  <h6 class="card-subtitle mb-2 text-body-secondary">{{user.email}}</h6><br>
+                  <a href="/logout" class="card-link">Logout</a>
+                </div>
+              </div>
+        </div>
+        
+
+        <div id="user-data" class="profile-info">
+            <div class="card text-center">
+                <div class="card-header">
+                    <ul class="nav nav-underline" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link active" id="myData-tab" data-bs-toggle="tab" data-bs-target="#myData-tab-pane" type="button" role="tab" aria-controls="myData-tab-pane" aria-selected="true">My Data</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="equipment-tab" data-bs-toggle="tab" data-bs-target="#equipment-tab-pane" type="button" role="tab" aria-controls="equipment-tab-pane" aria-selected="false">Equipment</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="milestones-tab" data-bs-toggle="tab" data-bs-target="#milestones-tab-pane" type="button" role="tab" aria-controls="milestones-tab-pane" aria-selected="false" disabled>Milestones</button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body"><div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="myData-tab-pane" role="tabpanel" aria-labelledby="myData-tab" tabindex="0">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col">
+                                        <label style="color: black" for="username" class="col-form-label">Username</label>
+                                    </div>
+                                    <div class="col">
+                                      <input type="text" id="username" name="username" class="form-control" value="{{user.username}}">
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col">
+                                        <label style="color: black" for="email" class="col-form-label">Email</label>
+                                    </div>
+                                    <div class="col">
+                                      <input type="text" id="email" name="email" class="form-control" value="{{user.email}}">
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col">
+                                        <label style="color: black" for="sex" class="col-form-label">Sex</label>
+                                    </div>
+                                    <div class="col">
+                                      <input type="text" id="sex" name="sex" class="form-control" value="{{user.sex}}">
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col">
+                                        <label style="color: black" for="dateOfBirth" class="col-form-label">Date of Birth</label>
+                                    </div>
+                                    <div class="col">
+                                      <input type="text" id="dateOfBirth" name="dateOfBirth" class="form-control" value="{{user.dateOfBirth}}">
+                                    </div>
+                                </div>
+                            </li>
+                            <hr>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col">
+                                        <label style="color: black" for="height" class="col-form-label">Height</label>
+                                    </div>
+                                    <div class="col">
+                                      <input type="text" id="height" name="height" class="form-control" value="{{user.height}}">
+                                      <!-- need to put units {{height_unit}} -->
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col">
+                                        <label style="color: black" for="weight" class="col-form-label">Weight</label>
+                                    </div>
+                                    <div class="col">
+                                      <input type="text" id="weight" name="weight" class="form-control" value="{{user.weight}}">
+                                      <!-- need to put units {{weight_unit}} -->
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col">
+                                        <label style="color: black" for="bmi" class="col-form-label">BMI</label>
+                                    </div>
+                                    <div class="col">
+                                      <input type="text" id="bmi" name="bmi" class="form-control" value="{{user.bmi}}">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="equipment-tab-pane" role="tabpanel" aria-labelledby="equipment-tab" tabindex="0">
+                        equipment checkboxes here
+                    </div>
+                    <div class="tab-pane fade" id="milestones-tab-pane" role="tabpanel" aria-labelledby="milestones-tab" tabindex="0">
+                        ...
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

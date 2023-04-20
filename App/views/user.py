@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, jsonify, request, send_from_directory, flash, redirect, url_for
 from flask_jwt_extended import jwt_required, current_user
 from App.models import User
+from datetime import date
 from.index import index_views
 from flask_login import LoginManager, current_user, login_user, login_required, logout_user
 from App.controllers import (
@@ -11,6 +12,8 @@ from App.controllers import (
     rollback,
     get_all_users,
     get_all_users_json,
+    extract_date_components,
+    add_user_information
 )
 
 user_views = Blueprint('user_views', __name__, template_folder='../templates')
@@ -85,16 +88,19 @@ def login_action():
 def signup_action():
   try:
     data = request.form  # get data from form submission
-    newuser =create_user(username=data['username'], email=data['email'], password=data['password'], dateOfBirth = data['dateOfBirth'], height = data['height'],weight = data['weight'],sex = data['sex'])
+    year,month,day = extract_date_components(data['dateOfBirth'])
+    dob = date(year,month,day)
 
-    login_user(newuser)  # login the user
+    newuser =create_user(username=data['username'], email=data['email'], password=data['password'], dateOfBirth = dob , height = data['height'],weight = data['weight'],sex = data['sex'])
+    status = add_user_information(newuser.id,True,"Centimetres","Kilograms")
+    login_user(newuser,False)  # login the user
     flash('Account Created!')  # send message
-    return redirect('layout.html')  # redirect to homepage
+    return redirect("/users")  # redirect to homepage
 
   except Exception:  # attempted to insert a duplicate user
     rollback()
     flash("username or email already exists")  # error message
-    return redirect(url_for('login_page'))
+    return redirect(url_for('user_views.login_page'))
 
 @user_views.route('/logout', methods=['GET'])
 @login_required
