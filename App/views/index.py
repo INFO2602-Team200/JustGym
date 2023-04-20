@@ -4,7 +4,7 @@ from App.controllers import create_user,add_user_information
 from App.controllers import (add_exerciseData, add_exercise, 
                              add_workout,add_workout_exercise,
                              add_community,workout_public_status,
-                             get_all_exercises, get_user_workouts, get_user_workouts_json)
+                             get_all_exercises, get_user_workouts, get_user_workouts_json, get_workout_json)
                              
 from datetime import date
 from flask_login import LoginManager, current_user, login_user, login_required, logout_user
@@ -19,39 +19,18 @@ def index_page():
 def home_page():
     return render_template('test_home.html')
 
-@index_views.route('/categories/<string:category>', methods=['GET'])
-@index_views.route('/categories/<string:category>/<int:id>', methods=['GET'])
+
+# Categories-exercises modal action route 
+@index_views.route('/categories/<string:category>', methods=['POST'])
+@index_views.route('/categories/<string:category>/<int:id>', methods=['POST'])
 @login_required
-def category_exercises_page(category, id=1):
-    exercises = get_all_exercises()
-    category_exercises = []
-    index = 0
+def add_exercise_to_workout(category, id=1):
+    formData = request.form
 
-    for exercise in exercises:
-        bodyPart = exercise.get_json()['bodyPart']
-        
-        if (bodyPart.replace(" ", "") == category):
-            category_exercises.append(exercise)
-
-            if (exercise.get_json()['id'] == id):
-                index = category_exercises.index(exercise)
-
+    exercise = add_exercise(formData['workout_id'], formData['selected_exercise_id'], formData['sets'], formData['reps'], formData['duration']) 
+    add_workout_exercise(formData['workout_id'], exercise)
     
-    workouts = get_user_workouts_json(current_user.id)
-    # print("start")
-    # print(workouts)
-    # print("stop")
-
-    # for workout in workouts:
-        # print(workout)
-        
-        # print(workout['workoutExercises'])
-
-        # for exercise in workout['workoutExercises']:
-        #     print(exercise['exercise']['name'])
-
-    return render_template('category-exercises.html', category_exercises=category_exercises, category=category, id=id, index=index, workouts=workouts)
-
+    return redirect(request.referrer)
 
 @index_views.route('/init', methods=['GET'])
 def init():
@@ -120,11 +99,6 @@ def categories():
 @login_required
 def settings():
     return render_template('settings.html')
-
-# @index_views.route('/logout', methods=['GET'])
-# def logout():
-#     return render_template('settings.html')
-
 
 @index_views.route('/test', methods = ['GET'])
 @login_required
