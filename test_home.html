@@ -73,7 +73,31 @@
           </div>
       <div class="card-group" id = "workout_group">
 
-          Javascript to include details here
+          {% for i in data%}
+
+          {% if i.bodyPart == "waist" %}
+
+          <div class="card mb-3" style="20rem; text-align: center;">
+            <div class="row g-0">
+              <div class="col" style="width:15%;">
+                <img style = "width: 100%" src="http://d205bpvrqc9yn1.cloudfront.net/0002.gif" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col" style="width:85%;">
+                <div class="card-body">
+                  <h5 class="card-title">{{ i.equipment }} </h5>
+                  <p class="card-text">
+                      {{i.name}}
+                  </p>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          {% endif %}
+          
+          {% endfor %}
       </div>
 
   </div>
@@ -98,7 +122,7 @@
                 <div class="card text-bg-dark" style="width: 15rem;">
                   <img style = "width: 100%" src="../static/image/background.jpg" class="card-img" alt="...">
                   <div class="card-img-overlay">
-                    <h5 class="card-title">${i}</h5>
+                    <h5 class="card-title" > <a href = "/settings">${i} </a></h5>
                     
                   </div>
                 </div>
@@ -140,7 +164,7 @@
 
         result.innerHTML = html;
       }
-      showWorkouts(5);
+    //   showWorkouts(1);
     </script>
 
 {% endblock %}
