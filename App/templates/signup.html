@@ -13,77 +13,68 @@
 
 <div class="signupBlock">
   <div class="signupLeft">
-    <p>test</p>
   </div>
   <div class="signupRight">
-    <form action="" id="signupForm">
+
+    <form action="/signup" method="POST" id="signupForm">
       <h1>Sign Up</h1>
 
       <div class="formRow">                  
         <label for="username">Username</label>
-        <input type="text" name="username" class="formField usernameField">
+        <input required type="text" name="username" class="formField usernameField">
       </div>
 
       <div class="formRow">                  
         <label for="email">E-mail</label>
-        <input type="email" name="email" class="formField emailField">
+        <input required type="email" name="email" class="formField emailField">
       </div>
 
       <div class="formRow">                  
         <label for="password">password</label>
-        <input type="password" name="password" class="formField passwordField">
+        <input required type="password" name="password" class="formField passwordField">
       </div>
 
       <div class="formRow">                  
         <label for="dateOfBirth">Date Of Birth</label>
-        <input type="date" name="dateOfBirth" class="formField dobField">
+        <input required type="date" name="dateOfBirth" class="formField dobField">
       </div>
 
       <div class="formRow">                  
         <label for="height">height (unit?)</label>
-        <input type="number" name="height" class="formField heightField">
+        <input required type="number" name="height" class="formField heightField">
       </div>
 
       <div class="formRow">                  
         <label for="weight">weight (unit?)</label>
-        <input type="number" name="weight" class="formField weightField">
+        <input required type="number" name="weight" class="formField weightField">
       </div>
 
       <div class="formRow">
         <p>Please select your sex</p>
         <div class="radioBtnRow">
           <span>
-            <input type="radio" name="male" class="sexField">
-            <label for="male">Male</label>
+            <input type="radio" name="sex" class="sexField" value="male">
+            <label for="sex">Male</label>
           </span>
           
           <span>
-            <input type="radio" name="female" class="sexField">
-            <label for="female">Female</label>
+            <input type="radio" name="sex" class="sexField" value="female">
+            <label for="sex">Female</label>
           </span>
           
           <span>
-            <input type="radio" name="idk" class="sexField">
-            <label for="idk">idk</label>
+            <input type="radio" name="sex" class="sexField" value="idk">
+            <label for="sex">idk</label>
           </span>   
         </div>
+
+        <div class="formRow submitRow">
+          <input required class="submitBtn" type="submit" value="Sign Up">
+      </div>
              
       </div>
     </form>
   </div>
 </div>
 
-
-<!-- 
-newuser =create_user(
-  
-username=data['username'], 
-email=data['email'], 
-password=data['password'], 
-dateOfBirth = data['dateOfBirth'], 
-height = data['height'],
-weight = data['weight'],
-sex = data['sex'])
-
- -->
 {% endblock %}

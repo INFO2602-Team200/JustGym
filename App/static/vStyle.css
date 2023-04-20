@@ -182,7 +182,7 @@ html{
     margin-top: 30px;
 }
 
-#loginSubmitBtn{
+.submitBtn{
     height: 40px;
     outline: none;
     border: none;
@@ -194,7 +194,7 @@ html{
     font-size: 16px;
 }
 
-#loginSubmitBtn:hover{
+.submitBtn:hover{
     background-color: var(--primaryHover);
 }
 
@@ -223,6 +223,59 @@ html{
 
 
 
+
+
+
+/* =================== SIGN UP PAGE ====================== */
+.signupBlock{
+    display: flex;
+    flex-direction: column;
+}
+
+.signupRight{
+    padding: 2rem 0;
+}
+/* sign up form */
+.dobField{
+    color-scheme: dark;
+}
+
+.radioBtnRow{
+    display: flex;
+    flex-direction: column;
+}
+
+.radioBtnRow label{
+    padding-left: 0.3rem;
+}
+
+#signupForm{
+    background: #292929;
+    padding: 2rem 1.5rem;
+    border-radius: 20px;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#signupForm h1{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ======== RESPONSIVE CSS FOR LOGIN PAGE ============*/
 @media only screen and (min-width: 700px){
     .landingHeading h1{
@@ -244,6 +297,9 @@ html{
         font-size: 15px;
     }
 
+    #signupForm{
+        width: 450px;
+    }
 }
 @media only screen and (min-width: 800px){
     .landingHeading h1{
@@ -291,6 +347,10 @@ html{
         font-size: 16px;
     }
 
+    #signupForm p{
+        font-size: 16px;
+    }
+
 }
 
 @media only screen and (min-width: 1200px){
@@ -310,11 +370,33 @@ html{
     .formRow label{
         font-size: 18px;
     }
+    
     #loginForm h1{
         font-size: 40px;
     }
 
-    #loginSubmitBtn{
+    .submitBtn{
+        font-size: 18px;
+    }
+
+    .signupBlock{
+        flex-direction: row;
+    }
+    .signupLeft{
+        flex: 1;
+        background-image: url("img/mainbg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+        height: auto;
+        width: auto;
+    }
+
+    .signupRight{
+        flex: 1;
+    }
+
+    #signupForm p{
         font-size: 18px;
     }
 }
@@ -330,6 +412,10 @@ html{
     .landingHeading p{
         width: 80%;
     }
+
+    /* .signupLeft{
+        flex: 0.7;
+    } */
 }
 
 
@@ -337,35 +423,3 @@ html{
 
 
 
-/* =================== SIGN UP PAGE ====================== */
-.signupBlock{
-    display: flex;
-    flex-direction: column;
-}
-
-.signupRight{
-    background: orangered;
-    
-}
-/* sign up form */
-.dobField{
-    color-scheme: dark;
-}
-
-.radioBtnRow{
-    display: flex;
-    flex-direction: column;
-}
-
-.radioBtnRow label{
-    padding-left: 0.3rem;
-}
-
-#signupForm{
-    background: #292929;
-    padding: 2rem 1.5rem;
-    border-radius: 20px;
-    max-width: 450px;
-    margin-left: auto;
-    margin-right: auto;
-}
