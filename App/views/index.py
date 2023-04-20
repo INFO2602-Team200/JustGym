@@ -4,7 +4,7 @@ from App.controllers import create_user,add_user_information
 from App.controllers import (add_exerciseData, add_exercise, 
                              add_workout,add_workout_exercise,
                              add_community,workout_public_status,
-                             get_all_exercises)
+                             get_all_exercises, get_user_workouts, get_user_workouts_json)
                              
 from datetime import date
 from flask_login import LoginManager, current_user, login_user, login_required, logout_user
@@ -21,38 +21,36 @@ def home_page():
 
 @index_views.route('/categories/<string:category>', methods=['GET'])
 @index_views.route('/categories/<string:category>/<int:id>', methods=['GET'])
+@login_required
 def category_exercises_page(category, id=1):
     exercises = get_all_exercises()
-    # print("bonjour")
-    # print(category)
-    # print(id)
-    print(exercises)
-
-    print(exercises[0].get_json())
-
-    # output: 
-    # {'id': 1, 'bodyPart': 'waist', 'equipment': 'body weight', 
-    # 'gifUrl': 'http://d205bpvrqc9yn1.cloudfront.net/0001.gif', 
-    # 'name': '3/4 sit-up', 'target': 'abs'}
-
     category_exercises = []
-
     index = 0
 
     for exercise in exercises:
         bodyPart = exercise.get_json()['bodyPart']
         
         if (bodyPart.replace(" ", "") == category):
-            # print(category + " - " + bodyPart.replace(" ", ""))
             category_exercises.append(exercise)
 
             if (exercise.get_json()['id'] == id):
                 index = category_exercises.index(exercise)
 
-    # print("list:")
-    # print(category_exercises)
+    
+    workouts = get_user_workouts_json(current_user.id)
+    # print("start")
+    # print(workouts)
+    # print("stop")
 
-    return render_template('category-exercises.html', category_exercises=category_exercises, category=category, id=id, index=index)
+    # for workout in workouts:
+        # print(workout)
+        
+        # print(workout['workoutExercises'])
+
+        # for exercise in workout['workoutExercises']:
+        #     print(exercise['exercise']['name'])
+
+    return render_template('category-exercises.html', category_exercises=category_exercises, category=category, id=id, index=index, workouts=workouts)
 
 
 @index_views.route('/init', methods=['GET'])
