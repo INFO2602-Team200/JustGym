@@ -100,11 +100,6 @@ def categories():
 def settings():
     return render_template('settings.html')
 
-# @index_views.route('/logout', methods=['GET'])
-# def logout():
-#     return render_template('settings.html')
-
-
 @index_views.route('/test', methods = ['GET'])
 @login_required
 def test():
