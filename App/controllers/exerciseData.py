@@ -30,3 +30,10 @@ def get_all_exercises_json():
         return []
     exerciseList = [ exercise.get_json() for exercise in exercises]
     return exerciseList
+
+def get_all_category_exercises(bodyPart):
+    exercises = E.ExerciseData.query.filter_by(bodyPart = bodyPart).all()
+    if not exercises:
+        return []
+    
+    return exercises
