@@ -276,6 +276,37 @@ html{
 
 
 
+/* ========= selected EQUIP =========== */
+
+#equipmentSelector{
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    background-color: #292929;
+    padding: 2rem 1.5rem;
+    border-radius: 20px;
+    margin: 20px auto 50px auto;
+}
+
+#equipmentSelector h1{
+    text-align: center;
+}
+#equipmentSelector .submitBtn{
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.equipListContainer{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 15rem);
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    align-items: center;
+    padding-left: 1.5rem;
+}
 
 
 
@@ -283,6 +314,11 @@ html{
 
 /* ======== RESPONSIVE CSS FOR LOGIN PAGE ============*/
 @media only screen and (min-width: 700px){
+
+    #equipmentSelector{
+        margin-top: 80px;
+    }
+
     .landingHeading h1{
         width: 90%;
         font-size: 50px;
@@ -312,6 +348,10 @@ html{
     }
     .landingHeading p{
         width: 75%;
+    }
+    .equipListContainer{
+        margin-top: 40px;
+        margin-bottom: 70px;
     }
 }
 @media only screen and (min-width: 1024px){
@@ -424,27 +464,3 @@ html{
 
 
 
-
-/* ========= selected EQUIP =========== */
-
-#equipmentSelector{
-    display: flex;
-    flex-direction: column;
-    max-width: 800px;
-    background-color: #292929;
-    padding: 2rem 1.5rem;
-    border-radius: 20px;
-    margin: 20px auto 50px auto;
-}
-
-#equipmentSelector h1{
-    text-align: center;
-}
-
-.equipListContainer{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 15rem);
-    justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 40px;
-}
