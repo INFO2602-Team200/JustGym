@@ -1,6 +1,5 @@
 {% extends "vLayout.html" %}
 {% block title %}Just Gym{% endblock %}
-{% block page %}Login (this nav will be gone){% endblock %}
 
 {% block content %}
 <!-- landing -->
@@ -21,7 +20,7 @@
             <div class="landingSplit">
                 <div class="landingHeading">
                     <h1> 
-                        <span class="titleBg">Fitn<span>e</span>ss</span> is not just a hobby,
+                        <span class="titleBg">Fitness</span> is not just a hobby,
                         It’s a way of <span class="titleBg">life</span>
                     </h1>
                     <p>
@@ -32,12 +31,10 @@
                     <form id="loginForm" method="POST" action="/login">
                         <h1>Login</h1>
                         <div class="formRow">
-                            
                             <label for="username">Username</label>
                             <input type="text" name="username" class="formField usernameField">
                         </div>
                         <div class="formRow">
-                            
                             <label for="password">Password</label>
                             <input required type="password" name="password" class="formField passwordField">
                         </div>
@@ -47,7 +44,6 @@
                         
                         <hr class="loginFormLine">
                         <p class="loginFormP">Dont have an account? <a href="/signup" id="loginFormSignUp">Sign up</a></p>
-                        
                     </form>
                 </div>
             </div>

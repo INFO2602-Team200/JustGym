@@ -1,0 +1,70 @@
+{% extends "vLayout.html" %}
+{% block title %}Select Equipment{% endblock %}
+
+{% block content %}
+<h1>FUCK ME JUST WORK</h1>
+<div class="equipSelectContainer">
+    <form action="/equipment" id="equipmentSelector" method="POST">
+        <!-- for loop  -->
+        {% for equip in equipments %}
+            <p>hi</p>
+        {% endfor %}
+        <!-- btn save  -->
+
+    </form>
+</div>
+
+<!-- 
+
+
+    <div id="routine-selection" style="padding: 10px; max-height: 100px;">
+    {% for workout in workouts %}
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="workout_id" value="{{workout.workout_id}}" id="workout-{{workout.workout_id}}" required>
+        <label style="color: black" class="form-check-label" for="workout-{{workout.workout_id}}">{{workout.workoutName}}</label>
+    </div>
+    {% endfor %}
+</div>
+0:"assisted"
+1:"band"
+2:"barbell"
+3:"body weight"
+4:"bosu ball"
+5:"cable"
+6:"dumbbell"
+7:"elliptical machine"
+8:"ez barbell"
+9:"hammer"
+10:"kettlebell"
+11:"leverage machine"
+12:"medicine ball"
+13:"olympic barbell"
+14:"resistance band"
+15:"roller"
+16:"rope"
+17:"skierg machine"
+18:"sled machine"
+19:"smith machine"
+20:"stability ball"
+21:"stationary bike"
+22:"stepmill machine"
+23:"tire"
+24:"trap bar"
+25:"upper body ergometer"
+26:"weighted"
+27:"wheel roller"
+
+
+
+
+
+
+
+
+ -->
+
+
+
+
+
+{% endblock %}

@@ -14,13 +14,13 @@ class UserData(db.Model):
         self.myEquipment = myEquipment
 
     def get_json(self):
-        from App.controllers import get_user_workouts_json
+        from App.controllers import get_user_workouts_json, get_user_milestones_json
 
 
         return{
-            # 'user_id': self.user_id,
+            'user_id': self.user_id,
             'myWorkouts': get_user_workouts_json(self.user_id),
-            # 'myMilestones': self.myMilestones,
+            'myMilestones': get_user_milestones_json(self.user_id),
             'myEquipment': self.myEquipment
         }
     

@@ -27,9 +27,9 @@ html {
     height: 100% !important;
 } */
 
-a {
+/* a {
     text-decoration: none;
-}
+} */
 
 .content {
     width: 100%;
@@ -80,6 +80,10 @@ a {
     width: 60%;
 }
 
+.nav-link, a {
+    color: #FF4857
+}
+
 .col {
     /* width: 100%; */
     text-align: start;
@@ -92,6 +96,10 @@ a {
     border: none;
 }
 
+.card-footer button {
+    background-color: #FF4857;
+    border: none;
+}
 </style>
 
 
@@ -130,106 +138,169 @@ a {
 
         <div id="user-data" class="profile-info">
             <div class="card text-center">
-                <div class="card-header">
-                    <ul class="nav nav-underline" id="myTab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                          <button class="nav-link active" id="myData-tab" data-bs-toggle="tab" data-bs-target="#myData-tab-pane" type="button" role="tab" aria-controls="myData-tab-pane" aria-selected="true">My Data</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                          <button class="nav-link" id="equipment-tab" data-bs-toggle="tab" data-bs-target="#equipment-tab-pane" type="button" role="tab" aria-controls="equipment-tab-pane" aria-selected="false">Equipment</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                          <button class="nav-link" id="milestones-tab" data-bs-toggle="tab" data-bs-target="#milestones-tab-pane" type="button" role="tab" aria-controls="milestones-tab-pane" aria-selected="false" disabled>Milestones</button>
-                        </li>
-                    </ul>
-                </div>
-                <div class="card-body"><div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="myData-tab-pane" role="tabpanel" aria-labelledby="myData-tab" tabindex="0">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col">
-                                        <label style="color: black" for="username" class="col-form-label">Username</label>
-                                    </div>
-                                    <div class="col">
-                                      <input type="text" id="username" name="username" class="form-control" value="{{user.username}}">
-                                    </div>
-                                </div>
+                <form method="POST" action="/profile">
+                    <div class="card-header">
+                        <ul class="nav nav-underline" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                              <button class="nav-link active" id="myData-tab" data-bs-toggle="tab" data-bs-target="#myData-tab-pane" type="button" role="tab" aria-controls="myData-tab-pane" aria-selected="true">My Data</button>
                             </li>
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col">
-                                        <label style="color: black" for="email" class="col-form-label">Email</label>
-                                    </div>
-                                    <div class="col">
-                                      <input type="text" id="email" name="email" class="form-control" value="{{user.email}}">
-                                    </div>
-                                </div>
+                            <li class="nav-item" role="presentation">
+                              <button class="nav-link" id="equipment-tab" data-bs-toggle="tab" data-bs-target="#equipment-tab-pane" type="button" role="tab" aria-controls="equipment-tab-pane" aria-selected="false">Equipment</button>
                             </li>
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col">
-                                        <label style="color: black" for="sex" class="col-form-label">Sex</label>
-                                    </div>
-                                    <div class="col">
-                                      <input type="text" id="sex" name="sex" class="form-control" value="{{user.sex}}">
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col">
-                                        <label style="color: black" for="dateOfBirth" class="col-form-label">Date of Birth</label>
-                                    </div>
-                                    <div class="col">
-                                      <input type="text" id="dateOfBirth" name="dateOfBirth" class="form-control" value="{{user.dateOfBirth}}">
-                                    </div>
-                                </div>
-                            </li>
-                            <hr>
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col">
-                                        <label style="color: black" for="height" class="col-form-label">Height</label>
-                                    </div>
-                                    <div class="col">
-                                      <input type="text" id="height" name="height" class="form-control" value="{{user.height}}">
-                                      <!-- need to put units {{height_unit}} -->
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col">
-                                        <label style="color: black" for="weight" class="col-form-label">Weight</label>
-                                    </div>
-                                    <div class="col">
-                                      <input type="text" id="weight" name="weight" class="form-control" value="{{user.weight}}">
-                                      <!-- need to put units {{weight_unit}} -->
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col">
-                                        <label style="color: black" for="bmi" class="col-form-label">BMI</label>
-                                    </div>
-                                    <div class="col">
-                                      <input type="text" id="bmi" name="bmi" class="form-control" value="{{user.bmi}}">
-                                    </div>
-                                </div>
+                            <li class="nav-item" role="presentation">
+                              <button class="nav-link" id="milestones-tab" data-bs-toggle="tab" data-bs-target="#milestones-tab-pane" type="button" role="tab" aria-controls="milestones-tab-pane" aria-selected="false" disabled>Milestones</button>
                             </li>
                         </ul>
                     </div>
-                    <div class="tab-pane fade" id="equipment-tab-pane" role="tabpanel" aria-labelledby="equipment-tab" tabindex="0">
-                        equipment checkboxes here
+                    <div class="card-body"><div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="myData-tab-pane" role="tabpanel" aria-labelledby="myData-tab" tabindex="0">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label style="color: black" for="username" class="col-form-label">Username</label>
+                                        </div>
+                                        <div class="col">
+                                          <input type="text" id="username" name="username" class="form-control" value="{{user.username}}">
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label style="color: black" for="email" class="col-form-label">Email</label>
+                                        </div>
+                                        <div class="col">
+                                          <input type="text" id="email" name="email" class="form-control" value="{{user.email}}">
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label style="color: black" for="sex" class="col-form-label">Sex</label>
+                                        </div>
+                                        <div class="col">
+                                          <!-- <input type="text" id="sex" name="sex" class="form-control" value="{{user.sex}}"> -->
+                                            <select name="sex" id="sex" class="form-select form-control" aria-label="Default select example">
+                                                <option selected>{{user.sex}}</option>
+                                                
+                                                {% if user.sex == "female" %}
+                                                    <option value="male">Male</option>
+                                                {% else %}
+                                                    <option value="female">Female</option>
+                                                {% endif %}
+                                                
+                                                <!-- <option value="Prefer not to say">Prefer not to say</option> -->
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label style="color: black" for="dateOfBirth" class="col-form-label">Date of Birth</label>
+                                        </div>
+                                        <div class="col">
+                                          <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-control" value="{{user.dateOfBirth}}">
+                                        </div>
+                                    </div>
+                                </li>
+                                <hr>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label style="color: black" for="height" class="col-form-label">Height</label>
+                                        </div>
+                                        <div class="col">
+                                          <!-- <input type="number" id="height" name="height" class="form-control" value="{{user.height}}"> -->
+                                          <!-- <input class="form-control" type="text" placeholder="Disabled input" aria-label="{{height_units}}" disabled> -->
+                                          <!-- need to put units {{height_unit}} -->
+                                          <div id="height-input-group" class="input-group" style="display: flex; flex-wrap: nowrap;">
+                                            <div style="max-width: 150px">
+                                              <input type="number" class="form-control" name="height" id="height" value="{{user.height}}">
+                                            </div>
+                                            <div class="input-group-append">
+                                              <div>
+                                                <select class="form-select form-control" name="height-unit" id="height-unit">
+                                                  <option value="cm">cm</option>
+                                                  <option value="in">in</option>
+                                                </select>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label style="color: black" for="weight" class="col-form-label">Weight</label>
+                                        </div>
+                                        <div class="col">
+                                          <!-- <input type="text" id="weight" name="weight" class="form-control" value="{{user.weight}}"> -->
+                                          <!-- need to put units {{weight_unit}} -->
+                                          <div id="weight-input-group" class="input-group" style="display: flex; flex-wrap: nowrap;">
+                                            <div style="max-width: 150px">
+                                              <input type="number" class="form-control" name="weight" id="weight" value="{{user.weight}}">
+                                            </div>
+                                            <div class="input-group-append">
+                                              <div>
+                                                <select class="form-select form-control" name="weight-unit" id="weight-unit">
+                                                  <option value="kg">kg</option>
+                                                  <option value="lbs">lbs</option>
+                                                </select>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label style="color: black" for="bmi" class="col-form-label">BMI</label>
+                                        </div>
+                                        <div class="col">
+                                          <input style="max-width: 150px" type="text" id="bmi" name="bmi" class="form-control" value="{{user.bmi}}">
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="equipment-tab-pane" role="tabpanel" aria-labelledby="equipment-tab" tabindex="0">
+                          <p style="text-align: left;">Choose your equipment</p>
+                            <div style="display: flex; flex-wrap: wrap; justify-content:space-evenly;">
+                              {% for e in equipment %}
+                                {% if e in userEquipment %}
+                                    <div class="form-check" style="width: 200px; text-align: left;">
+                                        <input class="form-check-input" type="checkbox" value="{{e}}" name="equipment" id="{{e}}" checked>
+                                        <label class="form-check-label" for="equipment">{{e}}</label>
+                                    </div>
+                                {% else %}
+                                    <div class="form-check" style="width: 200px; text-align: left;">
+                                      <input class="form-check-input" type="checkbox" value="{{e}}" name="equipment" id="{{e}}">
+                                      <label class="form-check-label" for="equipment">{{e}}</label>
+                                    </div>
+                                {% endif %}
+                              {% endfor %}
+
+
+
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="milestones-tab-pane" role="tabpanel" aria-labelledby="milestones-tab" tabindex="0">
+                            ...
+                        </div>
+                      </div>
                     </div>
-                    <div class="tab-pane fade" id="milestones-tab-pane" role="tabpanel" aria-labelledby="milestones-tab" tabindex="0">
-                        ...
+                    <div class="card-footer">
+                        <div style="display:flex; flex-wrap: nowrap; justify-content: right;">
+                          <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
                     </div>
-                  </div>
-                </div>
-              </div>
+                </form>
+            </div>
         </div>
       </div>
     </div>

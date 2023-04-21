@@ -28,7 +28,7 @@ def get_userData_json(user_id):
 
 def get_userEquipment(user_id):
      data = get_userData(user_id)
-
+     print(data.myEquipment)
      if data:
           return data.myEquipment
      
@@ -40,4 +40,38 @@ def add_user_equipment(user_id,equipment):
         db.session.commit()
         return True
     return False
+
+
+# Milestone Functions
+# accepts user_id and milestone object and appends milestone to myMilestones array in UserData
+def append_user_milestone(user_id,milestone):
+    user_data = get_userData(user_id)
+
+    if user_data:
+        user_data.myMilestones.append(milestone)
+        db.session.add(user_data)
+        db.session.commit()
+        return True
+    return False
+
+def get_user_milestones(user_id):
+    data = get_userData(user_id)
+    if data:
+         return data.myMilestones
+    return []
+
+def get_user_milestones_json(user_id):
+    data = get_userData(user_id)
+    if data:
+         milestones = data.myMilestones
+         return [milestone.get_json() for milestone in milestones]
+    return []  
+     
+def check_user_milestone(user_id, milestoneDataId):
+    user_milestones = get_user_milestones(user_id)
     
+    for milestone in user_milestones:
+         if milestone.milestoneDataId == milestoneDataId:
+              return False
+    return True
+        
