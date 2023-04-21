@@ -28,7 +28,7 @@ def get_userData_json(user_id):
 
 def get_userEquipment(user_id):
      data = get_userData(user_id)
-
+     print(data.myEquipment)
      if data:
           return data.myEquipment
      

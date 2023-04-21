@@ -6,7 +6,8 @@ from App.controllers import (add_exerciseData, add_exercise,
                              add_community,workout_public_status,
                              get_all_exercises, get_user_workouts, 
                              get_user_workouts_json, get_workout_json,
-                             get_user, get_userEquipment, getUserPreference)
+                             get_user, get_userEquipment, getUserPreference,
+                             update_user, get_all_exercise_equipment, add_user_equipment)
                              
 from datetime import date
 from flask_login import LoginManager, current_user, login_user, login_required, logout_user
@@ -73,6 +74,8 @@ def init():
 
     status = workout_public_status(workout_test3.workout_id)
     
+    eq = ['cable', 'leverage machine', 'band','tire']
+    stat = add_user_equipment(1,eq)
 
 
     # Close the session
@@ -122,12 +125,28 @@ def test1():
 @index_views.route('/profile', methods=['GET'])
 @login_required
 def profile():
-    # myDataTabContents = ["username", "email", "sex", "dateOfBirth", "height", "weight", "BMI"]
     user = get_user(current_user.id)
-    equipment = get_userEquipment(current_user.id)
+    userEquipment = get_userEquipment(current_user.id)
+    equipment = get_all_exercise_equipment()
     preferences = getUserPreference(current_user.id)
 
     height_units = preferences.height_units
     weight_units = preferences.weight_units
 
-    return render_template('profile.html', user=user, equipment=equipment, height_units=height_units, weight_units=weight_units)
+    return render_template('profile.html', user=user, userEquipment=userEquipment,height_units=height_units, weight_units=weight_units,equipment = equipment)
+
+@index_views.route('/profile', methods=['POST']) 
+@login_required
+def update_profile():
+    formData = request.form
+    equipment = request.form.getlist('equipment')
+    
+    user = get_user(current_user.id)
+
+    update_user(current_user.id, formData['username'], 
+                formData['email'], formData['dateOfBirth'], 
+                formData['height'], formData['weight'], formData['sex'])
+
+    add_user_equipment(current_user.id, equipment)
+
+    return redirect(request.referrer)
