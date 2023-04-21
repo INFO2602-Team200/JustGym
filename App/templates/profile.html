@@ -270,7 +270,7 @@ html {
                         </div>
                         <div class="tab-pane fade" id="equipment-tab-pane" role="tabpanel" aria-labelledby="equipment-tab" tabindex="0">
                             <div style="display: flex; flex-wrap: wrap; justify-content:space-evenly;">
-                              {% for e in nonUserEquipment %}
+                              {% for e in equipment %}
                                 {% if e in userEquipment %}
                                     <div class="form-check" style="width: 200px; text-align: left;">
                                         <input class="form-check-input" type="checkbox" value="{{e}}" name="equipment" id="{{e}}" checked>

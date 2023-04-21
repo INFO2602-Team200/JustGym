@@ -74,7 +74,7 @@ def init():
 
     status = workout_public_status(workout_test3.workout_id)
     
-    eq = ['cable', 'leverage machine', 'band']
+    eq = ['cable', 'leverage machine', 'band','tire']
     stat = add_user_equipment(1,eq)
 
 
@@ -130,22 +130,10 @@ def profile():
     equipment = get_all_exercise_equipment()
     preferences = getUserPreference(current_user.id)
 
-    print("userEquipment")
-    print(userEquipment)
-
-    print("equipment")
-    print(equipment)
-
-    nonUserEquipment = []  # the remaining equipment not owned by user. I want to also remove bodyweight
-
-    for e in equipment:
-        if e not in userEquipment and e != "body weight":
-            nonUserEquipment.append(e)
-
     height_units = preferences.height_units
     weight_units = preferences.weight_units
 
-    return render_template('profile.html', user=user, userEquipment=userEquipment, nonUserEquipment=nonUserEquipment, height_units=height_units, weight_units=weight_units)
+    return render_template('profile.html', user=user, userEquipment=userEquipment,height_units=height_units, weight_units=weight_units,equipment = equipment)
 
 @index_views.route('/profile', methods=['POST']) 
 @login_required
