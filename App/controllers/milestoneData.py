@@ -1,8 +1,8 @@
 from App.database import db
 from App.models import MilestoneData
 
-def add_milestone_data(milestoneName,condition):
-    new_milestoneData = MilestoneData(milestoneName = milestoneName,condition = condition)
+def add_milestone_data(milestoneName,condition, milestoneUrl = ""):
+    new_milestoneData = MilestoneData(milestoneName = milestoneName,condition = condition, milestoneUrl= milestoneUrl)
     db.session.add(new_milestoneData)
     db.session.commit()
 

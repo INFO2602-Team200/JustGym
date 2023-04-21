@@ -80,9 +80,9 @@ def init():
 
 
     # Milestone Tests
-    add_milestone_data("Fresh Meat","Awarded for creating a JustGym account")
-    add_milestone_data("Getting Started","Created your first Workout")
-    add_milestone_data("1+1 = 2","Created your second Workout")
+    add_milestone_data("Fresh Meat","Awarded for creating a JustGym account","https://i.ibb.co/vkWcjXw/login-milestone.png")
+    add_milestone_data("Getting Started","Created your first Workout","https://i.ibb.co/5KL6zDt/body-building-clip-art-20.jpg")
+    add_milestone_data("1+1 = 2","Created your second Workout", "https://i.ibb.co/WP7ccC2/2-day-milestone.png")
     add_milestone_data("Let's get pumpin'","Added your first exercise")
 
     # m_stone = add_user_milestone(1,1)
