@@ -7,7 +7,7 @@ from App.controllers import (add_exerciseData, add_exercise,
                              get_all_exercises, get_user_workouts, 
                              get_user_workouts_json, get_workout_json,
                              get_user, get_userEquipment, getUserPreference,
-                             update_user, get_all_exercise_equipment,add_user_equipment)
+                             update_user, get_all_exercise_equipment, add_user_equipment)
                              
 from datetime import date
 from flask_login import LoginManager, current_user, login_user, login_required, logout_user
@@ -126,7 +126,7 @@ def test1():
 @login_required
 def profile():
     user = get_user(current_user.id)
-    userEquipment = get_userEquipment(current_user.id) # check this function
+    userEquipment = get_userEquipment(current_user.id)
     equipment = get_all_exercise_equipment()
     preferences = getUserPreference(current_user.id)
 
@@ -139,16 +139,14 @@ def profile():
 @login_required
 def update_profile():
     formData = request.form
+    equipment = request.form.getlist('equipment')
     
     user = get_user(current_user.id)
 
-    print("form data:")
-    print(formData)
+    update_user(current_user.id, formData['username'], 
+                formData['email'], formData['dateOfBirth'], 
+                formData['height'], formData['weight'], formData['sex'])
 
-    # update_user(user_current_user.id, formData['username'], 
-    #             formData['email'], formData['dateOfBirth'], 
-    #             formData['height'], formData['weight'], formData['sex'])
-
-    # TODO: update user's equipment
+    add_user_equipment(current_user.id, equipment)
 
     return redirect(request.referrer)

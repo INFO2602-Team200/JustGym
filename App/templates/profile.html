@@ -269,17 +269,18 @@ html {
                             </ul>
                         </div>
                         <div class="tab-pane fade" id="equipment-tab-pane" role="tabpanel" aria-labelledby="equipment-tab" tabindex="0">
+                          <p style="text-align: left;">Choose your equipment</p>
                             <div style="display: flex; flex-wrap: wrap; justify-content:space-evenly;">
                               {% for e in equipment %}
                                 {% if e in userEquipment %}
                                     <div class="form-check" style="width: 200px; text-align: left;">
                                         <input class="form-check-input" type="checkbox" value="{{e}}" name="equipment" id="{{e}}" checked>
-                                        <label class="form-check-label" for="flexCheckDefault">{{e}}</label>
+                                        <label class="form-check-label" for="equipment">{{e}}</label>
                                     </div>
                                 {% else %}
                                     <div class="form-check" style="width: 200px; text-align: left;">
                                       <input class="form-check-input" type="checkbox" value="{{e}}" name="equipment" id="{{e}}">
-                                      <label class="form-check-label" for="flexCheckDefault">{{e}}</label>
+                                      <label class="form-check-label" for="equipment">{{e}}</label>
                                     </div>
                                 {% endif %}
                               {% endfor %}
