@@ -6,7 +6,8 @@ from App.controllers import (add_exerciseData, add_exercise,
                              add_community,workout_public_status,
                              get_all_exercises, get_user_workouts, 
                              get_user_workouts_json, get_workout_json,
-                             get_user, get_userEquipment, getUserPreference)
+                             get_user, get_userEquipment, getUserPreference,
+                             update_user, get_all_exercise_equipment)
                              
 from datetime import date
 from flask_login import LoginManager, current_user, login_user, login_required, logout_user
@@ -122,12 +123,42 @@ def test1():
 @index_views.route('/profile', methods=['GET'])
 @login_required
 def profile():
-    # myDataTabContents = ["username", "email", "sex", "dateOfBirth", "height", "weight", "BMI"]
     user = get_user(current_user.id)
-    equipment = get_userEquipment(current_user.id)
+    userEquipment = get_userEquipment(current_user.id) # check this function
+    equipment = get_all_exercise_equipment()
     preferences = getUserPreference(current_user.id)
+
+    # print("userEquipment")
+    # print(userEquipment)
+
+    # print("equipment")
+    # print(equipment)
+
+    nonUserEquipment = []  # the remaining equipment not owned by user. I want to also remove bodyweight
+
+    for e in equipment:
+        if e not in userEquipment and e != "body weight":
+            nonUserEquipment.append(e)
 
     height_units = preferences.height_units
     weight_units = preferences.weight_units
 
-    return render_template('profile.html', user=user, equipment=equipment, height_units=height_units, weight_units=weight_units)
+    return render_template('profile.html', user=user, userEquipment=userEquipment, nonUserEquipment=nonUserEquipment, height_units=height_units, weight_units=weight_units)
+
+@index_views.route('/profile', methods=['POST']) 
+@login_required
+def update_profile():
+    formData = request.form
+    
+    user = get_user(current_user.id)
+
+    print("form data:")
+    print(formData)
+
+    # update_user(user_current_user.id, formData['username'], 
+    #             formData['email'], formData['dateOfBirth'], 
+    #             formData['height'], formData['weight'], formData['sex'])
+
+    # TODO: update user's equipment
+
+    return redirect(request.referrer)
