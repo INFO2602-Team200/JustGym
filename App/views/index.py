@@ -7,7 +7,8 @@ from App.controllers import (add_exerciseData, add_exercise,
                              get_all_exercises, get_user_workouts, 
                              get_user_workouts_json, get_workout_json,
                              get_user, get_userEquipment, getUserPreference,
-                             update_user, get_all_exercise_equipment, add_user_equipment)
+                             update_user, get_all_exercise_equipment, add_user_equipment, add_milestone_data, add_user_milestone, append_user_milestone
+                             ,check_milestones)
                              
 from datetime import date
 from flask_login import LoginManager, current_user, login_user, login_required, logout_user
@@ -78,6 +79,17 @@ def init():
     stat = add_user_equipment(1,eq)
 
 
+    # Milestone Tests
+    add_milestone_data("Fresh Meat","Awarded for creating a JustGym account")
+    add_milestone_data("Getting Started","Created your first Workout")
+    add_milestone_data("1+1 = 2","Created your second Workout")
+    add_milestone_data("Let's get pumpin'","Added your first exercise")
+
+    # m_stone = add_user_milestone(1,1)
+    # append_user_milestone(1,m_stone)
+    check_milestones(1)
+    check_milestones(2)
+
     # Close the session
     db.session.commit()
 
@@ -129,6 +141,8 @@ def profile():
     userEquipment = get_userEquipment(current_user.id)
     equipment = get_all_exercise_equipment()
     preferences = getUserPreference(current_user.id)
+
+    check_milestones(current_user.id)
 
     height_units = preferences.height_units
     weight_units = preferences.weight_units

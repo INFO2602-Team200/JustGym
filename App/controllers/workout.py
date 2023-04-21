@@ -104,3 +104,10 @@ def toggle_public_status(workoutId):
     
     return False
 
+def get_num_workouts(user_id):
+    workouts = get_user_workouts(user_id)
+    if workouts:
+        return workouts.count()
+    return 0
+
+
