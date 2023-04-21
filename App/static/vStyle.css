@@ -1,7 +1,7 @@
 /* global styles */
 :root{
     --primary: #D12331;
-    --primaryHover: #d62534;
+    --primaryHover: #bb101e;
     --dark: #151515;
     --darkSec: #222222;
 }
@@ -148,7 +148,7 @@ html{
 }
 
 .formRow{
-    max-width: 350px;
+    max-width: 360px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -264,8 +264,13 @@ html{
 }
 
 
+.doubleInput{
+    flex-direction: row;
+}
 
-
+.doubleInput span:nth-child(1){
+    margin-right: 0.4rem;
+}
 
 
 
@@ -400,6 +405,7 @@ html{
         font-size: 18px;
     }
 }
+
 @media only screen and (min-width: 1500px){
     .landingHeading h1{
         font-size: 80px;
@@ -412,10 +418,6 @@ html{
     .landingHeading p{
         width: 80%;
     }
-
-    /* .signupLeft{
-        flex: 0.7;
-    } */
 }
 
 
@@ -423,3 +425,26 @@ html{
 
 
 
+/* ========= selected EQUIP =========== */
+
+#equipmentSelector{
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    background-color: #292929;
+    padding: 2rem 1.5rem;
+    border-radius: 20px;
+    margin: 20px auto 50px auto;
+}
+
+#equipmentSelector h1{
+    text-align: center;
+}
+
+.equipListContainer{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 15rem);
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}

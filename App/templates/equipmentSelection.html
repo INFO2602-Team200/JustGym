@@ -1,22 +1,39 @@
 {% extends "vLayout.html" %}
 {% block title %}Select Equipment{% endblock %}
 
-{% block content %}
-<h1>FUCK ME JUST WORK</h1>
-<div class="equipSelectContainer">
-    <form action="/equipment" id="equipmentSelector" method="POST">
-        <!-- for loop  -->
-        {% for equip in equipments %}
-            <p>hi</p>
-        {% endfor %}
-        <!-- btn save  -->
+{super()}
 
-    </form>
+{% block content %}
+<div class="navWrapper">
+    <div class="navContain">
+        <nav>
+            <a style="pointer-events: none;" href="/login" class="logo">Just<span>Gym</span></a>
+        </nav>
+    </div>
+</div>
+<div class="wrapper">
+    <div class="equipSelectContainer">
+        <form action="/equipment" id="equipmentSelector" method="POST">
+            <!-- for loop  -->
+            <h1>Select available Equipment</h1>
+            <div class="equipListContainer">
+                {% for e in equipments %}
+                    <div>
+                        <input type="checkbox" value="{{e}}" name="equipment" id="{{e}}">
+                        <label for="equipment">{{e}}</label>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- btn save  -->
+            <input required class="submitBtn" type="submit" value="Save">
+    
+        </form>
+    </div>
 </div>
 
+
 <!-- 
-
-
     <div id="routine-selection" style="padding: 10px; max-height: 100px;">
     {% for workout in workouts %}
     <div class="form-check">
