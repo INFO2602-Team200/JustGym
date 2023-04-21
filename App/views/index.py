@@ -7,7 +7,7 @@ from App.controllers import (add_exerciseData, add_exercise,
                              get_all_exercises, get_user_workouts, 
                              get_user_workouts_json, get_workout_json,
                              get_user, get_userEquipment, getUserPreference,
-                             update_user, get_all_exercise_equipment)
+                             update_user, get_all_exercise_equipment,add_user_equipment)
                              
 from datetime import date
 from flask_login import LoginManager, current_user, login_user, login_required, logout_user
@@ -74,6 +74,8 @@ def init():
 
     status = workout_public_status(workout_test3.workout_id)
     
+    eq = ['cable', 'leverage machine', 'band']
+    stat = add_user_equipment(1,eq)
 
 
     # Close the session
@@ -128,11 +130,11 @@ def profile():
     equipment = get_all_exercise_equipment()
     preferences = getUserPreference(current_user.id)
 
-    # print("userEquipment")
-    # print(userEquipment)
+    print("userEquipment")
+    print(userEquipment)
 
-    # print("equipment")
-    # print(equipment)
+    print("equipment")
+    print(equipment)
 
     nonUserEquipment = []  # the remaining equipment not owned by user. I want to also remove bodyweight
 

@@ -21,4 +21,5 @@ def equipment_data():
 @login_required
 def print_equipment_data():
     equipments = get_all_exercise_equipment()
+    print(equipments)
     return render_template('equipmentSelection.html',equipments = equipments)
