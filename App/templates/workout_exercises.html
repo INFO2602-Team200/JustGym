@@ -14,8 +14,8 @@
    <style>
     body{
         height: 100vh;
-        /* background-color: pink; */
-        background-image: url("../static/image/background.jpg");
+        background-color: pink;
+        /* background-image: url("../static/image/background.jpg"); */
     }
 
     #first_row{
@@ -35,15 +35,17 @@
     
     </style>
 
+    <h3>Workout Name</h3>
     <div class = "row" id = "first_row">
         <div class="col" style="width: 50%">
-            <div class="card text-bg-dark" style="width: 15rem;">
+            <!-- <div class="card text-bg-dark" style="width: 15rem;">
               <img style = "width: 100%" src="../static/image/background.jpg" class="card-img" alt="...">
               <div class="card-img-overlay">
                 <h5 class="card-title" style="text-align: center;" > <a href = "/settings">Click here to add/remove Equipment</a></h5>
                 
               </div>
-            </div>
+            </div> -->
+            <a href="/profile">Edit Equipment</a>
           </div>
 
 
@@ -66,37 +68,92 @@
       </div>
   <div class="card-group" id = "exercises">
     {% for e in workout.workoutExercises %}
-      <div class="card mb-3" style="max-width: 100%; text-align: center;">
+    <a href="#" style="text-decoration: none" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+      <div class="card mb-3" style="max-width: 540px;">
         <div class="row g-0">
-          <div class="col" style="width:15%;">
-            <img style = "width:100%; height:100%" src="{{e.exercise.gifUrl}}" class="img-fluid rounded-start" alt="...">
+          <div class="col-md-4">
+            <img src="{{e.exercise.gifUrl}}" class="img-fluid rounded-start" alt="...">
           </div>
-          <div class="col" style="width:85%;">
+          <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title">{{e.exercise.name}}</h5>
-              <div class="card-text">
-                  <div class = "row">
-                      <div class = "col" style = "width:40%">
-                        {{e.exercise.reps}}3
-                      </div>
+              <h5 class="card-title">{{e.exercise.name}}</h5><div class="card-text" style="font-size: 28px;">
+                <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;">
+                    <div style="padding: 30px">
+                      {{e.reps}}<br>reps
+                    </div>
 
-                      <div class = "col" style = "width:40%">
-                        {{e.exercise.sets}}4
-                      </div>
+                    <div>
+                      {{e.sets}}<br>sets
+                    </div>
 
-                      <div class = "col" style = "width:20%">
-                          <img style = " height:inherit; width:inherit;" src = "../static/image/more.jpg" >
-                      </div>
-                      
-                  </div>
+                    <div>
+                        <img style = "max-width: 50px;" src = "../static/image/more.jpg" >
+                    </div>
+                    
+                </div>
               </div>
-              
             </div>
           </div>
         </div>
       </div>
+      </a>
+
+      <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div id="exampleModal2" class="modal-dialog exercise-card-modal-dialog">
+          <div class="modal-content">
+            <form id="exercise-update-form" method="POST" action="/home/workoutID">
+              <div class="modal-header" style="display: flex; flex-wrap: wrap;">
+                <div style="width: 100%; overflow: hidden; display: flex; flex-wrap: nowrap;">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modify Exercise</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div>
+                  <div style="padding-top: 10px;">
+                    <div class="input-group">
+                      <span class="input-group-text" id="basic-addon3">Exercise</span>
+                      <input class="form-control" type="text" name="input_selected_exercise" value="{{e.workoutName}}" aria-describedby="basic-addon3" aria-label="{{e.workoutName}}" disabled readonly>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col form-check mb-3">
+                    <label style="color: black" class="form-label" for="sets">Sets</label>
+                    <input class="form-control" type="number" name="sets" id="sets" value="{{e.sets}}" required>
+                  </div>
+                  <div class="col form-check mb-3">
+                    <label style="color: black" class="form-label" for="reps">Reps</label>
+                    <input class="form-control" type="number" name="reps" id="reps" value="{{e.reps}}" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-group" style="width: 260px">
+                    <label style="color: black" class="form-label" for="duration">Duration</label>
+                    <input type="number" class="form-control" name="duration" id="duration" aria-label="duration" aria-describedby="basic-addon2" value="{{e.duration}}" required>
+                    <span class="input-group-text" id="basic-addon2">seconds</span>
+                  </div>
+                </div>
+    
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button class="btn btn-primary" type="submit">Save changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
     {% endfor %}
   </div>
+
+  <!-- {% for e in workout.workoutExercises%}
+    {% if e.id == workoutID %} -->
+    
+    <!-- {% endif %}
+  {% endfor %} -->
 
 </div>
     

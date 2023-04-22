@@ -17,10 +17,19 @@ def home_page():
 
 @workout_views.route('/home/<int:workoutID>', methods=['GET'])
 @login_required
-def view_Workout(workoutID):
+def view_workout(workoutID):
     workout = get_workout(workoutID)
 
-    return render_template('workout_exercises.html', workout=workout)
+    return render_template('workout_exercises.html', workout=workout, workoutID=workoutID)
+
+@workout_views.route('/home/<int:workoutID>', methods=['POST'])
+@login_required
+def update_workout(workoutID):
+    formData = request.form
+
+    # TODO : update exercise data & send workout id through form
+
+    return redirect(request.referrer)
 
 # Route used to add a new workout Routine
 @workout_views.route('/workout', methods=['POST'])
