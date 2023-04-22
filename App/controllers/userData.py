@@ -27,11 +27,21 @@ def get_userData_json(user_id):
     return None
 
 def get_userEquipment(user_id):
-     data = get_userData(user_id)
-     print(data.myEquipment)
-     if data:
-          return data.myEquipment
+    data = get_userData(user_id)
+    if data is not None:
+        return data.myEquipment
      
+def get_num_userEquipment(user_id):
+    from App.controllers import get_all_exercise_equipment
+    data = get_userEquipment(user_id)
+    all_equipment = get_all_exercise_equipment()
+    count = 0
+
+    for e in all_equipment:
+         if e in data:
+              count = count + 1
+    return count
+
 def add_user_equipment(user_id,equipment):
     data = get_userData(user_id)
     if data:

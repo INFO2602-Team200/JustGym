@@ -50,3 +50,7 @@ def get_all_exercise_equipment():
             unique_equipment.append(exercise.equipment)
     
     return unique_equipment
+
+def get_num_all_exercise_equipment():
+    equipment = get_all_exercise_equipment()
+    return len(equipment)

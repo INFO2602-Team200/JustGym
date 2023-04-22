@@ -59,6 +59,7 @@ def workoutEstimation(workoutID):
         return estimatedDuration
     return 0
 
-
+def get_num_exercises(user_id,workoutExercises):
+    return len(workoutExercises)
         
     

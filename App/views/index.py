@@ -8,7 +8,7 @@ from App.controllers import (add_exerciseData, add_exercise,
                              get_user_workouts_json, get_workout_json,
                              get_user, get_userEquipment, getUserPreference,
                              update_user, get_all_exercise_equipment, add_user_equipment, 
-                             add_milestone_data, add_user_milestone, append_user_milestone,
+                             add_milestone_data, add_user_milestone, append_user_milestone,load_milestone_data,
                              check_milestones, get_milestoneData, get_user_milestones)
                              
 from datetime import date
@@ -79,13 +79,8 @@ def init():
     eq = ['cable', 'leverage machine', 'band','tire']
     stat = add_user_equipment(1,eq)
 
-
-    # Milestone Tests
-    add_milestone_data("Fresh Meat","Awarded for creating a JustGym account","https://i.ibb.co/vkWcjXw/login-milestone.png")
-    add_milestone_data("Getting Started","Created your first Workout","https://i.ibb.co/5KL6zDt/body-building-clip-art-20.jpg")
-    add_milestone_data("1+1 = 2","Created your second Workout", "https://i.ibb.co/WP7ccC2/2-day-milestone.png")
-    add_milestone_data("Let's get pumpin'","Added your first exercise")
-
+    load_milestone_data()
+ 
     # m_stone = add_user_milestone(1,1)
     # append_user_milestone(1,m_stone)
     check_milestones(1)
