@@ -74,7 +74,8 @@
           </div>
 
 
-          
+          <p style="color: aliceblue;">Estimated Workout Duration: {{workoutDuration}}</p>
+          <p style="color: aliceblue;">Total Exercises: {{numExercises}}</p>
 
     </div>
 
@@ -85,7 +86,7 @@
       </div>
 
 
-    {% for e in workout.workoutExercises %}
+    {% for e in exercises %}
     
     <div class="card border-danger mb-3" style="width: 80%; height: 20%;text-align: center; margin: auto;">
       <div class="row g-0">
@@ -93,16 +94,16 @@
           <img style = "width:50%; height:80%" src="{{e.exercise.gifUrl}}" class="img-fluid rounded-start" alt="...">
         </div>
         <div class="col" style="width:85%;">
-          <div class="card-body">
+          <div id = "{{e.exerciseId}}" class="card-body">
             <h5 class="card-title">{{e.exercise.name}}</h5>
             <div class="card-text">
                 <div class = "row">
                     <div class = "col" style = "width:50%">
-                      <b>Reps: {{e.exercise.reps}}3</b>
+                      <b>Reps: {{e.reps}}</b>
                     </div>
 
                     <div class = "col" style = "width:50%">
-                      <b>Sets: {{e.exercise.sets}}4</b>
+                      <b>Sets: {{e.sets}}</b>
                     </div>
 
                     <div class = "row" >
