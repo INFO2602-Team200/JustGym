@@ -1,8 +1,8 @@
 from App.database import db
 from App.models import UserData
 
-def addUserData(user_id, my_workouts=[], my_milestones=[], my_equipment = []):
-    new_user_data = UserData(user_id=user_id, myWorkouts=my_workouts, myMilestones=my_milestones,myEquipment=my_equipment)
+def addUserData(user_id, my_workouts=[],my_milestones=[], my_equipment = [],my_community_workouts= []):
+    new_user_data = UserData(user_id=user_id, myWorkouts=my_workouts ,myMilestones=my_milestones , myEquipment=my_equipment , myCommunityWorkouts=my_community_workouts)
     db.session.add(new_user_data)
     db.session.commit()
 
@@ -77,6 +77,14 @@ def get_user_milestones_json(user_id):
          return [milestone.get_json() for milestone in milestones]
     return []  
      
+def get_user_community_workouts_json(user_id):
+    data = get_userData(user_id)
+    if data:
+         addedCommunityWorkouts = data.myCommunityWorkouts
+         return addedCommunityWorkouts
+    return []  
+
+
 def check_user_milestone(user_id, milestoneDataId):
     user_milestones = get_user_milestones(user_id)
     
