@@ -24,6 +24,7 @@ def view_workout(workoutID):
     workout = get_workout(workoutID)
     exercises = get_exercises_by_workoutID(workoutID)
     category_exercises = get_all_category_exercises(workout.category.categoryName)
+    print(category_exercises)
     workout = get_workout(workoutID)
     seconds = workout.estimatedDuration
     workoutDuration = seconds_to_minutes_string(seconds)
@@ -87,9 +88,3 @@ def add_new_workout():
 
     return redirect(request.referrer)
 
-
-# @workout_views.route('/home/<int:workoutID>', methods=['GET'])
-# @login_required
-# def view_Workout(workoutID):
-
-#     return render_template('exercise_routine.html', workout=workout)

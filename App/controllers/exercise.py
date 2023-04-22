@@ -64,5 +64,4 @@ def get_num_exercises(user_id,workoutExercises):
         
 def get_num_exercises_workout(workoutId):
     exercises = get_exercises_by_workoutID(workoutId)
-    print(exercises.count())
     return exercises.count()
