@@ -29,6 +29,7 @@ def view_workout(workoutID):
     seconds = workout.estimatedDuration
     workoutDuration = seconds_to_minutes_string(seconds)
     numExercises = get_num_exercises_workout(workoutID)
+    print(exercises)
 
     return render_template('exercise_routine.html',workout = workout, category_exercises =category_exercises , exercises = exercises, workoutID=workoutID,workoutDuration = workoutDuration,numExercises = numExercises)
 

@@ -32,7 +32,7 @@ def delete_exercise(exerciseId):
     return False
 
 def get_exercise(exerciseId):
-    found_exercise =e.Exercise.query.filter_by(id = exerciseId).first()
+    found_exercise =e.Exercise.query.filter_by(exerciseID = exerciseId).first()
     if found_exercise:
         return found_exercise
     return None
