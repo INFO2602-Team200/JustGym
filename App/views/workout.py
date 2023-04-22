@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, jsonify, request, send_from_directory, flash, redirect, url_for
 from App.models import db
-from App.controllers import get_user_workouts, get_all_categories,add_workout, get_workout,get_exercises_by_workoutID,delete_exercise,seconds_to_minutes_string,modify_exercise,modify_workout,get_num_exercises_workout
+from App.controllers import get_user_workouts, get_all_categories,add_workout, get_workout,get_exercises_by_workoutID,delete_exercise,get_all_category_exercises,seconds_to_minutes_string,modify_exercise,modify_workout,get_num_exercises_workout
 from flask_login import LoginManager, current_user, login_user, login_required, logout_user
 
 
@@ -21,17 +21,15 @@ def home_page():
 @workout_views.route('/home/<int:workoutID>', methods=['GET'])
 @login_required
 def view_workout(workoutID):
+    workout = get_workout(workoutID)
     exercises = get_exercises_by_workoutID(workoutID)
-    
+    category_exercises = get_all_category_exercises(workout.category.categoryName)
     workout = get_workout(workoutID)
     seconds = workout.estimatedDuration
     workoutDuration = seconds_to_minutes_string(seconds)
-    print("Test")
-    print(workoutDuration)
     numExercises = get_num_exercises_workout(workoutID)
-    print(numExercises)
 
-    return render_template('exercise_routine.html', exercises = exercises, workoutID=workoutID,workoutDuration = workoutDuration,numExercises = numExercises)
+    return render_template('exercise_routine.html',workout = workout, category_exercises =category_exercises , exercises = exercises, workoutID=workoutID,workoutDuration = workoutDuration,numExercises = numExercises)
 
 
 
