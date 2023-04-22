@@ -47,6 +47,18 @@
     .modal-backdrop {
     z-index: -1;
   } 
+
+  .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+    }
+    
+    .gym {
+        color: #FF4857;
+        font-style: italic;
+        margin-left: -5px;
+    }
     
     </style>
 
@@ -137,7 +149,13 @@
                 <div style="padding-top: 10px;">
                   <div class="input-group">
                     <span class="input-group-text" id="basic-addon3">Exercise</span>
-                    <input class="form-control" type="text" name="input_selected_exercise" value="{{e.workoutName}}" aria-describedby="basic-addon3" aria-label="{{e.workoutName}}" disabled readonly>
+                    <select class="form-select" aria-label="Default select example">
+                      <option selected>Select New Workout</option>
+                      {% for i in category_exercises%}
+                        <option > {{i.exerciseId}}</option>
+
+                      {% endfor %}
+                    </select>
                   </div>
                 </div>
               </div>
