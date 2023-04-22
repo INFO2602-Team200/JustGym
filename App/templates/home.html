@@ -86,8 +86,8 @@
                     <div class="col-12 m-auto">
                         <div class="owl-carousel owl-theme">
                             {% for workout in myWorkouts%}
-                                <a href="https://example.com">
-                                    <div class="item mb-4" style="width: 90%; margin: auto;">
+                                <a href="/home/{{workout.workout_id}}">
+                                    <div class="item mb-4">
                                         <div class="card border-0 shadow">
                                             <img src="{{workout.category.categoryImgUrl}}" alt="" class="card-img-top">
                                             <div class="card-body">
