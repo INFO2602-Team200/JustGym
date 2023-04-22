@@ -78,7 +78,7 @@ def login_action():
   if user and user.check_password(data['password']):  # check credentials
     flash('Logged in successfully.')  # send message to next page
     login_user(user,False)  # login the user
-    return redirect('/users')  # redirect to main page if login successful
+    return redirect('/home')  # redirect to main page if login successful
   else:
     flash('Invalid username or password')  # send message to next page
   return redirect('/')
