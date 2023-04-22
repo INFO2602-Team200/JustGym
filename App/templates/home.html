@@ -73,6 +73,10 @@
         width: 100px;
     }
 
+    img{
+        width: 15 rem;
+    }
+
     </style>
 
         <div>
@@ -83,7 +87,7 @@
                         <div class="owl-carousel owl-theme">
                             {% for workout in myWorkouts%}
                                 <a href="https://example.com">
-                                    <div class="item mb-4">
+                                    <div class="item mb-4" style="width: 90%; margin: auto;">
                                         <div class="card border-0 shadow">
                                             <img src="{{workout.category.categoryImgUrl}}" alt="" class="card-img-top">
                                             <div class="card-body">
@@ -101,7 +105,7 @@
                         <div class="owl-carousel owl-theme">
                             {% for category in categories%}
                                 <a href="/categories/{{category.categoryName}}">
-                                    <div class="item mb-4">
+                                    <div class="item mb-4" style="width: 90%; margin: auto;">
                                         <div class="card border-0 shadow">
                                             <img src="{{category.categoryImgUrl}}" alt="" class="card-img-top">
                                             <div class="card-body">
@@ -120,7 +124,7 @@
                         <div class="owl-carousel owl-theme">
                             {% for workout in myWorkouts%}
                             <a href="https://example.com">
-                                <div class="item mb-4">
+                                <div class="item mb-4 style="width: 90%; margin: auto;">
                                     <div class="card border-0 shadow">
                                         <img src="1.jpg" alt="" class="card-img-top">
                                         <div class="card-body">

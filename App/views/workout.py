@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, jsonify, request, send_from_directory, flash, redirect, url_for
 from App.models import db
-from App.controllers import get_user_workouts, get_all_categories,add_workout
+from App.controllers import get_user_workouts, get_all_categories,add_workout, get_workout
 from flask_login import LoginManager, current_user, login_user, login_required, logout_user
 
 
@@ -23,3 +23,11 @@ def add_new_workout():
     add_workout(current_user.id,formData['workoutName'], formData['public'], formData['categoryId'])
 
     return redirect(request.referrer)
+
+
+@workout_views.route('/home/<int:workoutID>', methods=['GET'])
+@login_required
+def view_Workout(workoutID):
+    workout = get_workout(workoutID)
+
+    return render_template('exercise_routine.html', workout=workout)

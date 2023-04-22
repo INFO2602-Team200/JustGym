@@ -125,10 +125,9 @@ def test():
 @index_views.route('/test1', methods = ['GET'])
 @login_required
 def test1():
-    file = open('App/exercises.json')
-    data = json.load(file)
+    exercises = get_user_workouts(current_user.id)
 
-    return render_template('test_exercises.html', data = data)
+    return render_template('exercise_routine.html', exercises = exercises)
 
 @index_views.route('/profile', methods=['GET'])
 @login_required

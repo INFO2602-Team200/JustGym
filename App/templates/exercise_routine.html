@@ -1,0 +1,192 @@
+
+{% extends "layout.html" %}
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  
+</head>
+{% block title %}JustGym{% endblock %}
+{% block page %}JustGym App{% endblock %}
+
+{{ super() }}
+
+{% block content %}
+ 
+   <style>
+    body{
+        height: 100vh;
+        /* background-color: pink; */
+        /* background-image: url("../static/image/background.jpg"); */
+        background-color: black;
+    }
+
+    #first_row{
+        width: inherit;
+    }
+
+    .row{
+      opacity: 0.7;
+    }
+
+    #categories_preset_myWorkouts{
+      background-color: black;
+      width: 100%;
+    }
+
+    #exercises{
+      width: 100%;
+    }
+
+    #exampleModal {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    margin-left: -200px;
+    width: 400px;
+}
+    
+    </style>
+
+<nav class="navbar" style="background-color: #42414A;">
+  <div class="container-fluid">
+    <!-- <a class="navbar-brand" href="#"><img src="/static/img/logo.png"></a> -->
+    <a class="navbar-brand" href="#">
+      <span class="logo just">Just</span>
+      <span class="logo gym">Gym</span>
+    </a>
+  </div>
+</nav>
+
+
+
+    <div class = "row" id = "first_row" style="margin-top: 1%; margin-bottom: 1%;">
+        <div class="col" style="width: 100%">
+            <div class="card text-bg-dark" style="width: 15rem; margin: auto;">
+              <img style = "width: 100%" src="../static/image/background.jpg" class="card-img" alt="...">
+              <div class="card-text">
+                <h5 class="card-title" style="text-align: center;" > <a href = "/profile">Click here to add/remove Equipment</a></h5>
+                
+              </div>
+            </div>
+          </div>
+
+
+          
+
+    </div>
+
+
+    <div class = "row" id = "categories_preset_myWorkouts">  
+      <div class = "jumbotron" style="color:white; opacity: 0.9">
+        Categories > Cardio > No Equipment
+      </div>
+
+
+    {% for e in workout.workoutExercises %}
+    
+    <div class="card border-danger mb-3" style="width: 80%; height: 20%;text-align: center; margin: auto;">
+      <div class="row g-0">
+        <div class="col" style="width:15%;">
+          <img style = "width:50%; height:80%" src="{{e.exercise.gifUrl}}" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col" style="width:85%;">
+          <div class="card-body">
+            <h5 class="card-title">{{e.exercise.name}}</h5>
+            <div class="card-text">
+                <div class = "row">
+                    <div class = "col" style = "width:50%">
+                      <b>Reps: {{e.exercise.reps}}3</b>
+                    </div>
+
+                    <div class = "col" style = "width:50%">
+                      <b>Sets: {{e.exercise.sets}}4</b>
+                    </div>
+
+                    <div class = "row" >
+                        <button data-bs-toggle="modal" data-bs-target="#exampleModal2" 
+                        style = "margin-top: 7%; width: min-content; margin-left: 42%;" class = "btn btn-primary">Swap Workout
+                        </button>
+                    </div>
+                    
+                </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div id="exampleModal2" class="modal-dialog exercise-card-modal-dialog">
+        <div class="modal-content">
+          <form id="exercise-update-form" method="POST" action="/home/workoutID">
+            <div class="modal-header" style="display: flex; flex-wrap: wrap;">
+              <div style="width: 100%; overflow: hidden; display: flex; flex-wrap: nowrap;">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modify Exercise</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div>
+                <div style="padding-top: 10px;">
+                  <div class="input-group">
+                    <span class="input-group-text" id="basic-addon3">Exercise</span>
+                    <input class="form-control" type="text" name="input_selected_exercise" value="{{e.workoutName}}" aria-describedby="basic-addon3" aria-label="{{e.workoutName}}" disabled readonly>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="modal-body">
+              <div class="row">
+                <div class="col form-check mb-3">
+                  <label style="color: black" class="form-label" for="sets">Sets</label>
+                  <input class="form-control" type="number" name="sets" id="sets" value="{{e.sets}}" required>
+                </div>
+                <div class="col form-check mb-3">
+                  <label style="color: black" class="form-label" for="reps">Reps</label>
+                  <input class="form-control" type="number" name="reps" id="reps" value="{{e.reps}}" required>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-group" style="width: 260px">
+                  <label style="color: black" class="form-label" for="duration">Duration</label>
+                  <input type="number" class="form-control" name="duration" id="duration" aria-label="duration" aria-describedby="basic-addon2" value="{{e.duration}}" required>
+                  <span class="input-group-text" id="basic-addon2">seconds</span>
+                </div>
+              </div>
+  
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button class="btn btn-primary" type="submit">Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    
+  {% endfor %}
+      
+ 
+
+</div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    
+    <script>
+
+      function swapWorkout()
+      {
+        result = document.querySelector('#first_row')
+
+        
+      }
+      
+    </script>
+    
+
+{% endblock %}
+
