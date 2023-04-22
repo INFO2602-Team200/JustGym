@@ -94,7 +94,7 @@
 
     <div class = "row" id = "categories_preset_myWorkouts">  
       <div class = "jumbotron" style="color:white; opacity: 0.9">
-        Categories > Cardio > No Equipment
+        Categories > {{workout.category.categoryName}}
       </div>
 
 
@@ -139,7 +139,7 @@
     <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div id="exampleModal2" class="modal-dialog exercise-card-modal-dialog">
         <div class="modal-content">
-          <form id="exercise-update-form" method="POST" action="/home/workoutID">
+          <form id="exercise-update-form" method="POST" action="/home/{{workoutID}}/{{e.exerciseID}}">
             <div class="modal-header" style="display: flex; flex-wrap: wrap;">
               <div style="width: 100%; overflow: hidden; display: flex; flex-wrap: nowrap;">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Modify Exercise</h1>
@@ -149,13 +149,14 @@
                 <div style="padding-top: 10px;">
                   <div class="input-group">
                     <span class="input-group-text" id="basic-addon3">Exercise</span>
-                    <select class="form-select" aria-label="Default select example">
+
+                    <select class="form-select" name = "exerciseDataId" aria-label="Default select example">
                       <option selected>Select New Workout</option>
                       {% for i in category_exercises%}
-                        <option > {{i.exerciseId}}</option>
-
+                        <option value = "{{i.id}}"> {{i.name}}</option>
                       {% endfor %}
                     </select>
+
                   </div>
                 </div>
               </div>
