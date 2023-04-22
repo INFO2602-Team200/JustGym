@@ -141,5 +141,4 @@ def check_exercise_type(user_id,category):
 def seconds_to_minutes_string(seconds):
     minutes = seconds // 60
     seconds = seconds % 60
-    print(f"{minutes} minute{'s' if minutes != 1 else ''}, {seconds} second{'s' if seconds != 1 else ''}")
     return f"{minutes} minute{'s' if minutes != 1 else ''}, {seconds} second{'s' if seconds != 1 else ''}"
