@@ -8,13 +8,16 @@ def get_workout (workout_id):
     return None
 
 def get_user_workouts (user_id):
-    workouts = Workout.query.filter_by(user_id =user_id)
+    workouts = Workout.query.filter_by(user_id =user_id).all()
     if workouts:
         return workouts
     return None
 
-def add_workout(user_id,workoutName,public,category, workoutExercises = [], estimatedDuration = 0):
-    new_workout = Workout(user_id = user_id, workoutName = workoutName, workoutExercises= workoutExercises, estimatedDuration = estimatedDuration, public = public, category = category)
+def add_workout(user_id,workoutName,public,categoryId,category = [], workoutExercises = [], estimatedDuration = 0):
+    from App.controllers import get_category
+    category = get_category(categoryId)
+
+    new_workout = Workout(user_id = user_id, workoutName = workoutName, workoutExercises= workoutExercises, estimatedDuration = estimatedDuration, public = public, categoryId = categoryId ,category = category)
     if new_workout:
         db.session.add(new_workout)
         db.session.commit()
@@ -107,7 +110,7 @@ def toggle_public_status(workoutId):
 def get_num_workouts(user_id):
     workouts = get_user_workouts(user_id)
     if workouts:
-        return workouts.count()
+        return len(workouts)
     return 0
 
 def get_highest_num_exercises(user_id):

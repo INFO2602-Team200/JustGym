@@ -9,3 +9,4 @@ from .milestone import *
 from .milestoneData import *
 from .communityWorkout import *
 from .community import *
+from .categories import *

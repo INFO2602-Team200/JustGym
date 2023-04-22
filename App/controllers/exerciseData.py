@@ -54,3 +54,17 @@ def get_all_exercise_equipment():
 def get_num_all_exercise_equipment():
     equipment = get_all_exercise_equipment()
     return len(equipment)
+
+# def get_all_categories():
+#     unique_categories = []
+
+#     # Query the database for all ExerciseData objects
+#     exercises = get_all_exercises()
+    
+#     # Loop through the exercises and add unique equipment to the list
+#     for exercise in exercises:
+#         if exercise.bodyPart not in unique_categories:
+#             unique_categories.append(exercise.bodyPart)
+            
+#     print(unique_categories)
+#     return unique_categories

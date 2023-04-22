@@ -8,3 +8,4 @@ from .milestone import *
 from .milestoneData import *
 from .community import *
 from .communityWorkout import *
+from .categories import *

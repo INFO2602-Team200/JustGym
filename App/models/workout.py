@@ -7,24 +7,27 @@ class Workout(db.Model):
     workoutExercises = db.relationship('Exercise', backref='workout', lazy=True)
     estimatedDuration = db.Column(db.Integer ,default = 0)
     public = db.Column(db.Boolean ,default = False)
-    category = db.Column(db.String, default = False)
+    categoryId = db.Column(db.Integer, db.ForeignKey('categories.categoryId'), nullable = False)
+    category = db.relationship('Categories', backref='workout', lazy=True)
 
-    def __init__(self, user_id, workoutName,workoutExercises, estimatedDuration,public,category):
+    def __init__(self, user_id, workoutName,workoutExercises, estimatedDuration,public,categoryId,category):
         self.user_id = user_id
         self.workoutName = workoutName
         self.workoutExercises = workoutExercises
         self.estimatedDuration = estimatedDuration
         self.public = public
+        self.categoryId = categoryId
         self.category = category
 
     def get_json(self):
 
-        from App.controllers import get_exercises_by_workoutID_json
+        from App.controllers import get_exercises_by_workoutID_json,get_category_json
         return{
             'workout_id': self.workout_id,
             'workoutName': self.workoutName,
             'workoutExercises': get_exercises_by_workoutID_json(self.workout_id),
             'estimatedDuration': self.estimatedDuration,
             'public': self.public,
-            'category': self.category
+            'categoryId': self.categoryId,
+            'category': get_category_json(self.categoryId)
         }
