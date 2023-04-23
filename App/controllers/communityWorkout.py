@@ -43,8 +43,8 @@ def addVote(communityWorkoutID):
     if community_workout:
         db.session.add(community_workout)
         db.session.commit()
-        return community_workout
-    return None
+        return True
+    return False
 
 def addDownVote(communityWorkoutID):
     community_workout = get_community_workout(communityWorkoutID)

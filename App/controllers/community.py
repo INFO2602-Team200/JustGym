@@ -1,5 +1,6 @@
 from App.database import db
 from App.models import Community
+from flask_login import current_user
 
 def add_community(communityWorkout = []):
     community = Community(communityWorkout = communityWorkout)
@@ -36,6 +37,18 @@ def delete_community_workout(communityId, workoutId):
         db.session.commit()
         return True
     return False
+
+
+def copy_Workout(workoutId):
+    from App.controllers import get_workout, add_workout
+    original_workout = get_workout(workoutId)
+    if original_workout:
+        copied_workout = add_workout(current_user.id,original_workout.workoutName,False,original_workout.categoryId,original_workout.category,original_workout.workoutExercises,original_workout.estimatedDuration, original_workout.author)
+        db.session.add(copied_workout)
+        db.session.commit()
+        return True
+    return False
+
 
 
 # def netVotes(workout):
