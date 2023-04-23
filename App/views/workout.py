@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, jsonify, request, send_from_directory, flash, redirect, url_for
 from App.models import db
-from App.controllers import get_user_workouts, get_all_categories,add_workout,get_community, render_community_workouts, get_workout,get_exercises_by_workoutID,delete_exercise,get_all_category_exercises,seconds_to_minutes_string,modify_exercise,get_userData,modify_workout,get_num_exercises_workout
+from App.controllers import get_user_workouts, delete_workout ,get_all_categories,add_workout,get_community, render_community_workouts, get_workout,get_exercises_by_workoutID,delete_exercise,get_all_category_exercises,seconds_to_minutes_string,modify_exercise,get_userData,modify_workout,get_num_exercises_workout
 from flask_login import LoginManager, current_user, login_user, login_required, logout_user
 
 
@@ -68,6 +68,17 @@ def delete_workout_exercise(workoutID,exerciseId):
 
     return redirect(request.referrer)
 
+@workout_views.route('/home/<int:workoutID>', methods=['GET'])
+@login_required
+def delete_workout(workoutID):
+    status = delete_workout(workoutID)
+    
+    if status == False:
+        flash('Invalid id or unauthorized')
+    else:
+        flash('Workout Deleted!')
+
+    return redirect('/home')
 
 
 
