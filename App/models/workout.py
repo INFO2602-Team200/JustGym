@@ -9,8 +9,9 @@ class Workout(db.Model):
     public = db.Column(db.Boolean ,default = False)
     categoryId = db.Column(db.Integer, db.ForeignKey('categories.categoryId'), nullable = False)
     category = db.relationship('Categories', backref='workout', lazy=True)
+    author = db.Column(db.String, default = "Anonymous")
 
-    def __init__(self, user_id, workoutName,workoutExercises, estimatedDuration,public,categoryId,category):
+    def __init__(self, user_id, workoutName,workoutExercises, estimatedDuration,public,categoryId,category,author):
         self.user_id = user_id
         self.workoutName = workoutName
         self.workoutExercises = workoutExercises
@@ -18,6 +19,7 @@ class Workout(db.Model):
         self.public = public
         self.categoryId = categoryId
         self.category = category
+        self.author = author
 
     def get_json(self):
 
@@ -29,5 +31,6 @@ class Workout(db.Model):
             'estimatedDuration': self.estimatedDuration,
             'public': self.public,
             'categoryId': self.categoryId,
-            'category': get_category_json(self.categoryId)
+            'category': get_category_json(self.categoryId),
+            'author': self.author
         }

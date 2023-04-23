@@ -1,5 +1,6 @@
 from App.database import db
 from App.models import Workout
+from flask_login import current_user
 from .exercise import(workoutEstimation)
 def get_workout (workout_id):
     workout = Workout.query.filter_by(workout_id =workout_id).first()
@@ -17,7 +18,7 @@ def add_workout(user_id,workoutName,public,categoryId,category = [], workoutExer
     from App.controllers import get_category
     category = get_category(categoryId)
 
-    new_workout = Workout(user_id = user_id, workoutName = workoutName, workoutExercises= workoutExercises, estimatedDuration = estimatedDuration, public = public, categoryId = categoryId ,category = category)
+    new_workout = Workout(user_id = user_id, workoutName = workoutName, workoutExercises= workoutExercises, estimatedDuration = estimatedDuration, public = public, categoryId = categoryId ,category = category, author= current_user.username)
     if new_workout:
         db.session.add(new_workout)
         db.session.commit()
@@ -142,3 +143,5 @@ def seconds_to_minutes_string(seconds):
     minutes = seconds // 60
     seconds = seconds % 60
     return f"{minutes} minute{'s' if minutes != 1 else ''}, {seconds} second{'s' if seconds != 1 else ''}"
+
+

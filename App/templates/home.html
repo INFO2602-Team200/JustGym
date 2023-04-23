@@ -143,16 +143,17 @@
                         </div>
 
 
-                <h3>My Community<span class="text-danger">Workouts</span></h3>
+                <h3>My <span class="text-danger">CommunityWorkouts</span></h3>
                         <div class="owl-carousel owl-theme">
-                            {% for workout in myWorkouts%}
+                            {% for c_workout in community_workouts%}
                             <a href="https://example.com">
                                 <div class="item mb-4 style="width: 90%; margin: auto;">
                                     <div class="card border-0 shadow">
-                                        <img src="1.jpg" alt="" class="card-img-top">
+                                        <img src="{{c_workout.workout.category.categoryImgUrl}}" alt="" class="card-img-top">
                                         <div class="card-body">
                                             <div class="card-title text-center">
-                                                <h4>{{workout.workoutName}}</h4>
+                                                <h4>{{c_workout.workout.workoutName}}</h4>
+                                                <p>Author:{{c_workout.workout.}}</p>
                                             </div>
                                         </div>
                                     </div>

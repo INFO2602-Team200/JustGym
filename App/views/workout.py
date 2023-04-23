@@ -12,12 +12,10 @@ workout_views = Blueprint('workout_views', __name__, template_folder='../templat
 def home_page():
     categories = get_all_categories()
     myWorkouts = get_user_workouts(current_user.id)
-    data = get_userData(current_user.id)
+
     community = get_community(1)
     community_workouts = community.communityWorkout
 
-    # communityWorkoutIds = data.myCommunityWorkouts
-    # myCommunityWorkouts = render_community_workouts(communityWorkoutIds)
     return render_template('home.html',categories = categories, myWorkouts = myWorkouts, community_workouts = community_workouts)
 
 
