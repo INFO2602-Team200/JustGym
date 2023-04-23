@@ -12,7 +12,8 @@ workout_views = Blueprint('workout_views', __name__, template_folder='../templat
 def home_page():
     categories = get_all_categories()
     myWorkouts = get_user_workouts(current_user.id)
-
+    if not myWorkouts:
+        myWorkouts = []
     community = get_community(1)
     community_workouts = community.communityWorkout
 
@@ -68,10 +69,11 @@ def delete_workout_exercise(workoutID,exerciseId):
 
     return redirect(request.referrer)
 
-@workout_views.route('/home/<int:workoutID>', methods=['GET'])
+@workout_views.route('/homes/<int:workoutID>', methods=['DELETE', 'GET'])
 @login_required
-def delete_workout(workoutID):
+def delete_workout_form(workoutID):
     status = delete_workout(workoutID)
+    print(workoutID)
     
     if status == False:
         flash('Invalid id or unauthorized')
@@ -96,11 +98,21 @@ def rename_workout(workoutID):
 
 
 # Route used to add a new workout Routine
+# Route used to add a new workout Routine
 @workout_views.route('/workout', methods=['POST'])
 @login_required
 def add_new_workout():
     formData = request.form
-    add_workout(current_user.id,formData['workoutName'], formData['public'], formData['categoryId'])
+    
+    public = formData['public']
+
+    if(public == 'public'):
+        bool_public = True
+
+    bool_public = False
+
+
+    add_workout(current_user.id,formData['workoutName'], bool_public, formData['categoryId'])
 
     return redirect(request.referrer)
 

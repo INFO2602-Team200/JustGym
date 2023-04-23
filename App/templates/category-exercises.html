@@ -301,12 +301,14 @@ a {
                 <label style="color: black" class="form-check-label" for="routine-selection-form">Select workout routines</label>
                 
                 <div id="routine-selection" style="padding: 10px; max-height: 100px;">
+                  {% if workouts%}
                   {% for workout in workouts %}
                     <div class="form-check">
                       <input class="form-check-input" type="radio" name="workout_id" value="{{workout.workout_id}}" id="workout-{{workout.workout_id}}" required>
                       <label style="color: black" class="form-check-label" for="workout-{{workout.workout_id}}">{{workout.workoutName}}</label>
                     </div>
                   {% endfor %}
+                  {% endif %}
                 </div>
 
                 <hr>

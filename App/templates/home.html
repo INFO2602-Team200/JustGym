@@ -107,21 +107,27 @@
                                 </div>
 
                                 
-                            
-                            {% for workout in myWorkouts%}
-                                <a href="/home/{{workout.workout_id}}">
-                                    <div class="item mb-4" style="width: 90%; margin: auto;">
-                                        <div class="card border-0 shadow">
-                                            <img src="{{workout.category.categoryImgUrl}}" alt="" class="card-img-top">
-                                            <div class="card-body">
-                                                <div class="card-title text-center">
-                                                    <h4>{{workout.workoutName}}</h4>
+                            {% if not myWorkouts %}
+
+                                
+
+                            {% else %} 
+                                {% for workout in myWorkouts%}
+                                    <a href="/home/{{workout.workout_id}}">
+                                        <div class="item mb-4" style="width: 90%; margin: auto;">
+                                            <div class="card border-0 shadow">
+                                                <img src="{{workout.category.categoryImgUrl}}" alt="" class="card-img-top">
+                                                <div class="card-body">
+                                                    <div class="card-title text-center">
+                                                        <h4>{{workout.workoutName}}</h4>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
-                            {% endfor %}
+                                    </a>
+                                {% endfor %}
+
+                            {% endif %}
                         </div>
 
                 <h3>My <span class="text-danger">Categories</span></h3>
@@ -143,20 +149,16 @@
                         </div>
 
 
-                <h3>My <span class="text-danger">CommunityWorkouts</span></h3>
+                <h3>My Community<span class="text-danger">Workouts</span></h3>
                         <div class="owl-carousel owl-theme">
-                            {% for c_workout in community_workouts%}
+                            {% for workout in myWorkouts%}
                             <a href="https://example.com">
                                 <div class="item mb-4 style="width: 90%; margin: auto;">
                                     <div class="card border-0 shadow">
-                                        <img src="{{c_workout.workout.category.categoryImgUrl}}" alt="" class="card-img-top">
+                                        <img src="1.jpg" alt="" class="card-img-top">
                                         <div class="card-body">
                                             <div class="card-title text-center">
-                                                <h4>{{c_workout.workout.workoutName}}</h4>
-                                                <p><span>Author:{{c_workout.workout.author}}</span><p>Category:{{c_workout.workout.category.categoryName}}</p></p>
-                                                
-                                                <p>Upvotes:{{c_workout.upvotes}}</p>
-                                                <p>DownVotes{{c_workout.downVotes}}</p>
+                                                <h4>{{workout.workoutName}}</h4>
                                             </div>
                                         </div>
                                     </div>
@@ -173,7 +175,7 @@
         <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div id="exampleModal2" class="modal-dialog exercise-card-modal-dialog">
               <div class="modal-content">
-                <form id="workout-creation-form" method="POST" action="/categories/1">
+                <form id="workout-creation-form" method="POST" action="/workout">
                   <div class="modal-header" style="display: flex; flex-wrap: wrap;">
                     <div style="width: 100%; overflow: hidden; display: flex; flex-wrap: nowrap;">
                       <h1 class="modal-title fs-5" id="exampleModalLabel">Create your own workout</h1>
@@ -185,9 +187,39 @@
                         <div class="input-group">
                           <span class="input-group-text" id="basic-addon3">Enter Name of Workout</span>
 
-                          <input class="form-control" type="text" name="input_selected_exercise" value="workoutName" 
-                          aria-describedby="basic-addon3" aria-label="workoutName"> 
+                          <input class="form-control" type="text" name="workoutName" value="workoutName" 
+                            aria-describedby="basic-addon3" aria-label="workoutName"> 
                         </div>
+
+                        <br>
+
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon3">Public Profile</span>
+ 
+                            <div class="form-check form-switch" style="margin: auto"> 
+                                <input style = "width: 90px; height: 30px" class="form-check-input" 
+                                name = "public" value = "public" type="checkbox" role="switch" 
+                                id="public">                           
+                            </div>
+
+                            <br>
+                            <div class = "row"> 
+                                <b>NOTE: </b> <p>Activating this setting will allow other members to view your Workouts
+                                                on the Community Section </p>
+                            </div>
+
+                          </div>
+
+                          <br>
+
+                          <div class="input-group">
+                            <select class="form-select" name = "categoryId" aria-label="Default select example">
+                                <option selected>Select Workout Category</option>
+                                {% for i in categories %}
+                                  <option value = "{{i.categoryId}}"> {{i.categoryName}}</option>
+                                {% endfor %}
+                              </select>
+                          </div>
 
                       </div>
                     </div>
