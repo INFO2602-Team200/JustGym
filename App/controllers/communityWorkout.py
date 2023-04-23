@@ -19,6 +19,12 @@ def get_community_workout(workoutId):
         return community_workout 
     return None
 
+def get_community_workout_by_communityWorkoutId(communityWorkoutId):
+    community_workout = communityWorkout.query.filter_by(communityWorkoutId = communityWorkoutId).first()  
+    if community_workout:
+        return community_workout 
+    return None
+
 def remove_community_workout(workoutID):
     community_workout = get_community_workout(workoutID)
     if community_workout:
@@ -50,3 +56,10 @@ def addDownVote(communityWorkoutID):
         return community_workout
     return None
 
+def render_community_workouts(communityWorkoutIds):
+    myCommunityWorkouts = []
+    
+    for communityWorkoutId in communityWorkoutIds:
+        myCommunityWorkouts = myCommunityWorkouts.append(get_community_workout_by_communityWorkoutId(communityWorkoutId))
+
+    return myCommunityWorkouts

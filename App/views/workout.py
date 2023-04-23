@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, jsonify, request, send_from_directory, flash, redirect, url_for
 from App.models import db
-from App.controllers import get_user_workouts, get_all_categories,add_workout, get_workout,get_exercises_by_workoutID,delete_exercise,get_all_category_exercises,seconds_to_minutes_string,modify_exercise,modify_workout,get_num_exercises_workout
+from App.controllers import get_user_workouts, get_all_categories,add_workout,get_community, render_community_workouts, get_workout,get_exercises_by_workoutID,delete_exercise,get_all_category_exercises,seconds_to_minutes_string,modify_exercise,get_userData,modify_workout,get_num_exercises_workout
 from flask_login import LoginManager, current_user, login_user, login_required, logout_user
 
 
@@ -12,8 +12,13 @@ workout_views = Blueprint('workout_views', __name__, template_folder='../templat
 def home_page():
     categories = get_all_categories()
     myWorkouts = get_user_workouts(current_user.id)
+    data = get_userData(current_user.id)
+    community = get_community(1)
+    community_workouts = community.communityWorkout
 
-    return render_template('home.html',categories = categories, myWorkouts = myWorkouts)
+    # communityWorkoutIds = data.myCommunityWorkouts
+    # myCommunityWorkouts = render_community_workouts(communityWorkoutIds)
+    return render_template('home.html',categories = categories, myWorkouts = myWorkouts, community_workouts = community_workouts)
 
 
 
@@ -24,12 +29,13 @@ def view_workout(workoutID):
     workout = get_workout(workoutID)
     exercises = get_exercises_by_workoutID(workoutID)
     category_exercises = get_all_category_exercises(workout.category.categoryName)
-    print(category_exercises)
+
     workout = get_workout(workoutID)
     seconds = workout.estimatedDuration
     workoutDuration = seconds_to_minutes_string(seconds)
     numExercises = get_num_exercises_workout(workoutID)
-    print(exercises)
+
+
 
     return render_template('exercise_routine.html',workout = workout, category_exercises =category_exercises , exercises = exercises, workoutID=workoutID,workoutDuration = workoutDuration,numExercises = numExercises)
 
