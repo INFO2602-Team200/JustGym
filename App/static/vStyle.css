@@ -265,11 +265,18 @@ html{
 
 
 .doubleInput{
-    flex-direction: row;
+    flex-direction: column;
+}
+
+.doubleInput label{
+    padding-right: 0.5rem;
 }
 
 .doubleInput span:nth-child(1){
-    margin-right: 0.4rem;
+    margin-bottom: 0.4rem;
+}
+.doubleInput span:nth-child(2) input{
+    margin-left: 0.2rem;
 }
 
 
@@ -314,7 +321,20 @@ html{
 
 /* ======== RESPONSIVE CSS FOR LOGIN PAGE ============*/
 @media only screen and (min-width: 700px){
+    .doubleInput{
+        flex-direction: row;
+    }
+    .doubleInput span:nth-child(1){
+        margin-bottom: 0;
+        margin-right: 0.4rem;
+    }
+    .doubleInput label{
+        padding-right: 0;
+    }
 
+    .doubleInput span:nth-child(2) input{
+        margin-left: 0;
+    }
     #equipmentSelector{
         margin-top: 80px;
     }
@@ -429,10 +449,10 @@ html{
     }
     .signupLeft{
         flex: 1;
-        background-image: url("img/mainbg.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+        background-image: url("img/signupbg.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center top;
         height: auto;
         width: auto;
     }
