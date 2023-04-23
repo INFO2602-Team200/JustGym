@@ -75,25 +75,26 @@
     <div class = "row" id = "first_row" style="margin-top: 1%; margin-bottom: 1%;">
         
             <div class="card text-bg-dark" style="width: 80% ;margin: auto; background-color: #FF4857;">
-              <h2 class = "card-title" style="text-align: center;">Community Workout Name: </h2>
+              <h2 class = "card-title" style="text-align: center;">Community Workout Name: {{community_workout.workout.workoutName}} </h2>
               <div class="card-text">
                   <b style="text-align: center;">
-                    <p style="color: aliceblue;">Estimated Workout Duration:\</p>
-                    <p style="color: aliceblue;">Total Exercises:</p>
-                    <p style="color: aliceblue;">Workout Category : </p>
-                    <p style="color: aliceblue;">Workout Category : </p>
+                    <p style="color: aliceblue;">Estimated Workout Duration: {{workoutDuration}}</p>
+                    <p style="color: aliceblue;">Total Exercises: {{numExercises}} </p>
+                    <p style="color: aliceblue;">Workout Category : {{community_workout.workout.category.categoryName}} </p>
+                    
                   </b>
                   
                   <div class = "row">
 
                         <div class = "col" style="margin: auto; width: 33%">
-                            <form id="community_workout-delete-form" method="" action="" style = "margin-right:auto">
-                              <button class = "btn btn-primary" style = "width: max-content; margin: auto" type = submit> Delete from My List</button>
+                            <form id="community_workout-add-form" method="GET" action="/communitycopy/{{community_workout.communityWorkoutId}}" 
+                            style = "margin-right:auto">
+                              <button class = "btn btn-primary" style = "width: max-content; margin: auto" type = submit> Add to My Workouts</button>
                             </form>
                         </div>
 
                         <div class = "col" style="margin: auto; width: 33%; text-align: center;">
-                          <form id="upvote_-form" method="POST" action="/upvote/{{community_id}}" style = "margin:auto">
+                          <form id="upvote_-form" method="POST" action="/upvote/{{community_workout.communityWorkoutId}}" style = "margin:auto">
                             <button class = "btn btn-primary" style = "width: max-content; margin: auto" type = submit>Thumbs Up</button>
                           </form>
                         </div>
@@ -119,16 +120,16 @@
       </div>
 
 
-    {% for e in community_workout_exercise %}
+    {% for e in exercises %}
     
     <div class="card border-danger mb-3" style="width: 80%; ;text-align: center; margin: auto;">
       <div class="row g-0" >
         <div class="col" style="width:15%;">
-          <img style = "width:50%; height:80%" src="{{e.community_workout_exercise.gifUrl}}" class="img-fluid rounded-start" alt="...">
+          <img style = "width:50%; height:80%" src="{{e.exercise.gifUrl}}" class="img-fluid rounded-start" alt="...">
         </div>
         <div class="col" style="width:85%;">
           <div class="card-body">
-            <h5 class="card-title">{{e.community_workout_exercise.name}}</h5>
+            <h5 class="card-title">{{e.exercise.name}}</h5>
             <div class="card-text">
                 <div class = "row">
                     <div class = "col" style = "width:50%">

@@ -26,15 +26,21 @@ def add_workout(user_id,workoutName,public,categoryId,category = [], workoutExer
     return None
 
 def add_copy_workout(user_id,workoutName,public,categoryId,category = [], workoutExercises = [], estimatedDuration = 0,author = "Anonymous"):
-    from App.controllers import get_category
+    from App.controllers import get_category, add_exercise
     category = get_category(categoryId)
+    
+    new_workout = Workout(user_id = user_id, workoutName = workoutName, workoutExercises= [], estimatedDuration = estimatedDuration, public = public, categoryId = categoryId ,category = category, author= author)
+    new_workout_exercises = []
 
-    new_workout = Workout(user_id = user_id, workoutName = workoutName, workoutExercises= workoutExercises, estimatedDuration = estimatedDuration, public = public, categoryId = categoryId ,category = category, author= author)
     if new_workout:
         db.session.add(new_workout)
         db.session.commit()
-        return new_workout
-    return None
+
+    for exercise in workoutExercises:
+        new_exercise = add_exercise(new_workout.workout_id,exercise.exerciseDataId,exercise.sets,exercise.reps,exercise.duration)
+        new_workout_2= add_workout_exercise(new_workout.workout_id,new_exercise)
+
+    return new_workout
 
 
 def modify_workout(workout_id,workoutName):
