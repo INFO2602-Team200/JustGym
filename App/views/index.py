@@ -66,7 +66,7 @@ def init():
     
     workout_test = add_workout_exercise(1, add_exercise(1,1,4,5,45))
 
-    workout_test = add_workout(2,"Back Workout",True,"3")
+    workout_test = add_workout(2,"Chest Workout",True,"3")
     workout_test3 = add_workout_exercise(3, add_exercise(3,9,4,5,85))
 
     workout_test = add_workout(2,"Abs Workout",False,"4")

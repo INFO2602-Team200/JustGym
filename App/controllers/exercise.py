@@ -19,7 +19,7 @@ def modify_exercise(exerciseId,exerciseDataId,sets,reps,duration):
         updated_exercise.duration = duration
         db.session.add(updated_exercise)
         db.session.commit()
-        return modify_exercise
+        return updated_exercise
 
     return None
 

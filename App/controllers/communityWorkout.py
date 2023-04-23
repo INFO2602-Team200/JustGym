@@ -37,20 +37,25 @@ def calc_net_votes(upvotes,downvotes):
     return upvotes-downvotes
 
 def addVote(communityWorkoutID):
-    community_workout = get_community_workout(communityWorkoutID)
-    community_workout.upvotes = community_workout.upvotes + 1
-    community_workout.netvotes = calc_net_votes(community_workout.upvotes, community_workout.downvotes)
+    
+    community_workout  = get_community_workout_by_communityWorkoutId(communityWorkoutID)
+    
+
     if community_workout:
+        
+        community_workout.upvotes = community_workout.upvotes + 1
+        community_workout.netvotes = calc_net_votes(community_workout.upvotes, community_workout.downvotes)
         db.session.add(community_workout)
         db.session.commit()
         return True
     return False
 
 def addDownVote(communityWorkoutID):
-    community_workout = get_community_workout(communityWorkoutID)
-    community_workout.downvotes = community_workout.downvotes + 1
-    community_workout.netvotes = calc_net_votes(community_workout.upvotes, community_workout.downvotes)
+    community_workout  = get_community_workout_by_communityWorkoutId(communityWorkoutID)
+    
     if community_workout:
+        community_workout.downvotes = community_workout.downvotes + 1
+        community_workout.netvotes = calc_net_votes(community_workout.upvotes, community_workout.downvotes)
         db.session.add(community_workout)
         db.session.commit()
         return community_workout
