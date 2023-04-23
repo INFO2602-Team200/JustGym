@@ -46,6 +46,7 @@
 
     .modal-backdrop {
     z-index: -2;
+    opacity: 0;
   } 
 
   .logo {
@@ -64,7 +65,6 @@
 
 <nav class="navbar" style="background-color: #42414A;">
   <div class="container-fluid">
-    <!-- <a class="navbar-brand" href="#"><img src="/static/img/logo.png"></a> -->
     <a class="navbar-brand" href="#">
       <span class="logo just">Just</span>
       <span class="logo gym">Gym</span>
@@ -76,32 +76,33 @@
 
     <div class = "row" id = "first_row" style="margin-top: 1%; margin-bottom: 1%;">
         <div class="col" style="width: 100%">
-            <div class="card text-bg-dark" style="width: 15rem; margin: auto;">
-              <img style = "width: 100%" src="../static/image/background.jpg" class="card-img" alt="...">
-              <div class="card-text">
-                <h5 class="card-title" style="text-align: center;" > <a href = "/profile">Click here to add/remove Equipment</a></h5>
-                
+            <div class="card text-bg-dark" style="width: 80% ;margin: auto; background-color: #FF4857;">
+              <h2 class = "card-title" style="text-align: center;">Workout Name: {{workout.workoutName}}</h2>
+              <div class="card-text"></div>
+                  <b style="text-align: center;">
+                    <p style="color: aliceblue;">Estimated Workout Duration: {{workoutDuration}}</p>
+                    <p style="color: aliceblue;">Total Exercises: {{numExercises}}</p>
+                    <p style="color: aliceblue;">Workout Category : {{workout.category.categoryName}}</p>
+                  </b>
+
+                  <h5 class="card-title" style="text-align: center;" > <a href = "/profile">Click here to add/remove Equipment</a></h5>
               </div>
             </div>
           </div>
-
-
-          <p style="color: aliceblue;">Estimated Workout Duration: {{workoutDuration}}</p>
-          <p style="color: aliceblue;">Total Exercises: {{numExercises}}</p>
 
     </div>
 
 
     <div class = "row" id = "categories_preset_myWorkouts">  
       <div class = "jumbotron" style="color:white; opacity: 0.9">
-        Workout Category > {{workout.category.categoryName}}
+        
       </div>
 
 
     {% for e in exercises %}
     
-    <div class="card border-danger mb-3" style="width: 80%; height: 20%;text-align: center; margin: auto;">
-      <div class="row g-0">
+    <div class="card border-danger mb-3" style="width: 80%; ;text-align: center; margin: auto;">
+      <div class="row g-0" >
         <div class="col" style="width:15%;">
           <img style = "width:50%; height:80%" src="{{e.exercise.gifUrl}}" class="img-fluid rounded-start" alt="...">
         </div>
@@ -206,7 +207,7 @@
             <div class="tab-pane fade" id="delete-tab-pane" role="tabpanel" aria-labelledby="delete-tab" tabindex="0">
               <form id="exercise-update-form" method="GET" action="/home/{{workoutID}}/{{e.exerciseID}}">
             
-                <div class="modal-header" style="display: flex; flex-wrap: wrap;">
+                <div class="modal-header"style="display: flex; flex-wrap: wrap;">
                   <div style="width: 100%; overflow: hidden; display: flex; flex-wrap: nowrap;">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Exercise</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

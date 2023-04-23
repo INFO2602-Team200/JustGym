@@ -77,6 +77,10 @@
         width: 15 rem;
     }
 
+    .modal-backdrop {
+    z-index: -2;
+  } 
+
     </style>
 
         <div>
@@ -85,6 +89,25 @@
                 <div class="row">
                     <div class="col-12 m-auto">
                         <div class="owl-carousel owl-theme">
+                            
+                                <div class="item mb-4" style="width: 90%; margin: auto;">
+                                    <div class="card border-0 shadow">
+                                        <img src="../static/catImages/cardio.jpg" alt="" class="card-img-top">
+                                        <div class="card-body">
+                                            <div class="card-title text-center">
+                                                <button data-bs-toggle="modal" data-bs-target="#exampleModal2" 
+                                                style = "margin: auto; width: max-content;" 
+                                                class = "btn btn-primary">Create New Workout
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+                                </div>
+
+                                
+                            
                             {% for workout in myWorkouts%}
                                 <a href="/home/{{workout.workout_id}}">
                                     <div class="item mb-4" style="width: 90%; margin: auto;">
@@ -143,5 +166,36 @@
             </div>
         </div>
 
+        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div id="exampleModal2" class="modal-dialog exercise-card-modal-dialog">
+              <div class="modal-content">
+                <form id="workout-creation-form" method="POST" action="/categories/1">
+                  <div class="modal-header" style="display: flex; flex-wrap: wrap;">
+                    <div style="width: 100%; overflow: hidden; display: flex; flex-wrap: nowrap;">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Create your own workout</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div>
+                      <div style="padding-top: 10px;">
+
+                        <div class="input-group">
+                          <span class="input-group-text" id="basic-addon3">Enter Name of Workout</span>
+
+                          <input class="form-control" type="text" name="input_selected_exercise" value="workoutName" 
+                          aria-describedby="basic-addon3" aria-label="workoutName"> 
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" type="submit">Create</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
  
 {% endblock %}
