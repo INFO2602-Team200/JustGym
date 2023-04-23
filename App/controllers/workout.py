@@ -14,7 +14,18 @@ def get_user_workouts (user_id):
         return workouts
     return None
 
-def add_workout(user_id,workoutName,public,categoryId,category = [], workoutExercises = [], estimatedDuration = 0, author = current_user.username):
+def add_workout(user_id,workoutName,public,categoryId,category = [], workoutExercises = [], estimatedDuration = 0):
+    from App.controllers import get_category
+    category = get_category(categoryId)
+
+    new_workout = Workout(user_id = user_id, workoutName = workoutName, workoutExercises= workoutExercises, estimatedDuration = estimatedDuration, public = public, categoryId = categoryId ,category = category, author= current_user.username)
+    if new_workout:
+        db.session.add(new_workout)
+        db.session.commit()
+        return new_workout
+    return None
+
+def add_copy_workout(user_id,workoutName,public,categoryId,category = [], workoutExercises = [], estimatedDuration = 0,author = "Anonymous"):
     from App.controllers import get_category
     category = get_category(categoryId)
 
@@ -24,6 +35,7 @@ def add_workout(user_id,workoutName,public,categoryId,category = [], workoutExer
         db.session.commit()
         return new_workout
     return None
+
 
 def modify_workout(workout_id,workoutName):
     modified_workout = get_workout(workout_id)

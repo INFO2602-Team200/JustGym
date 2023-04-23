@@ -40,10 +40,10 @@ def delete_community_workout(communityId, workoutId):
 
 
 def copy_Workout(workoutId):
-    from App.controllers import get_workout, add_workout
+    from App.controllers import get_workout, add_copy_workout
     original_workout = get_workout(workoutId)
     if original_workout:
-        copied_workout = add_workout(current_user.id,original_workout.workoutName,False,original_workout.categoryId,original_workout.category,original_workout.workoutExercises,original_workout.estimatedDuration, original_workout.author)
+        copied_workout = add_copy_workout(current_user.id,original_workout.workoutName,False,original_workout.categoryId,original_workout.category,original_workout.workoutExercises,original_workout.estimatedDuration, original_workout.author)
         db.session.add(copied_workout)
         db.session.commit()
         return True
