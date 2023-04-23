@@ -39,7 +39,8 @@ def update_user(id, username, email,dateOfBirth,height,weight,sex):
         user.weight = weight
         user.sex = sex
         db.session.add(user)
-        return db.session.commit()
+        db.session.commit()
+        return user
     return None
 
 def rollback():
@@ -58,7 +59,7 @@ def add_user_information(user_id, darkMode, height_units, weight_units):
             db.session.add(user)
             db.session.commit()
             return True
-    return None
+    return False
 
 
 def extract_date_components(date_string):
