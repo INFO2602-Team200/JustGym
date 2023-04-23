@@ -59,21 +59,21 @@ html{
 }
 
 .logo span{
-    color: var(--primary);
+    color: var(--primary) !important;
     font-style: italic;
 }
 
 .learnBtn{
     font-size: 14px;
     font-weight: 500;
-    background-color: var(--primary);
+    background: var(--primary) !important;
     border-radius: 5px;
     padding: 0.8rem;
     transition: background-color 0.25s ease-in;
 }
 
 .learnBtn:hover{
-    background-color: var(--primaryHover);
+    background: var(--primaryHover) !important;
 }
 
 /* heading css */

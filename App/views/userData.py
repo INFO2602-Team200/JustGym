@@ -13,7 +13,7 @@ def equipment_data():
     result = add_user_equipment(current_user.id,selected_options)
 
     if result == True:
-        return redirect('/users')
+        return redirect('/home')
     else:
         return redirect('/')
     

@@ -95,8 +95,7 @@ def signup_action():
     status = add_user_information(newuser.id,True,"Centimetres","Kilograms")
     login_user(newuser,False)  # login the user
     flash('Account Created!')  # send message
-    #return redirect("/users")  # redirect to homepage
-    return render_template('equipmentSelection.html') 
+    return redirect("/equipment")  # redirect to homepage
 
   except Exception:  # attempted to insert a duplicate user
     rollback()
