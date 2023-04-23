@@ -9,7 +9,8 @@ userData_views = Blueprint('userData_views', __name__, template_folder='../templ
 @userData_views.route('/equipment', methods=['POST'])
 @login_required
 def equipment_data():
-    selected_options = request.form.getlist('options')
+    selected_options = request.form.getlist('equipment')
+    print(selected_options)
     result = add_user_equipment(current_user.id,selected_options)
 
     if result == True:
