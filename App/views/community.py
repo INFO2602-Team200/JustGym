@@ -54,3 +54,10 @@ def vote_down(communityWorkoutId):
     else: 
         flash("Vote Unsucessful")
     return redirect(request.referrer)
+
+
+@community_views.route('/comm', methods=['GET'])
+@login_required
+def test_page_community():
+    
+    return render_template('community_workout.html')
