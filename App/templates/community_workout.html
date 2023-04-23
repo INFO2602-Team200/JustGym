@@ -83,6 +83,18 @@
                     <p style="color: aliceblue;">Workout Category : {{community_workout.workout.category.categoryName}} </p>
                     
                   </b>
+
+                  <div class = "row">
+                    <div class = "col">
+                      <p style = "color:aliceblue; text-align: center;">Total Thumbs Up: {{community_workout.upvotes}}</p>
+                     </div> 
+
+                     <div class = "col">
+                      <p style = "color:aliceblue; text-align: center;">Total Thumbs Down: {{community_workout.downvotes}}</p>
+                     </div> 
+                    
+                    
+                  </div>
                   
                   <div class = "row">
 
@@ -94,13 +106,13 @@
                         </div>
 
                         <div class = "col" style="margin: auto; width: 33%; text-align: center;">
-                          <form id="upvote_-form" method="POST" action="/upvote/{{community_workout.communityWorkoutId}}" style = "margin:auto">
+                          <form id="upvote_-form" method="GET" action="/voteup/{{community_workout.communityWorkoutId}}" style = "margin:auto">
                             <button class = "btn btn-primary" style = "width: max-content; margin: auto" type = submit>Thumbs Up</button>
                           </form>
                         </div>
 
                         <div class = "col" style="margin: auto; width: 33%; text-align: center;">
-                          <form id="downvote_form" method="POST" action="/downvote/{{community_id}}" style = "margin:auto">
+                          <form id="downvote_form" method="GET" action="/votedown/{{community_workout.communityWorkoutId}}" style = "margin:auto">
                             <button class = "btn btn-primary" style = "width: max-content; margin: auto" type = submit>Thumbs Down</button>
                           </form>
                         </div>

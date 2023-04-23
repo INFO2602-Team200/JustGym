@@ -115,7 +115,7 @@ def add_new_workout():
         bool_public = False
         new_workout= add_workout(current_user.id,formData['workoutName'], bool_public, formData['categoryId'])
     
-    flash(f'Workout{{new_workout.workoutName}} Created')
+    flash(f'Workout {new_workout.workoutName} Created')
     
     return redirect(request.referrer)
 

@@ -138,22 +138,22 @@ def get_highest_num_exercises(user_id):
 
     max = 0
 
-    for workout in workouts:
-        exercise_num = get_num_exercises(user_id, workout.workoutExercises)
-        if exercise_num > max:
-            max = exercise_num
+    if workouts:
+        for workout in workouts:
+            exercise_num = get_num_exercises(user_id, workout.workoutExercises)
+            if exercise_num > max:
+                max = exercise_num
     
-    print(max)
     return max
 
 def check_exercise_type(user_id,category):
     workouts = get_user_workouts(user_id)
 
-    for workout in workouts:
-        
-        for exercise in workout.workoutExercises:
-            if exercise.exercise.bodyPart == category:
-                return True
+    if workouts:
+        for workout in workouts:           
+            for exercise in workout.workoutExercises:
+                if exercise.exercise.bodyPart == category:
+                    return True
 
     return False
 

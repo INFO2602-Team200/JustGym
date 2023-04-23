@@ -53,7 +53,7 @@ def vote_up(communityWorkoutId):
     status = addVote(communityWorkoutId)
 
     if status:
-        flash("Added Vote")
+        flash("Vote Successful")
     else: 
         flash("Vote Unsucessful")
     return redirect(request.referrer)
@@ -64,7 +64,7 @@ def vote_down(communityWorkoutId):
     status = addDownVote(communityWorkoutId)
 
     if status:
-        flash("Added Vote")
+        flash("Vote Successful")
     else: 
         flash("Vote Unsucessful")
     return redirect(request.referrer)
