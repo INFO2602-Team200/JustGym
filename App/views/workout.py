@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, jsonify, request, send_from_directory, flash, redirect, url_for
 from App.models import db
-from App.controllers import get_user_workouts, delete_workout ,get_all_categories,add_workout,get_community, render_community_workouts, get_workout,get_exercises_by_workoutID,delete_exercise,get_all_category_exercises,seconds_to_minutes_string,modify_exercise,get_userData,modify_workout,get_num_exercises_workout
+from App.controllers import get_user_workouts, delete_workout ,get_all_categories,add_workout,get_community, render_community_workouts, get_workout,get_exercises_by_workoutID,delete_exercise,get_all_category_exercises,seconds_to_minutes_string,modify_exercise,get_userData,modify_workout,get_num_exercises_workout,create_community_workout,add_community_workout
 from flask_login import LoginManager, current_user, login_user, login_required, logout_user
 
 
@@ -104,15 +104,18 @@ def rename_workout(workoutID):
 def add_new_workout():
     formData = request.form
     
-    public = formData['public']
+    is_public = 'public' in request.form
 
-    if(public == 'public'):
+    if is_public:
         bool_public = True
-
-    bool_public = False
-
-
-    add_workout(current_user.id,formData['workoutName'], bool_public, formData['categoryId'])
-
+        new_workout = add_workout(current_user.id,formData['workoutName'], bool_public, formData['categoryId'])
+        new_community_workout = create_community_workout(new_workout.workout_id)
+        status = add_community_workout(1,new_community_workout)
+    else:
+        bool_public = False
+        new_workout= add_workout(current_user.id,formData['workoutName'], bool_public, formData['categoryId'])
+    
+    flash(f'Workout{{new_workout.workoutName}} Created')
+    
     return redirect(request.referrer)
 

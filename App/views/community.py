@@ -12,11 +12,16 @@ community_views = Blueprint('community_views', __name__, template_folder='../tem
 def community_workout_page(communityWorkoutId):
     # community = get_community(1) # there is only 1 active community
     community_workout  = get_community_workout(communityWorkoutId)
-    workout = community_workout.workout
-    exercises = get_exercises_by_workoutID(workout.workout_id)
+    
+    if community_workout:
+        workout = community_workout.workout
+        exercises = get_exercises_by_workoutID(workout.workout_id)
+
+    else:
+        exercises = []
 
 
-    return render_template('community_workout.html',community_workout = community_workout, workout = workout, exercises = exercises)
+    return render_template('community_workout.html',community_workout = community_workout,  exercises = exercises)
 
 
 @community_views.route('/communitycopy/<int:communityWorkoutId>', methods=['GET'])
