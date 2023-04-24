@@ -205,16 +205,6 @@ a {
 }
 </style>
 
-
-<!-- <nav class="navbar" style="background-color: #42414A;">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-      <span class="logo just">Just</span>
-      <span class="logo gym">Gym</span>
-    </a>
-  </div>
-</nav> -->
-
     <div class="content list-exercises-content">
       <h3 style="display: flex; flex-wrap: nowrap; justify-content: space-between;">
         <div style=" overflow-y: hidden;">{{category}} > Exercises   </div>
@@ -303,7 +293,7 @@ a {
                       <input class="form-control" type="text" name="input_selected_exercise" value="{{selected_exercise.name}}" aria-describedby="basic-addon3" aria-label="{{selected_exercise.name}}" disabled readonly>
                     </div>
                   </div>
-                  <div style="padding-top: 10px; display: none"> <!-- i need to pass the exercise id some way -->
+                  <div style="padding-top: 10px; display: none"> 
                     <div class="input-group">
                       <span class="input-group-text" id="basic-addon3">Exercise ID</span>
                       <input class="form-control" type="text" name="selected_exercise_id" value="{{selected_exercise.id}}" aria-describedby="basic-addon3" aria-label="{{selected_exercise.id}}">
@@ -374,7 +364,7 @@ a {
     
                       <div class="input-group">
                         <select class="form-select" name = "categoryId" aria-label="Default select example">
-                            <option selected>Select Workout Category</option>
+
                             {% for i in categories %}
                             <option value = "{{i.categoryName}}"> {{i.categoryName}}</option>
                             {% endfor %}

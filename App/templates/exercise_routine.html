@@ -173,7 +173,6 @@
                         <span class="input-group-text" id="basic-addon3">Exercise</span>
     
                         <select class="form-select" name = "exerciseDataId" aria-label="Default select example">
-                          <option selected>Select New Workout</option>
                           {% for i in category_exercises%}
                             <option value = "{{i.id}}"> {{i.name}}</option>
                           {% endfor %}
@@ -258,7 +257,6 @@
 
                   <div class="input-group">
                     <select class="form-select" name = "categoryId" aria-label="Default select example">
-                        <option selected>Select Workout Category</option>
                         {% for i in categories %}
                         <option value = "{{i.categoryName}}"> {{i.categoryName}}</option>
                         {% endfor %}

@@ -247,7 +247,7 @@
 
                           <div class="input-group">
                             <select class="form-select" name = "categoryId" aria-label="Default select example">
-                                <option selected>Select Workout Category</option>
+
                                 {% for i in categories %}
                                   <option value = "{{i.categoryId}}"> {{i.categoryName}}</option>
                                 {% endfor %}
