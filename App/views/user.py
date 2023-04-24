@@ -13,17 +13,19 @@ from App.controllers import (
     get_all_users,
     get_all_users_json,
     extract_date_components,
-    add_user_information
+    add_user_information,
+    get_userEquipment,
+    get_user,
+    get_all_exercise_equipment,
+    check_milestones,
+    get_user_milestones,
+    update_user,
+    add_user_equipment
 )
 
 user_views = Blueprint('user_views', __name__, template_folder='../templates')
 
-@user_views.route('/users', methods=['GET'])
-@login_required
-def get_user_page():
-    users = get_all_users()
-    return render_template('users.html', users=users, current_user = current_user)
-
+# API Endpoints
 @user_views.route('/api/users', methods=['GET'])
 def get_users_action():
     users = get_all_users_json()
@@ -44,32 +46,22 @@ def user_login_api():
   return jsonify(access_token=token)
 
 @user_views.route('/api/identify', methods=['GET'])
-@jwt_required()
+@login_required
 def identify_user_action():
     return jsonify({'message': f"username: {current_user.username}, id : {current_user.id}"})
 
-@user_views.route('/users', methods=['POST'])
-def create_user_action():
-    data = request.form
-    flash(f"User {data['username']} created!")
-    create_user(username=data['username'], email=data['email'], password=data['password'], dateOfBirth = data['dateOfBirth'], height = data['height'],weight = data['weight'],sex = data['sex'])
-    return redirect(url_for('user_views.get_user_page'))
 
-@user_views.route('/static/users', methods=['GET'])
-def static_user_page():
-  return send_from_directory('static', 'static-user.html')
-
-
+# View Routes
 @user_views.route('/signup', methods=['GET'])
 def signup_page():
   return render_template('signup.html')
+
 
 @user_views.route('/login', methods=['GET'])
 def login_page():
   return render_template('login.html')
 
-
-# action routes
+# Action routes
 
 @user_views.route('/login', methods=['POST'])
 def login_action():
@@ -109,7 +101,33 @@ def logout_action():
   flash('Logged Out')
   return redirect('/')
 
-@user_views.route('/userjson', methods=['GET'])
-def get_exerciseData_page():
-    users = get_all_users_json()
-    return jsonify(users)
+
+
+@user_views.route('/profile', methods=['GET'])
+@login_required
+def profile():
+    user = get_user(current_user.id)
+    userEquipment = get_userEquipment(current_user.id)
+    equipment = get_all_exercise_equipment()
+
+    check_milestones(current_user.id)
+
+    milestones = get_user_milestones(current_user.id)
+
+    return render_template('profile.html', user=user, userEquipment=userEquipment, equipment=equipment, milestones=milestones)
+
+@user_views.route('/profile', methods=['POST']) 
+@login_required
+def update_profile():
+    formData = request.form
+    equipment = request.form.getlist('equipment')
+    
+    user = get_user(current_user.id)
+
+    update_user(current_user.id, formData['username'], 
+                formData['email'], formData['dateOfBirth'], 
+                formData['height'], formData['weight'], formData['sex'])
+
+    add_user_equipment(current_user.id, equipment)
+
+    return redirect(request.referrer)

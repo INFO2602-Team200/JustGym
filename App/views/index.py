@@ -3,14 +3,11 @@ from App.models import db
 from App.controllers import create_user,add_user_information
 from App.controllers import (add_exerciseData, add_exercise, 
                              add_workout,add_workout_exercise,
-                             add_community,workout_public_status,
-                             get_all_exercises, get_user_workouts, 
-                             get_user_workouts_json, get_workout_json,
-                             get_user, get_userEquipment, getUserPreference,
-                             update_user, get_all_exercise_equipment, add_user_equipment, 
-                             add_milestone_data, add_user_milestone, append_user_milestone,load_milestone_data,
-                             check_milestones, get_milestoneData, get_user_milestones,load_categories)
-                             
+                             add_community,workout_public_status, 
+                             add_user_equipment, 
+                             load_milestone_data,
+                             check_milestones,load_categories)
+                    
 from datetime import date
 from flask_login import LoginManager, current_user, login_user, login_required, logout_user
 
@@ -23,16 +20,6 @@ def index_page():
 
 
 # Categories-exercises modal action route 
-@index_views.route('/categories/<string:category>', methods=['POST'])
-@index_views.route('/categories/<string:category>/<int:id>', methods=['POST'])
-@login_required
-def add_exercise_to_workout(category, id=1):
-    formData = request.form
-
-    exercise = add_exercise(formData['workout_id'], formData['selected_exercise_id'], formData['sets'], formData['reps'], formData['duration']) 
-    add_workout_exercise(formData['workout_id'], exercise)
-    
-    return redirect(request.referrer)
 
 @index_views.route('/init', methods=['GET'])
 def init():
@@ -54,7 +41,6 @@ def init():
 
     
     load_categories()
-
 
     workout_test = add_workout(1,"Full Body Workout",False,"1")
     workout_test = add_workout(1,"Legs Workout",False,"2")
@@ -81,18 +67,11 @@ def init():
 
     load_milestone_data()
  
-    # m_stone = add_user_milestone(1,1)
-    # append_user_milestone(1,m_stone)
     check_milestones(1)
     check_milestones(2)
 
     # Close the session
     db.session.commit()
-
-    
-    # test = get_all_exercises()
-    # print("test")
-    # print(test)
 
     return jsonify(message='db initialized!')
 
@@ -100,62 +79,3 @@ def init():
 def health_check():
     return jsonify({'status':'healthy'})
   
- 
-#Routes for categories page, home page files to test functionality
-@index_views.route('/categories', methods=['GET'])
-@login_required
-def categories():
-    return render_template('categories_page.html')
-
-
-@index_views.route('/settings', methods=['GET'])
-@login_required
-def settings():
-    from flask import flash
-    flash('Hihi')
-    return render_template('settings.html')
-
-@index_views.route('/test', methods = ['GET'])
-@login_required
-def test():
-    file = open('App/exercises.json')
-    data = json.load(file)
-
-    return render_template('test_home.html', data = data)
-
-
-@index_views.route('/test1', methods = ['GET'])
-@login_required
-def test1():
-    exercises = get_user_workouts(current_user.id)
-
-    return render_template('exercise_routine.html', exercises = exercises)
-
-@index_views.route('/profile', methods=['GET'])
-@login_required
-def profile():
-    user = get_user(current_user.id)
-    userEquipment = get_userEquipment(current_user.id)
-    equipment = get_all_exercise_equipment()
-
-    check_milestones(current_user.id)
-
-    milestones = get_user_milestones(current_user.id)
-
-    return render_template('profile.html', user=user, userEquipment=userEquipment, equipment=equipment, milestones=milestones)
-
-@index_views.route('/profile', methods=['POST']) 
-@login_required
-def update_profile():
-    formData = request.form
-    equipment = request.form.getlist('equipment')
-    
-    user = get_user(current_user.id)
-
-    update_user(current_user.id, formData['username'], 
-                formData['email'], formData['dateOfBirth'], 
-                formData['height'], formData['weight'], formData['sex'])
-
-    add_user_equipment(current_user.id, equipment)
-
-    return redirect(request.referrer)

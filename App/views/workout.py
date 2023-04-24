@@ -1,7 +1,25 @@
-from flask import Blueprint, render_template, jsonify, request, send_from_directory, flash, redirect, url_for
+from flask import Blueprint, render_template, request, flash, redirect
 from App.models import db
-from App.controllers import get_user_workouts, delete_workout ,get_all_categories,add_workout,get_community, render_community_workouts, get_workout,get_exercises_by_workoutID,delete_exercise,get_all_category_exercises,seconds_to_minutes_string,modify_exercise,get_userData,modify_workout,get_num_exercises_workout,create_community_workout,add_community_workout
-from flask_login import LoginManager, current_user, login_user, login_required, logout_user
+from datetime import date
+from flask_login import current_user,login_required
+from App.controllers import (get_user_workouts,
+                             add_exercise,
+                             add_workout_exercise, 
+                             delete_workout ,
+                             get_all_categories,
+                             add_workout,
+                             get_community, 
+                             get_workout,
+                             get_exercises_by_workoutID,
+                             delete_exercise,
+                             get_all_category_exercises,
+                             seconds_to_minutes_string,
+                             modify_exercise,
+                             modify_workout,
+                             get_num_exercises_workout,
+                             create_community_workout,
+                             add_community_workout
+                             )
 
 
 
@@ -99,9 +117,25 @@ def rename_workout(workoutID):
         flash('Unable to change Workout Name.')
     return redirect(request.referrer)
 
+ 
+#Reroutes to Home Page
+@workout_views.route('/categories', methods=['GET'])
+@login_required
+def categories():
+    return redirect('/home')
 
 
-# Route used to add a new workout Routine
+@workout_views.route('/categories/<string:category>', methods=['POST'])
+@workout_views.route('/categories/<string:category>/<int:id>', methods=['POST'])
+@login_required
+def add_exercise_to_workout(category, id=1):
+    formData = request.form
+
+    exercise = add_exercise(formData['workout_id'], formData['selected_exercise_id'], formData['sets'], formData['reps'], formData['duration']) 
+    add_workout_exercise(formData['workout_id'], exercise)
+    
+    return redirect(request.referrer)
+
 # Route used to add a new workout Routine
 @workout_views.route('/workout', methods=['POST'])
 @login_required
