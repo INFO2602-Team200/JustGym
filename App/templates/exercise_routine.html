@@ -11,9 +11,17 @@
 {% block content %}
  
   <style>
+    :root{
+      --primary: #D12331;
+      --primaryHover: #bb101e;
+      --dark: #151515;
+      --darkSec: #222222;
+      --light: #ffffff;
+    }
+
     body{
       min-height: 100vh;
-      background-color: black;
+      background-color: var(--dark);
     }
 
     #first_row{
@@ -21,7 +29,7 @@
     }
 
     #categories_preset_myWorkouts{
-      background-color: black;
+      background-color: var(--dark);
       width: 100%;
     }
 
@@ -44,7 +52,7 @@
     }
     
     .gym {
-      color: #FF4857;
+      color: var(--primary);
       font-style: italic;
       margin-left: -5px;
     }
@@ -56,7 +64,7 @@
 
     .content h3 {
       color: white; 
-      background-color: black; 
+      background-color: var(--dark); 
       z-index: 1; 
       margin: 0; 
       /* padding: 20px; */
@@ -84,13 +92,13 @@
     </div>
     <div>
       <a href = "/profile"><i class="bi bi-pencil"></i>edit equipment</a><br><br>
-      <button data-bs-toggle="modal" data-bs-target="#exampleModal3" style = "border: none; background: #FF4857; margin: auto; width: max-content;" class = "btn btn-primary">+ add exercise</button>
+      <button data-bs-toggle="modal" data-bs-target="#exampleModal3" style = "border: none; background: var(--primary); margin: auto; width: max-content;" class = "btn btn-primary">+ add exercise</button>
     </div>
     
   </div>
 
   <div class = "row" id = "categories_preset_myWorkouts">  
-    <div class = "jumbotron" style="color:white; opacity: 0.9">
+    <div class = "jumbotron" style="color:var(--light); opacity: 0.9">
   </div>
 
 
@@ -115,7 +123,7 @@
 
                     <div class = "row" >
                         <button data-bs-toggle="modal" data-bs-target="#exampleModal2" 
-                        style = "margin-top: 7%; width: min-content; margin-left: 42%;" class = "btn btn-primary">Modify Workout
+                        style = "background: var(--primary); border:var(--primary); margin-top: 7%; width: min-content; margin-left: 42%;" class = "btn btn-primary">Modify Workout
                         </button>
                     </div>
                 </div>

@@ -12,9 +12,17 @@
 {% block content %}
  
    <style>
+    :root{
+      --primary: #D12331;
+      --primaryHover: #bb101e;
+      --dark: #151515;
+      --darkSec: #222222;
+      --light: #ffffff;
+    }
+
     body{
         height: 100vh;
-        background-color: black;
+        background-color: var(--dark);
     }
 
     #first_row{
@@ -26,7 +34,7 @@
     } */
 
     #categories_preset_myWorkouts{
-      background-color: black;
+      background-color: var(--dark);
       width: 100%;
     }
 
@@ -54,13 +62,13 @@
     }
     
     .gym {
-        color: #FF4857;
+        color: var(--primary);
         font-style: italic;
         margin-left: -5px;
     }
 
     i:hover {
-      color: #ff4857;
+      color: var(--primaryHover);
     }
     
     </style>
@@ -84,7 +92,7 @@
   </div>
 
   <form id="community_workout-add-form" method="GET" action="/communitycopy/{{community_workout.communityWorkoutId}}">
-    <button class = "btn btn-primary" style="background-color: #FF4857; border:#FF4857" type = submit> + Add to My Workouts</button>
+    <button class = "btn btn-primary" style="background-color: var(--primary); border:var(--primary)" type = submit> + Add to My Workouts</button>
   </form>
 </div>
 
@@ -95,64 +103,8 @@
   </div>
   
 </div>
-
-
-    <!-- <div class = "row" id = "first_row" style="margin-top: 1%; margin-bottom: 1%;">
-        
-            <div class="card text-bg-dark" style="width: 80% ;margin: auto; background-color: #FF4857;">
-              <h2 class = "card-title" style="text-align: center;">Community Workout Name: {{community_workout.workout.workoutName}} </h2>
-              <div class="card-text">
-                  <b style="text-align: center;">
-                    <p style="color: aliceblue;">Estimated Workout Duration: {{workoutDuration}}</p>
-                    <p style="color: aliceblue;">Total Exercises: {{numExercises}} </p>
-                    <p style="color: aliceblue;">Workout Category : {{community_workout.workout.category.categoryName}} </p>
-                    
-                  </b>
-
-                  <div class = "row">
-                    <div class = "col">
-                      <p style = "color:aliceblue; text-align: center;">Total Thumbs Up: {{community_workout.upvotes}}</p>
-                     </div> 
-
-                     <div class = "col">
-                      <p style = "color:aliceblue; text-align: center;">Total Thumbs Down: {{community_workout.downvotes}}</p>
-                     </div> 
-                    
-                    
-                  </div>
-                  
-                  <div class = "row">
-
-                        <div class = "col" style="margin: auto; width: 33%">
-                            <form id="community_workout-add-form" method="GET" action="/communitycopy/{{community_workout.communityWorkoutId}}" 
-                            style = "margin-right:auto">
-                              <button class = "btn btn-primary" style = "width: max-content; margin: auto" type = submit> Add to My Workouts</button>
-                            </form>
-                        </div>
-
-                        <div class = "col" style="margin: auto; width: 33%; text-align: center;">
-                          <form id="upvote_-form" method="GET" action="/voteup/{{community_workout.communityWorkoutId}}" style = "margin:auto">
-                            <button class = "btn btn-primary" style = "width: max-content; margin: auto" type = submit>Thumbs Up</button>
-                          </form>
-                        </div>
-
-                        <div class = "col" style="margin: auto; width: 33%; text-align: center;">
-                          <form id="downvote_form" method="GET" action="/votedown/{{community_workout.communityWorkoutId}}" style = "margin:auto">
-                            <button class = "btn btn-primary" style = "width: max-content; margin: auto" type = submit>Thumbs Down</button>
-                          </form>
-                        </div>
-                  </div>
-
-                </div>
-              </div>
-            
-          </div> -->
-
-   
-
-
     <div class = "row" id = "categories_preset_myWorkouts">  
-      <div class = "jumbotron" style="color:white; opacity: 0.9">
+      <div class = "jumbotron" style="color:var(--light); opacity: 0.9">
         
       </div>
 
@@ -191,13 +143,6 @@
 </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-    
-    <script>
-
-    
-      
-    </script>
-    
 
 {% endblock %}
 

@@ -7,6 +7,14 @@
 {% block content %}
 
 <style>
+:root{
+  --primary: #D12331;
+  --primaryHover: #bb101e;
+  --dark: #151515;
+  --darkSec: #222222;
+  --light: #ffffff;
+}
+
 * {
   font-family: 'Poppins', sans-serif;
   /* color: white; */
@@ -19,7 +27,7 @@
 html {
   width: 100% !important;
   height: 100%;
-    background-color: black; 
+    background-color: var(--dark); 
   /* overflow-y: scroll !important; */
 }
 
@@ -35,13 +43,13 @@ html {
     width: 100%;
     height: 100%;
     /* min-height: 100vh; */
-    background-color: black; 
+    background-color: var(--dark); 
     /* background-size: stretch; */
 }
 
 .content h3 {
     color: white; 
-    background-color: black; 
+    background-color: var(--dark); 
     z-index: 1; 
     margin: 0; 
     padding: 20px;
@@ -57,7 +65,7 @@ html {
 }
 
 .gym {
-    color: #FF4857;
+    color: var(--primary);
     font-style: italic;
     margin-left: -5px;
     /* padding-left: 0; */
@@ -72,7 +80,7 @@ html {
 }
 
 #profile-content .card-body {
-    color: black;
+    color: var(--dark);
 }
 
 #user-data {
@@ -81,11 +89,11 @@ html {
 }
 
 .nav-link, a {
-    color: #FF4857
+    color: var(--primary);
 }
 
 .nav-link:hover{
-    color: #FF4857
+    color: var(--primaryHover);
 }
 
 .col {
@@ -101,7 +109,7 @@ html {
 }
 
 .card-footer button {
-    background-color: #FF4857;
+    background-color: var(--primary);
     border: none;
 }
 
@@ -112,8 +120,8 @@ html {
 
 .card-footer button:hover, .card-footer button:active, .card-footer button:focus {
   color: #ffffff !important;
-  background-color: #d13b47 !important;
-  border-color: #d13b47 !important;
+  background-color: var(--primaryHover) !important;
+  border-color: var(--primaryHover) !important;
 }
 
 .card-title, .card-subtitle{
@@ -286,7 +294,7 @@ html {
                               <div class="card" style="max-width: 150px; margin: 10px;">
                                 <img src="{{m.milestone.milestoneUrl}}" style="padding: 10px 20px 0 20px;" class="card-img-top" alt="...">
                                 <div class="card-body" style="padding-top: 5px;">
-                                  <h6 class="card-title" style="text-align: center; color: #FF4857; font-weight: bold;">{{m.milestone.milestoneName}}</h6>
+                                  <h6 class="card-title" style="text-align: center; color: var(--primary); font-weight: bold;">{{m.milestone.milestoneName}}</h6>
                                   <p style="color:grey; font-size: 12px; margin-bottom: 5px;" class="card-text">{{m.milestone.condition}}</p>
                                   <p style="color:rgb(163, 163, 163); font-size: 10px;" class="card-text">{{m.dateObtained}}</p>
                                 </div>
@@ -317,7 +325,7 @@ html {
 
       function enableSaveButton() {
         saveBtn.removeAttribute('disabled');
-        saveBtn.style.backgroundColor = "#ff4857";
+        saveBtn.style.backgroundColor = "#d12331";
       }
     </script>
 

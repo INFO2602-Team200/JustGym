@@ -7,6 +7,14 @@
 {% block content %}
 
 <style>
+:root{
+    --primary: #D12331;
+    --primaryHover: #bb101e;
+    --dark: #151515;
+    --darkSec: #222222;
+    --light: #ffffff;
+}
+
 * {
   font-family: 'Poppins', sans-serif;
   /* color: white; */
@@ -32,7 +40,7 @@ a {
 .content {
     width: 100% !important;
     height: 100% !important;
-    background-color: black; 
+    background-color: var(--dark); 
     /* background-size: stretch; */
 }
 
@@ -44,7 +52,7 @@ a {
 }
 
 .gym {
-    color: #FF4857;
+    color: var(--primary);
     font-style: italic;
     margin-left: -5px;
     /* padding-left: 0; */
@@ -64,7 +72,7 @@ a {
 
 .list-exercises-content h3 {
     color: white; 
-    background-color: black; 
+    background-color: var(--dark); 
     z-index: 1; 
     margin: 0; 
     padding: 20px;
@@ -92,7 +100,7 @@ a {
 } */
 
 .exercise-card:hover, .exercise-card .active {
-    background: #FF4857;
+    background: var(--primaryHover);
     color: white; /* */
     cursor: pointer;
 }
@@ -176,7 +184,7 @@ a {
         /* width: 100vw !important; */
         margin-top: -10px !important;
         padding-top: 10px;
-        background: black !important;
+        background: var(--dark) !important;
     }
 
     #exercise-list {
@@ -208,13 +216,19 @@ a {
 </nav> -->
 
     <div class="content list-exercises-content">
-      <h3>{{category}} > Exercises   <button data-bs-toggle="modal" data-bs-target="#exampleModal" 
-        style = "margin: auto; width: max-content;" 
-        class = "btn btn-primary">Switch Category
-        </button></h3>
+      <h3 style="display: flex; flex-wrap: nowrap; justify-content: space-between;">
+        <div style=" overflow-y: hidden;">{{category}} > Exercises   </div>
+
+        <div>
+          <button data-bs-toggle="modal" data-bs-target="#exampleModal" 
+          style = "margin: auto; width: max-content; background-color: var(--primary); border: var(--primary);" 
+          class = "btn btn-primary">Switch Category
+          </button>
+        </div>
+      </h3>
 
       <div id="exercise-content">
-        <div id="exercise-list" class="exercises-info">
+        <div id="exercise-list" class="exercises-info" style=" overflow-y: scroll; max-height: 90vh">
           {% for ex in exercises %}
               <div class="card exercise-card">
                 <a href="/categories/{{category}}/{{ex.id}}" id="ex-{{ex.id}}" class="{% if ex.id == id%}active{%endif%} "> 
@@ -240,7 +254,7 @@ a {
               <li class="list-group-item">Equipment: {{selected_exercise.equipment}}</li>
             </ul>
             <div class="card-body">
-              <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#exampleModal2">Add to Routine</a>
+              <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#exampleModal2" style="color: var(--primary)">Add to Routine</a>
               <!-- <a href="#" class="card-link">Another link</a> -->
             </div>
           </div>
@@ -255,7 +269,7 @@ a {
                 </div>
                 <div class="col-md-8 selected-exercise-card2-body">
                   <div class="card-body">
-                    <h5 class="card-title">{{selected_exercise.name}}</h5>
+                    <h5 class="card-title" style="overflow-y: hidden;">{{selected_exercise.name}}</h5>
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item">Category: {{selected_exercise.bodyPart}}</li>
                       <li class="list-group-item">Target: {{selected_exercise.target}}</li>
