@@ -48,44 +48,46 @@
       font-style: italic;
       margin-left: -5px;
     }
+
+    .content {
+      width: 100%;
+      height: 100%;
+    }
+
+    .content h3 {
+      color: white; 
+      background-color: black; 
+      z-index: 1; 
+      margin: 0; 
+      /* padding: 20px; */
+      /* position: sticky; 
+      top: -1px; */
+    }
+
+    i, a {
+      color: white;
+    }
   </style>
 
-  <!-- <nav class="navbar" style="background-color: #42414A;">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <span class="logo just">Just</span>
-        <span class="logo gym">Gym</span>
-      </a>
-    </div>
-  </nav> -->
-
-  <div class = "row" id = "first_row" style="margin-top: 1%; margin-bottom: 1%;">
-    <div class="col" style="width: 100%">
-      <div class="card text-bg-dark" style="width: 80% ;margin: auto; background-color: #FF4857;">
-        <h2 class = "card-title" style="text-align: center;">Workout Name: {{workout.workoutName}}</h2>
-        <div class="card-text">
-            <b style="text-align: center;">
-              <p style="color: aliceblue;">Estimated Workout Duration: {{workoutDuration}}</p>
-              <p style="color: aliceblue;">Total Exercises: {{numExercises}}</p>
-              <p style="color: aliceblue;">Workout Category : {{workout.category.categoryName}}</p>
-            </b>
-
-            <h5 class="card-title" style="text-align: center;" > <a href = "/profile">Click here to add/remove Equipment</a></h5>
-            
-            <form id="workout-delete-form" method="DELETE" action="/homes/{{workout.workout_id}}" style = "display: flex; justify-content: center;">
-              <button class = "btn btn-primary" type = submit> Delete </button>
-            </form>
-
-            <button data-bs-toggle="modal" data-bs-target="#exampleModal3" 
-                                                style = "margin: auto; width: max-content;" 
-                                                class = "btn btn-primary">Add New Exercise
-                                                </button>
-
-        </div>
-      </div>
-    </div>
+  <div style="display: flex; flex-wrap: nowrap; justify-content: space-between; align-items: center; padding: 20px 20px 0 20px;">
+    <h3 style="color: white;">{{workout.workoutName}}<span style="font-size: 14px; vertical-align:middle; color: light-grey"> • estimated duration: {{workoutDuration}}</span></h3>
+    
+    <form id="workout-delete-form" method="DELETE" action="/homes/{{workout.workout_id}}" style = "display: flex; justify-content: center;">
+      <button class = "btn btn-danger" type = submit> Delete </button>
+    </form>
   </div>
 
+  <div style="display: flex; flex-wrap: nowrap; justify-content: space-between; align-items: top; padding: 20px 20px 20px 40px;">
+    <div>
+      <h6 style="color: white;">Total Exercises: {{numExercises}}</h6>
+      <h6 style="color: white;">Workout Category: {{workout.category.categoryName}}</h6>
+    </div>
+    <div>
+      <a href = "/profile"><i class="bi bi-pencil"></i>edit equipment</a><br>
+      <button data-bs-toggle="modal" data-bs-target="#exampleModal3" style = "border: none; background: #FF4857; margin: auto; width: max-content;" class = "btn btn-primary">+ add exercise</button>
+    </div>
+    
+  </div>
 
   <div class = "row" id = "categories_preset_myWorkouts">  
     <div class = "jumbotron" style="color:white; opacity: 0.9">

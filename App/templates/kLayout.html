@@ -22,33 +22,48 @@
 
   </head>
   <body>
-    <nav class="navbar" style="background-color: #42414A;">
+    <nav class="navbar" style="background-color: #42414A; width: 100%">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/home">
           <span class="logo just">Just</span>
           <span class="logo gym">Gym</span>
         </a>
+
         <div>
-          <a href="/profile">
+          <a style="text-decoration: none;" href="/home">
+              <button type="button" class="btn btn-outline-light">Return Home</button>
+          </a>
+
+          <!-- <a href="/profile">
+            <button type="button" class="btn btn-outline-light">View Profile</button>
+          </a> -->
+          <a style="text-decoration: none;" href="/profile">
             <button type="button" class="btn btn-outline-light">View Profile</button>
           </a>
-          <a href="/logout"><i class="bi bi-box-arrow-right" style="margin-left: 5px; color: white;"></i></a>
+          <a href="/logout"><i class="bi bi-box-arrow-right" style="margin-left: 5px; color:white"></i></a>
         </div>
       </div>
     </nav>
+
     {% with messages = get_flashed_messages() %}
       {% if messages %}
-      <nav class="white black-text" style="padding: 10px">
-        <div class="nav-wrapper">
+        <nav class="white black-text" style="padding: 10px; color: #f5f5f5;">
+          <div class="nav-wrapper" style = "width: inherit">
             <ul class="flashes">
-            {% for message in messages %}
-              <li>{{ message }}</li>
-            {% endfor %}
+              {% for message in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
             </ul>
-        </div>
-      </nav>
+          </div>
+        </nav>
+        <script>
+          setTimeout(function() {
+            // document.querySelector('.flashes').innerHTML = '';
+            document.querySelector('.flashes').style.display = "none";
+          }, 3000);
+        </script>
       {% endif %}
-    {% endwith %}
+  {% endwith %}
 
     {% block content %}{% endblock %}
 
