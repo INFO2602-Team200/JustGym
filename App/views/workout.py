@@ -51,8 +51,10 @@ def view_workout(workoutID):
     exercises = get_exercises_by_workoutID(workoutID)
     category_exercises = get_all_category_exercises(workout.category.categoryName)
 
-    workout = get_workout(workoutID)
+    # workout = get_workout(workoutID)
     seconds = workout.estimatedDuration
+    print("Time on page")
+    print(seconds)
     workoutDuration = seconds_to_minutes_string(seconds)
     numExercises = get_num_exercises_workout(workoutID)
 
@@ -68,6 +70,7 @@ def view_workout(workoutID):
 def update_workout(workoutID,exerciseId):
     formData = request.form
 
+    # print(formData['duration'])
     modified_exercise= modify_exercise(exerciseId,formData['exerciseDataId'],formData['sets'],formData['reps'],formData['duration'])
     if modified_exercise:
         flash('Exercise successfully modified!')
@@ -95,7 +98,7 @@ def delete_workout_exercise(workoutID,exerciseId):
 @login_required
 def delete_workout_form(workoutID):
     status = delete_workout(workoutID)
-    print(workoutID)
+    
     
     if status == False:
         flash('Invalid id or unauthorized')

@@ -11,6 +11,7 @@ def add_exercise(workoutId, exerciseDataId, sets, reps, duration):
 
 def modify_exercise(exerciseId,exerciseDataId,sets,reps,duration):
     updated_exercise = get_exercise(exerciseId)
+
     if updated_exercise:
         updated_exercise.sets = sets
         updated_exercise.reps = reps
@@ -19,15 +20,31 @@ def modify_exercise(exerciseId,exerciseDataId,sets,reps,duration):
         updated_exercise.duration = duration
         db.session.add(updated_exercise)
         db.session.commit()
+        from App.controllers import get_workout
+        updated_workout = get_workout(updated_exercise.workoutId)
+        updated_workout.estimatedDuration = workoutEstimation(updated_exercise.workoutId)
+        
+        db.session.add(updated_workout)
+        db.session.commit()
+        
         return updated_exercise
 
     return None
 
 def delete_exercise(exerciseId):
     terminated_exercise = get_exercise(exerciseId)
+    
     if terminated_exercise:
         db.session.delete(terminated_exercise)
+
+        from App.controllers import get_workout
+        updated_workout = get_workout(terminated_exercise.workoutId)
+        updated_workout.estimatedDuration = workoutEstimation(terminated_exercise.workoutId)
+        
+        db.session.add(updated_workout)
         db.session.commit()
+        
+        # db.session.commit()
         return True
     return False
 

@@ -12,7 +12,7 @@ def get_user_workouts (user_id):
     workouts = Workout.query.filter_by(user_id =user_id).all()
     if workouts:
         return workouts
-    return None
+    return []
 
 def add_workout(user_id,workoutName,public,categoryId,category = [], workoutExercises = [], estimatedDuration = 0, author = "Anonymous"):
     from App.controllers import get_category
