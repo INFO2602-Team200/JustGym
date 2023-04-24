@@ -4,6 +4,7 @@
     --primaryHover: #bb101e;
     --dark: #151515;
     --darkSec: #222222;
+    --light: #ffffff;
 }
 
 *{
@@ -16,6 +17,7 @@
 a{
     text-decoration: none;
 }
+
 /* LOGIN PAGE CSS */
 html{
     overflow-x: hidden;
@@ -89,7 +91,7 @@ html{
 
 .landingHeading h1{
     font-size: 40px;
-    color: rgb(255, 255, 255);
+    color: var(--light);
     width: 90%;
     margin-left: auto;
     margin-right: auto;
@@ -111,7 +113,7 @@ html{
 }
 
 .landingHeading p{
-    color: #f1eeee;
+    color: var(--light);
     font-size: 14px;
     margin-top: 20px;
     width: 90%;
@@ -135,8 +137,8 @@ html{
     border-radius: 20px;
 
     box-shadow: 4px 10px 65px 0px rgba(0,0,0,0.45);
--webkit-box-shadow: 4px 10px 65px 0px rgba(0,0,0,0.45);
--moz-box-shadow: 4px 10px 65px 0px rgba(0,0,0,0.45);
+    -webkit-box-shadow: 4px 10px 65px 0px rgba(0,0,0,0.45);
+    -moz-box-shadow: 4px 10px 65px 0px rgba(0,0,0,0.45);
 }
 
 #loginForm h1{
@@ -209,6 +211,7 @@ html{
 
 .loginFormP{
     font-size: 14px;
+    text-align: center;
 }
 
 #loginFormSignUp{
@@ -278,6 +281,101 @@ html{
 .doubleInput span:nth-child(2) input{
     margin-left: 0.2rem;
 }
+
+
+
+
+
+
+    .intro {
+        background-color: var(--dark);
+        padding: 50px;
+        text-align: center;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    .intro h1 {
+        font-size: 48px;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+    }
+
+    .intro h1 span {
+        color: var(--primary);
+    }
+
+    .intro p {
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 50px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: justify;
+    }
+
+    p em {
+        font-style: italic;
+        font-weight: bold;
+        color: var(--primary);
+    }
+    .profile-card-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 15rem);
+        justify-content: center;
+        grid-gap: 35px;
+    }
+    .profile-card-container p{
+        margin-bottom: 0px;
+    }
+    .profile-card-container img{
+        max-width: 200px;
+        max-height: 200px;
+    }
+
+    .profile-card {
+        width: 100%;
+        margin-bottom:2rem;
+        text-align: center;
+    }
+
+    .profile-card img {
+        width: 100%;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
+
+    .profile-card h2 {
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+
+    .profile-card p {
+        font-size: 14px;
+        color: #dfd6d6;
+        text-align: center;
+    }
+    .my-button {
+        vertical-align: bottom;
+        background-color: var(--primary);
+        border: none;
+        color: var(--light);
+        padding: 0.5rem 1rem;
+        margin: 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.25s ease-in;
+    }
+
+    .my-button:hover{
+        background-color: var(--primaryHover);
+    }
+
 
 
 
@@ -416,9 +514,21 @@ html{
         font-size: 16px;
     }
 
+    .profile-card p {
+        font-size: 16px;
+    }
+
+    .intro p {
+        font-size: 16px;
+    }
+
 }
 
 @media only screen and (min-width: 1200px){
+
+    .landingBlock{
+        padding-bottom:2.5rem;
+    }
 
     .landingHeading h1{
         font-size: 65px;
@@ -443,6 +553,10 @@ html{
     .submitBtn{
         font-size: 18px;
     }
+    .intro p {
+        font-size: 18px;
+    }
+
 
     .signupBlock{
         flex-direction: row;
