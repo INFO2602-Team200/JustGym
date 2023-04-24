@@ -75,6 +75,14 @@
     i, a {
       color: white;
     }
+
+    .nav-link {
+      color: var(--primary);
+    }
+
+    .nav-link:hover{
+      color: var(--primaryHover);
+    }
   </style>
 
   <div style="display: flex; flex-wrap: nowrap; justify-content: space-between; align-items: center; padding: 20px 20px 0 20px;">
@@ -197,7 +205,7 @@
       
                 </div>
                 <div class="modal-footer">
-                  <button class="btn btn-primary" type="submit">Save changes</button>
+                  <button class="btn btn-primary" style="background: var(--primary); border: var(--primary);" type="submit">Save changes</button>
                 </div>
               </form>
             </div>
@@ -214,18 +222,13 @@
                   </div>
                   <div>
                     <div style="padding-top: 10px;">
-                      Are you sure that you wish to delete Exercise <b>{{e.exercise.name}}</b>
+                      Are you sure that you wish to delete Exercise <b>{{e.exercise.name}}?</b>
                     </div>
                   </div>
                 </div>
                 
-                <div class="modal-body">
-                  <div class="row">
-                    
-                  </div>
-                </div>
                 <div class="modal-footer">
-                  <button class="btn btn-primary" type="submit">Delete</button>
+                  <button  style="background: var(--primary); border: var(--primary);" class="btn btn-primary" type="submit">Delete</button>
                 </div>
               </form>
             </div>
@@ -267,8 +270,8 @@
           </div>
           
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button class="btn btn-primary" type="submit">Create</button>
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+            <button class="btn btn-primary" style="background-color: var(--primary); border: var(--primary);" type="submit">Create</button>
           </div>
         </form>
       </div>
