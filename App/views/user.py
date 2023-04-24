@@ -69,7 +69,7 @@ def login_action():
   user = User.query.filter_by(username=data['username']).first()
   if user and user.check_password(data['password']):  # check credentials
     flash('Logged in successfully.')  # send message to next page
-    login_user(user,False)  # login the user
+    login_user(user,True)  # login the user
     return redirect('/home')  # redirect to main page if login successful
   else:
     flash('Invalid username or password')  # send message to next page
