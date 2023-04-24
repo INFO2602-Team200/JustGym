@@ -127,3 +127,14 @@ def add_workout_button():
         category = formData['categoryId']
 
     return redirect(f'/categories/{category}')
+
+
+@workout_views.route('/switchCategory', methods=['POST'])
+@login_required
+def switch_category_button():
+
+    formData = request.form
+    if formData:
+        category = formData['categoryId']
+
+    return redirect(f'/categories/{category}')

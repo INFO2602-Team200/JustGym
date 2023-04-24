@@ -1,7 +1,7 @@
 from flask import Blueprint, redirect, render_template, request, send_from_directory, jsonify, json,url_for,flash
 from App.models import db
 from App.controllers import get_all_exercises_json
-from App.controllers import get_all_exercises,get_all_category_exercises,get_exerciseData,get_user_workouts
+from App.controllers import get_all_exercises,get_all_category_exercises,get_exerciseData,get_user_workouts, get_all_categories
 from.index import index_views
 from flask_login import login_required,current_user
 
@@ -27,7 +27,8 @@ def category_exercise_page(category, id = 0):
 
   if exercises:
     workouts = get_user_workouts(current_user.id)
-    return render_template('category-exercises.html', exercises = exercises,category = category, selected_exercise = selected_exercise,workouts = workouts)
+    categories = get_all_categories()
+    return render_template('category-exercises.html', exercises = exercises,category = category, selected_exercise = selected_exercise,workouts = workouts, categories = categories)
 
   flash('Category Not Found')
   return redirect(url_for('test'))

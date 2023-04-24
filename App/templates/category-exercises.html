@@ -208,7 +208,10 @@ a {
 </nav> -->
 
     <div class="content list-exercises-content">
-      <h3>{{category}} > Exercises</h3>
+      <h3>{{category}} > Exercises   <button data-bs-toggle="modal" data-bs-target="#exampleModal" 
+        style = "margin: auto; width: max-content;" 
+        class = "btn btn-primary">Switch Category
+        </button></h3>
 
       <div id="exercise-content">
         <div id="exercise-list" class="exercises-info">
@@ -338,6 +341,44 @@ a {
         </div>
       </div>
 
+
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div id="exampleModal2" class="modal-dialog exercise-card-modal-dialog">
+          <div class="modal-content">
+            <form id="switch-category-form" method="POST" action="/switchCategory">
+              <div class="modal-header" style="display: flex; flex-wrap: wrap;">
+                <div style="width: 100%; overflow: hidden; display: flex; flex-wrap: nowrap;">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">View exercises in other Categories</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div>
+                  <div style="padding-top: 10px;">
+    
+                      <b style = "margin: auto;">Please enter the Category of the exercises you wish to view</b>
+                      
+    
+                      <div class="input-group">
+                        <select class="form-select" name = "categoryId" aria-label="Default select example">
+                            <option selected>Select Workout Category</option>
+                            {% for i in categories %}
+                            <option value = "{{i.categoryName}}"> {{i.categoryName}}</option>
+                            {% endfor %}
+                          </select>
+                      </div>
+    
+                  </div>
+                </div>
+              </div>
+              
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button class="btn btn-primary" type="submit">View Exercises</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
 
 
     </div>

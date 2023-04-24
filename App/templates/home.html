@@ -100,7 +100,7 @@
                 <h3 >My <span class="text-danger">Workouts</span></h3>
                 <div class="row">
                     <div class="col-12 m-auto">
-                        <div class="owl-carousel owl-theme">
+                        <div id = "cat1" class="owl-carousel owl-theme">
                             
                                 <div class="item mb-4" style="width: 90%; margin: auto;">
                                     <div class="card border-0 shadow">
@@ -144,7 +144,7 @@
                         </div>
 
                 <h3>My <span class="text-danger">Categories</span></h3>
-                        <div class="owl-carousel owl-theme">
+                        <div id = "cat2" class="owl-carousel owl-theme">
                             {% for category in categories%}
                             <a href="/categories/{{category.categoryName}}">
                                     <div class="item mb-4" style="width: 90%; margin: auto;">
@@ -163,10 +163,10 @@
 
 
                 <h3>My Community<span class="text-danger">Workouts</span></h3>
-                        <div class="owl-carousel owl-theme">
+                        <div id = "cat3" class="owl-carousel owl-theme">
                             {% for workout in community_workouts %}
                             <a href="/community/{{workout.communityWorkoutId}}">
-                                <div class="item mb-4 style="width: 90%; margin: auto;">
+                                <div class="item mb-4" style="width: 90%; margin: auto;">
                                     <div class="card border-0 shadow">
                                         <img src="{{workout.workout.category.categoryImgUrl}}" alt="" class="card-img-top">
                                         <div class="card-body">
@@ -251,6 +251,7 @@
           </div>
 
 
+          
 
           
  
