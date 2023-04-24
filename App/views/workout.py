@@ -69,8 +69,6 @@ def view_workout(workoutID):
 @login_required
 def update_workout(workoutID,exerciseId):
     formData = request.form
-
-    # print(formData['duration'])
     modified_exercise= modify_exercise(exerciseId,formData['exerciseDataId'],formData['sets'],formData['reps'],formData['duration'])
     if modified_exercise:
         flash('Exercise successfully modified!')

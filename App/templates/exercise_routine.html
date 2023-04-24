@@ -130,7 +130,7 @@
                     </div>
 
                     <div class = "row" >
-                        <button data-bs-toggle="modal" data-bs-target="#exampleModal2" 
+                        <button data-bs-toggle="modal" data-bs-target="#exampleModal{{e.exerciseID}}" 
                         style = "background: var(--primary); border:var(--primary); margin-top: 7%; width: min-content; margin-left: 42%;" class = "btn btn-primary">Modify Workout
                         </button>
                     </div>
@@ -139,102 +139,103 @@
           </div>
         </div>
       </div>
-    </div>
-
-
-
-
-
-    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div id="exampleModal2" class="modal-dialog exercise-card-modal-dialog">
-        <div class="modal-content">
-          <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#modify-tab-pane" type="button" role="tab" aria-controls="modify-tab-pane" aria-selected="true">Modify Exercise</button>
-            
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#delete-tab-pane" type="button" role="tab" aria-controls="delete-tab-pane" aria-selected="false">Delete Exercise</button>
-            </li>
-            
-          </ul>
-          <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="modify-tab-pane" role="tabpanel" aria-labelledby="modify-tab" tabindex="0">
-              <form id="exercise-update-form" method="POST" action="/home/{{workoutID}}/{{e.exerciseID}}">
-            
-                <div class="modal-header" style="display: flex; flex-wrap: wrap;">
-                  <div style="width: 100%; overflow: hidden; display: flex; flex-wrap: nowrap;">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modify Exercise</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div>
-                    <div style="padding-top: 10px;">
-                      <div class="input-group">
-                        <span class="input-group-text" id="basic-addon3">New Exercise</span>
-    
-                        <select class="form-select" name = "exerciseDataId" aria-label="Default select example">
-                          {% for i in category_exercises%}
-                            <option value = "{{i.id}}"> {{i.name}}</option>
-                          {% endfor %}
-                        </select>
-    
+      <div class="modal fade" id="exampleModal{{e.exerciseID}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div id="exampleModal{{e.exerciseID}}" class="modal-dialog exercise-card-modal-dialog">
+          <div class="modal-content">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#modify-tab-pane{{e.exerciseID}}" type="button" role="tab" aria-controls="modify-tab-pane{{e.exerciseID}}" aria-selected="true">Modify Exercise</button>
+              
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#delete-tab-pane{{e.exerciseID}}" type="button" role="tab" aria-controls="delete-tab-pane{{e.exerciseID}}" aria-selected="false">Delete Exercise</button>
+              </li>
+              
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="modify-tab-pane{{e.exerciseID}}" role="tabpanel" aria-labelledby="modify-tab" tabindex="0">
+                <form id="exercise-update-form" method="POST" action="/home/{{workoutID}}/{{e.exerciseID}}">
+              
+                  <div class="modal-header" style="display: flex; flex-wrap: wrap;">
+                    <div style="width: 100%; overflow: hidden; display: flex; flex-wrap: nowrap;">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Modify Exercise</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div>
+                      <div style="padding-top: 10px;">
+                        <div class="input-group">
+                          <span class="input-group-text" id="basic-addon3">New Exercise</span>
+      
+                          <select class="form-select" name = "exerciseDataId" aria-label="Default select example">
+                            {% for i in category_exercises%}
+                              <option value = "{{i.id}}"> {{i.name}}</option>
+                            {% endfor %}
+                          </select>
+      
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                
-                <div class="modal-body">
-                  <div class="row">
-                    <div class="col form-check mb-3">
-                      <label style="color: black" class="form-label" for="sets">Sets</label>
-                      <input min = "1" class="form-control" type="number" name="sets" id="sets" value="{{e.sets}}" required>
+                  
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col form-check mb-3">
+                        <label style="color: black" class="form-label" for="sets">Sets</label>
+                        <input min = "1" class="form-control" type="number" name="sets" id="sets" value="{{e.sets}}" required>
+                      </div>
+                      <div class="col form-check mb-3">
+                        <label style="color: black" class="form-label" for="reps">Reps</label>
+                        <input min = "1" class="form-control" type="number" name="reps" id="reps" value="{{e.reps}}" required>
+                      </div>
                     </div>
-                    <div class="col form-check mb-3">
-                      <label style="color: black" class="form-label" for="reps">Reps</label>
-                      <input min = "1" class="form-control" type="number" name="reps" id="reps" value="{{e.reps}}" required>
+                    <div class="row">
+                      <div class="input-group" style="width: 260px">
+                        <label style="color: black" class="form-label" for="duration">Duration</label>
+                        <input min = "1" type="number" class="form-control" name="duration" id="duration" aria-label="duration" aria-describedby="basic-addon2" value="{{e.duration}}" required>
+                        <span class="input-group-text" id="basic-addon2">seconds</span>
+                      </div>
+                    </div>
+        
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-primary" style="background: var(--primary); border: var(--primary);" type="submit">Save changes</button>
+                  </div>
+                </form>
+              </div>
+  
+  
+  
+              <div class="tab-pane fade" id="delete-tab-pane{{e.exerciseID}}" role="tabpanel" aria-labelledby="delete-tab" tabindex="0">
+                <form id="exercise-update-form{{e.exerciseID}}" method="GET" action="/home/{{workoutID}}/{{e.exerciseID}}">
+              
+                  <div class="modal-header"style="display: flex; flex-wrap: wrap;">
+                    <div style="width: 100%; overflow: hidden; display: flex; flex-wrap: nowrap;">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Exercise</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div>
+                      <div style="padding-top: 10px;">
+                        Are you sure that you wish to delete Exercise <b>{{e.exercise.name}}?</b>
+                      </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="input-group" style="width: 260px">
-                      <label style="color: black" class="form-label" for="duration">Duration</label>
-                      <input min = "1" type="number" class="form-control" name="duration" id="duration" aria-label="duration" aria-describedby="basic-addon2" value="{{e.duration}}" required>
-                      <span class="input-group-text" id="basic-addon2">seconds</span>
-                    </div>
+                  
+                  <div class="modal-footer">
+                    <button  style="background: var(--primary); border: var(--primary);" class="btn btn-primary" type="submit">Delete</button>
                   </div>
-      
-                </div>
-                <div class="modal-footer">
-                  <button class="btn btn-primary" style="background: var(--primary); border: var(--primary);" type="submit">Save changes</button>
-                </div>
-              </form>
-            </div>
-
-
-
-            <div class="tab-pane fade" id="delete-tab-pane" role="tabpanel" aria-labelledby="delete-tab" tabindex="0">
-              <form id="exercise-update-form" method="GET" action="/home/{{workoutID}}/{{e.exerciseID}}">
-            
-                <div class="modal-header"style="display: flex; flex-wrap: wrap;">
-                  <div style="width: 100%; overflow: hidden; display: flex; flex-wrap: nowrap;">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Exercise</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div>
-                    <div style="padding-top: 10px;">
-                      Are you sure that you wish to delete Exercise <b>{{e.exercise.name}}?</b>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="modal-footer">
-                  <button  style="background: var(--primary); border: var(--primary);" class="btn btn-primary" type="submit">Delete</button>
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+
+
+
+
+    
 
     
   {% endfor %}
