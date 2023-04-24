@@ -5,7 +5,86 @@
 <!-- landing -->
 
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<style>
+    html{
+        margin-bottom: 0%;
+    }
+    .intro {
+        background-color: #292929;
+        padding: 50px;
+        text-align: center;
+        padding-top: 0%;
+        padding-bottom: 0%;
+    }
 
+    .intro h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    }
+
+    .intro h1 span {
+    color: #ff4857;
+    }
+
+    .intro p {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 50px;
+    }
+
+    p em {
+    font-style: italic;
+    color: #ff4857;
+    }
+    .profile-card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .profile-card-container p{
+        margin-bottom: 0px;
+    }
+    .profile-card-container img{
+        max-width: 200px;
+        max-height: 200px;
+    }
+
+    .profile-card {
+    width: calc(20% - 20px);
+    margin-bottom: 20px;
+    text-align: center;
+    }
+
+    .profile-card img {
+    width: 100%;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    }
+
+    .profile-card h2 {
+    font-size: 24px;
+    margin-bottom: 5px;
+    }
+
+    .profile-card p {
+    font-size: 16px;
+    color: #777;
+    }
+    .my-button {
+    background-color: #ff4857;
+    border: none;
+    color: white;
+    padding: 5px;
+    margin: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    }
+</style>
 <div class="landingBlock">
         <div class="navWrapper">
             <div class="navContain">
@@ -24,7 +103,7 @@
                         It’s a way of <span class="titleBg">life</span>
                     </h1>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, ratione aliquid. Quibusdam qui quisquam totam distinctio nostrum odit non. Quaerat quo quasi repellat qui repudiandae.
+                        Welcome to <em>JustGym</em>, the ultimate workout remixer app designed to help you stay motivated and achieve your fitness goals. With our app, you can easily create customized workout routines based on your preferences, fitness level, and available equipment. Whether you're a beginner or an experienced gym-goer, our app provides a variety of exercises and routines to keep your workouts fresh and challenging. Join our community of fitness enthusiasts and start your fitness journey with <em>JustGym</em> today.
                     </p>
                 </div>
                 <div class="formContainer">
@@ -48,6 +127,68 @@
                 </div>
             </div>
         </div>
+</div>
+<div id="learnMore" class="learnMoreSection">
+        <div class="intro">
+            <div style="margin: 50px;">
+                <h1>Meet <span>Team 200</span></h1>
+                <p>The talented and passionate group of developers who dedicated their time and effort to bring the <em>JustGym</em> web application to life. Our team is comprised of skilled programmers, designers, and engineers who share a common goal of creating an innovative fitness app that would help people achieve their fitness goals in a fun and engaging way.</p>
+                <p>As a team, we worked tirelessly to create an app that would revolutionize the way people approach fitness. With a strong focus on user experience and functionality, we set out to develop an app that would not only be easy to use, but also provide users with a comprehensive fitness experience. We knew that in order to achieve this goal, we needed to listen to the needs and feedback of fitness enthusiasts everywhere, so we conducted extensive research to understand what features and functionalities they were looking for in a fitness app.</p>
+
+                <p>After gathering feedback from various sources, we began the design and development process of <em>JustGym</em>. We spent countless hours brainstorming ideas, sketching out wireframes, and coding to ensure that we delivered a top-tier web application that could meet the needs of fitness enthusiasts everywhere. Our team worked collaboratively, combining our expertise and knowledge to create an app that would not only look great but also function flawlessly.</p>
+                    
+                <p>Throughout the development process, we encountered numerous challenges and obstacles, but our team persevered and continued to work hard until we achieved our goal. We rigorously tested the app to ensure that it was stable, reliable, and met the high standards that we had set for ourselves. We wanted <em>JustGym</em> to be a game-changer in the fitness industry, and we're proud to say that we achieved that goal.</p>
+    
+                <p>We're excited to share <em>JustGym</em> with you, and we hope that it inspires you to achieve your fitness goals and lead a healthier lifestyle. As a team, we're committed to continuously improving and updating the app to meet the evolving needs of fitness enthusiasts everywhere. Thank you for choosing <em>JustGym</em>, and we hope you enjoy using it as much as we enjoyed creating it.</p>
+                    
+            
+            </div>
+            <div class="profile-card-container">
+                <div class="profile-card">
+                  <img src="https://i.ibb.co/dpWXkSS/github-512.webp" alt="Profile Image">
+                  <h2>TEAM 200</h2>
+                  <p style="margin-bottom: 48px;">Repository</p>
+                  
+                  <a href="https://github.com/INFO2602-Team200/JustGym"><button class="my-button">Github</button></a>
+
+                </div>
+                <div class="profile-card">
+                  <img src="https://i.ibb.co/dpWXkSS/github-512.webp" alt="Profile Image">
+                  <h2>Allyssa Sampath</h2>
+                  <p>Lead</p>
+                  <p>UI Design</p>
+                  <p>UI Implementation</p>
+                  <a href="https://github.com/Allyy02"><button class="my-button">Github</button></a>
+                </div>
+                <div class="profile-card">
+                  <img src="https://i.ibb.co/dpWXkSS/github-512.webp" alt="Profile Image">
+                  <h2>Jared Heeralal</h2>
+                  <p>DevOps</p>
+                  <p>Server Side Implementation</p>
+                  <p>UI Implementation</p>
+                  <a href="https://github.com/Jus-Jar"><button class="my-button">Github</button></a>
+
+                </div>
+                <div class="profile-card">
+                  <img src="https://i.ibb.co/dpWXkSS/github-512.webp" alt="Profile Image">
+                  <h2>Kimberly Moses</h2>
+                  <p>UI Design</p>
+                  <p>UI Implementation</p>
+                  <p>Server Side Implementation</p>
+                  <a href="https://github.com/kimberly-moses"><button class="my-button">Github</button></a>
+                </div>
+                <div class="profile-card">
+                  <img src="https://i.ibb.co/dpWXkSS/github-512.webp" alt="Profile Image">
+                  <h2>Victor Solano</h2>
+                  <p>UI Design</p>
+                  <p>UI Implementation</p>
+                  <p>Marketing</p>
+                  <a href="https://github.com/vsuwi"><button class="my-button">Github</button></a>
+                </div>
+              </div>
+              
+        </div>
+          
 </div>
 
 
