@@ -58,14 +58,46 @@
         font-style: italic;
         margin-left: -5px;
     }
+
+    i:hover {
+      color: #ff4857;
+    }
     
     </style>
 
 
+<div style="display: flex; flex-wrap: nowrap; justify-content: space-between; align-items: center; padding: 20px 20px 0 20px;">
+  <div style="display: flex; flex-wrap: nowrap; justify-content: start; align-items: center;">
+    <h3 style="color: white;">{{community_workout.workout.workoutName}}<span style="font-size: 14px; vertical-align:middle; color: light-grey"> • estimated duration: {{workoutDuration}} • </span></h3>
+  
+    <form id="upvote_-form" method="GET" action="/voteup/{{community_workout.communityWorkoutId}}">
+      <button class = "btn btn-link" style = "color: white" type = submit>
+        <i class="bi bi-hand-thumbs-up-fill"></i></button>
+      <span style="color: white; font-weight: bold">{{community_workout.upvotes}}</span>
+    </form>
+    &nbsp &nbsp &nbsp
+    <form id="downvote_form" method="GET" action="/votedown/{{community_workout.communityWorkoutId}}">
+      <button class = "btn btn-link" style = "color: white" type = submit>
+        <i class="bi bi-hand-thumbs-down-fill"></i></button> 
+      <span style="color: white; font-weight: bold">{{community_workout.downvotes}}</span>
+    </form>
+  </div>
+
+  <form id="community_workout-add-form" method="GET" action="/communitycopy/{{community_workout.communityWorkoutId}}">
+    <button class = "btn btn-primary" style="background-color: #FF4857; border:#FF4857" type = submit> + Add to My Workouts</button>
+  </form>
+</div>
+
+<div style="display: flex; flex-wrap: nowrap; justify-content: space-between; align-items: top; padding: 20px 20px 20px 40px;">
+  <div>
+    <h6 style="color: white;">Total Exercises: {{numExercises}}</h6>
+    <h6 style="color: white;">Workout Category: {{community_workout.workout.category.categoryName}}</h6>
+  </div>
+  
+</div>
 
 
-
-    <div class = "row" id = "first_row" style="margin-top: 1%; margin-bottom: 1%;">
+    <!-- <div class = "row" id = "first_row" style="margin-top: 1%; margin-bottom: 1%;">
         
             <div class="card text-bg-dark" style="width: 80% ;margin: auto; background-color: #FF4857;">
               <h2 class = "card-title" style="text-align: center;">Community Workout Name: {{community_workout.workout.workoutName}} </h2>
@@ -114,7 +146,7 @@
                 </div>
               </div>
             
-          </div>
+          </div> -->
 
    
 
