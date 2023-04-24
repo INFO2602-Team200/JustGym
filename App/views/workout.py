@@ -15,7 +15,11 @@ def home_page():
     if not myWorkouts:
         myWorkouts = []
     community = get_community(1)
-    community_workouts = community.communityWorkout
+
+    if community:
+        community_workouts = community.communityWorkout
+    else:
+        community_workouts = []
 
     return render_template('home.html',categories = categories, myWorkouts = myWorkouts, community_workouts = community_workouts)
 
