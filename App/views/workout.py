@@ -34,9 +34,9 @@ def view_workout(workoutID):
     workoutDuration = seconds_to_minutes_string(seconds)
     numExercises = get_num_exercises_workout(workoutID)
 
+    categories = get_all_categories()
 
-
-    return render_template('exercise_routine.html',workout = workout, category_exercises =category_exercises , exercises = exercises, workoutID=workoutID,workoutDuration = workoutDuration,numExercises = numExercises)
+    return render_template('exercise_routine.html',workout = workout, category_exercises =category_exercises , exercises = exercises, workoutID=workoutID,workoutDuration = workoutDuration,numExercises = numExercises, categories = categories)
 
 
 
@@ -119,3 +119,11 @@ def add_new_workout():
     
     return redirect(request.referrer)
 
+@workout_views.route('/addworkoutbutton', methods=['POST'])
+@login_required
+def add_workout_button():
+    formData = request.form
+    if formData:
+        category = formData['categoryId']
+
+    return redirect(f'/categories/{category}')
