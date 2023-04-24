@@ -151,7 +151,7 @@ def add_new_workout():
         status = add_community_workout(1,new_community_workout)
     else:
         bool_public = False
-        new_workout= add_workout(current_user.id,formData['workoutName'], bool_public, formData['categoryId'])
+        new_workout= add_workout(current_user.id,formData['workoutName'], bool_public, formData['categoryId'],[],[],0,current_user.username)
     
     flash(f'Workout {new_workout.workoutName} Created')
     
