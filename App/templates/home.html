@@ -145,7 +145,7 @@
                                     <a href="/home/{{workout.workout_id}}">
                                         <div class="item mb-4" style="width: 90%; margin: auto;">
                                             <div class="card border-0 shadow">
-                                                <img src="{{workout.category.categoryImgUrl}}" alt="" class="card-img-top">
+                                                <img style="object-fit: cover;" src="{{workout.category.categoryImgUrl}}" alt="" class="card-img-top">
                                                 <div class="card-body">
                                                     <div class="card-title text-center">
                                                         <h4>{{workout.workoutName}}</h4>
@@ -166,7 +166,7 @@
                             <a href="/categories/{{category.categoryName}}">
                                     <div class="item mb-4" style="width: 90%; margin: auto;">
                                         <div class="card border-0 shadow">
-                                            <img src="{{category.categoryImgUrl}}" alt="" class="card-img-top">
+                                            <img style="object-fit: cover;" src="{{category.categoryImgUrl}}" alt="" class="card-img-top">
                                         <div class="card-body">
                                                 <div class="card-title text-center">
                                                     <h4>{{category.categoryName}}</h4>
@@ -185,7 +185,7 @@
                             <a href="/community/{{workout.communityWorkoutId}}">
                                 <div class="item mb-4" style="width: 90%; margin: auto;">
                                     <div class="card border-0 shadow">
-                                        <img src="{{workout.workout.category.categoryImgUrl}}" alt="" class="card-img-top">
+                                        <img style="object-fit: cover;" src="{{workout.workout.category.categoryImgUrl}}" alt="" class="card-img-top">
                                         <div class="card-body">
                                             <div class="card-title text-center">
                                                 <h4>{{workout.workout.workoutName}}</h4>
