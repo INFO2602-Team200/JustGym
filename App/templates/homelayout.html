@@ -24,6 +24,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+        <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
         <title>{% block title %}{% endblock %}</title>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
@@ -43,51 +44,48 @@
         </style>
     </head>
   <body>
-    <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
     <nav class="navbar" style="background-color: #42414A;">
         <div class="container-fluid">
-          <!-- <a class="navbar-brand" href="#"><img src="/static/img/logo.png"></a> -->
           <a style="text-decoration: none;" class="navbar-brand" href="/home">
             <span class="logo just">Just</span>
             <span class="logo gym">Gym</span>
           </a>
 
           <div>
-            <a style="text-decoration: none;" href="/home">
-                <button style = "margin-bottom: 10%" type="button" class="btn btn-outline-light">Return Home</button>
+            <a style="text-decoration: none;vertical-align:middle; margin-right:10px" href="/home">
+                <button type="button" class="btn btn-outline-light">Home</button>
             </a>
 
-            <a style="text-decoration: none;" href="/profile">
+            <a style="text-decoration: none; padding:0; margin:0;vertical-align:middle; margin-right:10px" href="/profile">
                 <lord-icon
-                src="https://cdn.lordicon.com/ajkxzzfb.json"
-                trigger="hover"
-                style="width:50px;height:50px">
-            </lord-icon>
+                    src="https://cdn.lordicon.com/ajkxzzfb.json"
+                    trigger="hover"
+                    style="width:50px;height:50px">
+                </lord-icon>
             </a>
-            <a style="text-decoration: none;" href="/logout"><i class="bi bi-box-arrow-right" style="margin-left: 5px; color: white;"></i></a>
+            <a style="text-decoration: none;vertical-align:middle; font-size: 30px; color:white" href="/logout"><i class="bi bi-box-arrow-right"></i></a>
           </div>
         </div>
-      </nav>
+    </nav>
     
-      {% with messages = get_flashed_messages() %}
-      {% if messages %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
         <nav class="white black-text" style="padding: 10px; color: #f5f5f5;">
-          <div class="nav-wrapper" style = "width: inherit">
+            <div class="nav-wrapper" style = "width: inherit">
             <ul class="flashes">
-              {% for message in messages %}
+                {% for message in messages %}
                 <li>{{ message }}</li>
-              {% endfor %}
+                {% endfor %}
             </ul>
-          </div>
+            </div>
         </nav>
         <script>
-          setTimeout(function() {
-            document.querySelector('.flashes').innerHTML = '';
-            document.querySelector('.flashes').style.display = "none"
-          }, 3000);
-
+            setTimeout(function() {
+            // document.querySelector('.flashes').innerHTML = '';
+            document.querySelector('.flashes').style.display = "none";
+            }, 3000);
         </script>
-      {% endif %}
+        {% endif %}
     {% endwith %}
 
     {% block content %}{% endblock %}
