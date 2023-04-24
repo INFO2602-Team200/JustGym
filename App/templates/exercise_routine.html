@@ -45,8 +45,8 @@
     }
 
     .modal-backdrop {
-    z-index: -2;
-    opacity: 0;
+    z-index: -1;
+    opacity: 100;
   } 
 
   .logo {
@@ -63,18 +63,11 @@
     
     </style>
 
-<nav class="navbar" style="background-color: #42414A;">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-      <span class="logo just">Just</span>
-      <span class="logo gym">Gym</span>
-    </a>
-  </div>
-</nav>
 
 
 
-    <div class = "row" id = "first_row" style="margin-top: 1%; margin-bottom: 1%;">
+
+    <div class = "row" id = "first_row" style="margin-top: 1%; margin-bottom: 1%; ">
         <div class="col" style="width: 100%">
             <div class="card text-bg-dark" style="width: 80% ;margin: auto; background-color: #FF4857;">
               <h2 class = "card-title" style="text-align: center;">Workout Name: {{workout.workoutName}}</h2>
@@ -116,12 +109,16 @@
             <h5 class="card-title">{{e.exercise.name}}</h5>
             <div class="card-text">
                 <div class = "row">
-                    <div class = "col" style = "width:50%">
+                    <div class = "col" style = "width:33%">
                       <b>Reps: {{e.reps}}</b>
                     </div>
 
-                    <div class = "col" style = "width:50%">
+                    <div class = "col" style = "width:33%">
                       <b>Sets: {{e.sets}}</b>
+                    </div>
+
+                    <div class = "col" style = "width:33%">
+                      <b>Estimated Duration: {{e.duration}} seconds</b>
                     </div>
 
                     <div class = "row" >
@@ -142,7 +139,7 @@
 
 
 
-    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
       <div id="exampleModal2" class="modal-dialog exercise-card-modal-dialog">
         <div class="modal-content">
           <ul class="nav nav-tabs" id="myTab" role="tablist">

@@ -111,6 +111,8 @@ def categories():
 @index_views.route('/settings', methods=['GET'])
 @login_required
 def settings():
+    from flask import flash
+    flash('Hihi')
     return render_template('settings.html')
 
 @index_views.route('/test', methods = ['GET'])

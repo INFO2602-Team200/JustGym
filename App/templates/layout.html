@@ -41,19 +41,66 @@
     <style>
     
     </style>-->
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-      <nav class="white black-text" style="padding: 10px">
-        <div class="nav-wrapper">
-            <ul class="flashes">
-            {% for message in messages %}
-              <li>{{ message }}</li>
-            {% endfor %}
-            </ul>
+    <style>
+      .flash-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+}
+
+.message {
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 16px;
+  color: pink;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+    </style>
+    <nav class="navbar" style="background-color: #42414A; width: 100%">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <span class="logo just">Just</span>
+          <span class="logo gym">Gym</span>
+        </a>
+
+        <div>
+          <a href="/home">
+              <button type="button" class="btn btn-outline-light">Return Home</button>
+          </a>
+
+          <a href="/profile">
+            <button type="button" class="btn btn-outline-light">View Profile</button>
+          </a>
+          <a href="/logout"><i class="bi bi-box-arrow-right" style="margin-left: 5px; "></i></a>
         </div>
-      </nav>
-      {% endif %}
-    {% endwith %}
+      </div>
+    </nav>
+
+    {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <nav class="white black-text" style="padding: 10px; color: #f5f5f5;">
+      <div class="nav-wrapper" style = "width: inherit">
+        <ul class="flashes">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </nav>
+    <script>
+      setTimeout(function() {
+        document.querySelector('.flashes').innerHTML = '';
+      }, 3000);
+    </script>
+  {% endif %}
+{% endwith %}
 
     <div class="container" id="content" >{% block content %}{% endblock %}</div>
 
