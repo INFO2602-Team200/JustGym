@@ -102,7 +102,6 @@ def logout_action():
   return redirect('/')
 
 
-
 @user_views.route('/profile', methods=['GET'])
 @login_required
 def profile():
@@ -115,6 +114,7 @@ def profile():
     milestones = get_user_milestones(current_user.id)
 
     return render_template('profile.html', user=user, userEquipment=userEquipment, equipment=equipment, milestones=milestones)
+
 
 @user_views.route('/profile', methods=['POST']) 
 @login_required
