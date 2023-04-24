@@ -146,7 +146,7 @@ def add_new_workout():
 
     if is_public:
         bool_public = True
-        new_workout = add_workout(current_user.id,formData['workoutName'], bool_public, formData['categoryId'])
+        new_workout = add_workout(current_user.id,formData['workoutName'], bool_public, formData['categoryId'],[],[],0,current_user.username)
         new_community_workout = create_community_workout(new_workout.workout_id)
         status = add_community_workout(1,new_community_workout)
     else:

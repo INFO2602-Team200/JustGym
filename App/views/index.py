@@ -42,8 +42,8 @@ def init():
     
     load_categories()
 
-    workout_test = add_workout(1,"Full Body Workout",False,"1")
-    workout_test = add_workout(1,"Legs Workout",False,"2")
+    workout_test = add_workout(1,"Full Body Workout",False,"1",author = "bob")
+    workout_test = add_workout(1,"Legs Workout",False,"2",author = "bob")
     
     workout_test = add_workout_exercise(2,add_exercise(2,1,4,5,60))
     workout_test = add_workout_exercise(1,add_exercise(1,14,4,5,30))
@@ -52,10 +52,10 @@ def init():
     
     workout_test = add_workout_exercise(1, add_exercise(1,1,4,5,45))
 
-    workout_test = add_workout(2,"Chest Workout",True,"3")
+    workout_test = add_workout(2,"Chest Workout",True,"3",author = "rob")
     workout_test3 = add_workout_exercise(3, add_exercise(3,9,4,5,85))
 
-    workout_test = add_workout(2,"Abs Workout",False,"4")
+    workout_test = add_workout(2,"Abs Workout",False,"4",author = "rob")
     workout_test = add_workout_exercise(4, add_exercise(4,8,4,5,45))
 
     new_community = add_community()
